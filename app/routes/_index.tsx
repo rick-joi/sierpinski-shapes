@@ -61,7 +61,7 @@ export default function Index() {
           <th>standard Sierpinski Triangle</th>
           <th>simple one-triangle rotation</th>
           <th>rotating all the triangles</th>
-          <th>turning on the fourth quadrant</th>
+          <th>including the fourth quadrant</th>
           <th>rotations other than 90, 180, 270</th>
         </thead>
         <tbody>{sierpinskiShapes}</tbody>
