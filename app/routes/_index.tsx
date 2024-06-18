@@ -17,30 +17,55 @@ export default function Index() {
   const messyRotations: ChildRotations = [167, 52, null, 294];
   for (let i = 0; i <= maxIterations; i++) {
     sierpinskiShapes.push(
-      <div key={i}>
-        <SierpinskiShape iterationCount={i} size={size} childRotations={standardRotations} idPrefix={`standard${i}`} />
-        <SierpinskiShape
-          iterationCount={i}
-          size={size}
-          childRotations={educationalRotations}
-          idPrefix={`educational${i}`}
-        />
-        <SierpinskiShape
-          iterationCount={i}
-          size={size}
-          childRotations={interestingRotations}
-          idPrefix={`interesting${i}`}
-        />
-        <SierpinskiShape iterationCount={i} size={size} childRotations={carpetRotations} idPrefix={`carpet${i}`} />
-        <SierpinskiShape iterationCount={i} size={size} childRotations={messyRotations} idPrefix={`messy${i}`} />
-      </div>
+      <tr key={i}>
+        <td style={{ verticalAlign: "middle", paddingBottom: "40px", textAlign: "right" }}>{i}:</td>
+        <td>
+          <SierpinskiShape
+            iterationCount={i}
+            size={size}
+            childRotations={standardRotations}
+            idPrefix={`standard${i}`}
+          />
+        </td>
+        <td>
+          <SierpinskiShape
+            iterationCount={i}
+            size={size}
+            childRotations={educationalRotations}
+            idPrefix={`educational${i}`}
+          />
+        </td>
+        <td>
+          <SierpinskiShape
+            iterationCount={i}
+            size={size}
+            childRotations={interestingRotations}
+            idPrefix={`interesting${i}`}
+          />
+        </td>
+        <td>
+          <SierpinskiShape iterationCount={i} size={size} childRotations={carpetRotations} idPrefix={`carpet${i}`} />
+        </td>
+        <td>
+          <SierpinskiShape iterationCount={i} size={size} childRotations={messyRotations} idPrefix={`messy${i}`} />
+        </td>
+      </tr>
     );
   }
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
-      <h1>Welcome to Sierpinski Shapes</h1>
-      <p>Coming soon...</p>
-      {sierpinskiShapes}
+      <h1>welcome to Sierpinski Shapes</h1>
+      <table>
+        <thead>
+          <th>stage</th>
+          <th>standard Sierpinski Triangle</th>
+          <th>simple one-triangle rotation</th>
+          <th>rotating all the triangles</th>
+          <th>turning on the fourth quadrant</th>
+          <th>rotations other than 90, 180, 270</th>
+        </thead>
+        <tbody>{sierpinskiShapes}</tbody>
+      </table>
     </div>
   );
 }
