@@ -54,7 +54,6 @@ export default function Index() {
   }
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
-      <h1>welcome to Sierpinski Shapes</h1>
       <table>
         <thead>
           <th>stage</th>
