@@ -13,4 +13,8 @@ export default defineConfig({
     }),
     tsconfigPaths(),
   ],
+  server: {
+    host: "localhost.loc",
+    port: 9000,
+  },
 });
