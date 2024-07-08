@@ -1,8 +1,17 @@
-body,
-html {
-  font-family: sans-serif;
+:root {
+  --primary-accent-color: #0ac1e8;
+  --secondary-accent-color: #86238c;
+  --dark-neutral-color: #475569;
+  --light-neutral-color: #e2e8f0;
+}
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+body,
+html {
+  font-family: "Roboto Flex", sans-serif;
 }
 html {
   box-sizing: border-box;
@@ -73,41 +82,6 @@ h1 {
   background-color: black;
   color: white;
   display: inline-block;
-}
-header {
-  background-color: black;
-  color: white;
-  margin: 0;
-  padding-left: 3rem;
-  padding-right: 3rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  display: flex;
-  flex-direction: row;
-}
-menu {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  margin-left: auto;
-  display: inline-block;
-  margin-top: 2rem;
-}
-menu li {
-  display: inline;
-  margin-right: 1rem;
-  font-size: larger;
-  margin-right: 2rem;
-  margin-left: 2rem;
-}
-header menu li a,
-header menu li a:visited {
-  color: white;
-}
-header menu li a:hover,
-header menu li a:active {
-  color: orange;
-  text-decoration: wavy;
 }
 main {
   padding: 1rem;

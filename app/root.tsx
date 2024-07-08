@@ -1,6 +1,8 @@
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
 
 import "./styles/root.css";
+import { Footer } from "./components/root/footer";
+import { Header } from "./components/root/header";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -12,30 +14,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <header>
-          <h1>Sierpinski Shapes</h1>
-          <menu>
-            <li>
-              <a href="/">Create</a>
-            </li>
-            <li>
-              <a href="/gallery">Gallery</a>
-            </li>
-            <li>
-              <a href="/learn">Learn</a>
-            </li>
-            <li>
-              <a href="/shop">Shop</a>
-            </li>
-          </menu>
-        </header>
+        <Header />
         <main>{children}</main>
-        <footer>
-          <span>copyright &copy; 2024</span> |{" "}
-          <span>
-            <a href="/">privacy policy</a>
-          </span>
-        </footer>
+        <Footer />
+
         <ScrollRestoration />
         <Scripts />
       </body>
