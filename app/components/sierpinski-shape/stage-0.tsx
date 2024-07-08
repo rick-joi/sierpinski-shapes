@@ -1,9 +1,9 @@
 import { getStageId } from "./sierpinski-utilities";
 
-type Props = {
+type Props = Readonly<{
   idPrefix: string;
   size: number;
-};
+}>;
 
 export default function Stage0(props: Props) {
   //

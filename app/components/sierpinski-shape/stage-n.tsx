@@ -1,12 +1,13 @@
 import StageNMinus1 from "./stage-n-minus-1";
 import { ChildRotations, getStageId } from "./sierpinski-utilities";
 
-type Props = {
+type Props = Readonly<{
   idPrefix: string;
   stage: number;
   size: number;
   childRotations: ChildRotations;
-};
+}>;
+
 export default function StageN(props: Props) {
   //
   const previousStage = props.stage - 1;

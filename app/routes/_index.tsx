@@ -1,13 +1,13 @@
 import type { MetaFunction } from "@remix-run/node";
-import { ChildRotations } from "~/components/sierpinski-utilities";
-import SierpinskiShape from "~/components/sierpinski-shape";
+import { ChildRotations } from "~/components/sierpinski-shape/sierpinski-utilities";
+import SierpinskiShape from "~/components/sierpinski-shape/sierpinski-shape";
 
 export const meta: MetaFunction = () => {
   return [{ title: "Sierpinski Shapes" }, { name: "description", content: "Create your own Sierpinski Shape!" }];
 };
 
 export default function Index() {
-  const sierpinskiShapes = [];
+  //
   const maxIterations = 7;
   const size = 256;
   const standardRotations: ChildRotations = [0, null, 0, 0];
@@ -15,6 +15,8 @@ export default function Index() {
   const interestingRotations: ChildRotations = [180, null, 180, 270];
   const carpetRotations: ChildRotations = [180, 90, 180, 270];
   const messyRotations: ChildRotations = [167, 52, null, 294];
+
+  const sierpinskiShapes = [];
   for (let i = 0; i <= maxIterations; i++) {
     sierpinskiShapes.push(
       <tr key={i}>

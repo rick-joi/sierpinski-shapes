@@ -2,12 +2,13 @@ import StageN from "./stage-n";
 import Stage0 from "./stage-0";
 import { ChildRotations, getStageId } from "./sierpinski-utilities";
 
-type Props = {
+type Props = Readonly<{
   idPrefix: string;
   iterationCount: number;
   size: number;
   childRotations: ChildRotations;
-};
+}>;
+
 export default function SierpinskiShape(props: Props) {
   //
   const iterations = [];

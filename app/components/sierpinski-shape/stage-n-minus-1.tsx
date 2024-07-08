@@ -1,13 +1,13 @@
 import { getStageId } from "./sierpinski-utilities";
 
-type Props = {
+type Props = Readonly<{
   idPrefix: string;
   size: number;
   stageNMinus1: number;
   x: number;
   y: number;
   rotation: number | null;
-};
+}>;
 
 export default function StageNMinus1(props: Props) {
   //
