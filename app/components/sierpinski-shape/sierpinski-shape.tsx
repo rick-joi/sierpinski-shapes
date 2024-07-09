@@ -20,8 +20,17 @@ export default function SierpinskiShape(props: Props) {
       <StageN stage={i} size={props.size} childRotations={props.childRotations} idPrefix={props.idPrefix} key={i} />
     );
   }
+  const viewBoxMargin = calculateViewBoxMargin(props.size, props.childRotations);
+  const viewBox = `${-viewBoxMargin} ${-viewBoxMargin} ${props.size + 2 * viewBoxMargin} ${
+    props.size + 2 * viewBoxMargin
+  }`;
   return (
-    <svg width={props.size} height={props.size} style={{ backgroundColor: props.backgroundColor ?? "white" }}>
+    <svg
+      width={props.size}
+      height={props.size}
+      style={{ backgroundColor: props.backgroundColor ?? "white" }}
+      viewBox={viewBox}
+    >
       <defs>
         <Stage0 size={props.size} idPrefix={props.idPrefix} key={0} color={props.foregroundColor ?? "black"} />
         {iterations}
@@ -29,4 +38,15 @@ export default function SierpinskiShape(props: Props) {
       <use href={getStageId(props.iterationCount, `#${props.idPrefix}`)} />
     </svg>
   );
+}
+
+function calculateViewBoxMargin(
+  size: number,
+  childRotations: readonly [number | null, number | null, number | null, number | null]
+) {
+  const isSquare = childRotations.reduce(
+    (isSquare, rotation) => isSquare && (rotation === null || rotation % 90 !== 0),
+    false
+  );
+  return isSquare ? 0 : size / 8;
 }

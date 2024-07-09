@@ -62,18 +62,18 @@ export default function Index() {
           maxValue={maxIterations}
         />
         <RotationInput
-          label="Bottom right"
-          isOn={bottomRightIsOn}
-          setIsOn={setBottomRightIsOn}
-          rotation={bottomRightRotation}
-          setRotation={setBottomRightRotation}
-        />
-        <RotationInput
           label="Bottom left"
           isOn={bottomLeftIsOn}
           setIsOn={setBottomLeftIsOn}
           rotation={bottomLeftRotation}
           setRotation={setBottomLeftRotation}
+        />
+        <RotationInput
+          label="Bottom right"
+          isOn={bottomRightIsOn}
+          setIsOn={setBottomRightIsOn}
+          rotation={bottomRightRotation}
+          setRotation={setBottomRightRotation}
         />
         <ColorInput label="Background" value={backgroundColor} setValue={setBackgroundColor} />
       </div>
