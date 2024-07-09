@@ -20,7 +20,7 @@ export default function NumberInput(props: Props) {
   const id = useId();
   return (
     <span style={{ whiteSpace: "nowrap", textAlign: "right" }}>
-      <label htmlFor={id} style={{ padding: "1rem", color: props.isDisabled ? "lightgray" : "default" }}>
+      <label htmlFor={id} style={{ padding: "1rem", color: props.isDisabled ? "lightgray" : "black" }}>
         {props.label}:
       </label>
       <input

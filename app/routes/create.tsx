@@ -90,6 +90,11 @@ export default function Index() {
         foregroundColor={foregroundColor}
         backgroundColor={backgroundColor}
       />
+      <br />
+      <span style={{ width: "5rem", display: "inline-block" }}></span>
+      <input type="button" value="Add to gallery" onClick={notImplementedYet} />
+      <input type="button" value="Download" onClick={notImplementedYet} />
+      <input type="button" value="Buy print" onClick={notImplementedYet} />
     </>
   );
 
@@ -97,5 +102,9 @@ export default function Index() {
     const powerOfTwo = Math.log2(newValue);
     const adjustedPowerOfTwo = newValue < oldValue ? Math.floor(powerOfTwo) : Math.ceil(powerOfTwo);
     return Math.pow(2, adjustedPowerOfTwo);
+  }
+
+  function notImplementedYet() {
+    alert("not implemented, yet");
   }
 }
