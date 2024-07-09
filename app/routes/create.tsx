@@ -93,6 +93,7 @@ export default function Index() {
       <br />
       <span style={{ width: "5rem", display: "inline-block" }}></span>
       <input type="button" value="Add to gallery" onClick={notImplementedYet} />
+      <input type="button" value="Animate" onClick={notImplementedYet} />
       <input type="button" value="Download" onClick={notImplementedYet} />
       <input type="button" value="Buy print" onClick={notImplementedYet} />
     </>
