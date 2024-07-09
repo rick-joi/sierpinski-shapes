@@ -11,31 +11,28 @@ type Props = Readonly<{
   backgroundColor?: string;
 }>;
 
-export default function SierpinskiShape(props: Props) {
+export default function SierpinskiShape({
+  idPrefix,
+  iterationCount,
+  size,
+  childRotations,
+  foregroundColor,
+  backgroundColor,
+}: Props) {
   //
-
   const iterations = [];
-  for (let i = 1; i <= props.iterationCount; i++) {
-    iterations.push(
-      <StageN stage={i} size={props.size} childRotations={props.childRotations} idPrefix={props.idPrefix} key={i} />
-    );
+  for (let i = 1; i <= iterationCount; i++) {
+    iterations.push(<StageN stage={i} size={size} childRotations={childRotations} idPrefix={idPrefix} key={i} />);
   }
-  const viewBoxMargin = calculateViewBoxMargin(props.size, props.childRotations);
-  const viewBox = `${-viewBoxMargin} ${-viewBoxMargin} ${props.size + 2 * viewBoxMargin} ${
-    props.size + 2 * viewBoxMargin
-  }`;
+  const viewBoxMargin = calculateViewBoxMargin(size, childRotations);
+  const viewBox = `${-viewBoxMargin} ${-viewBoxMargin} ${size + 2 * viewBoxMargin} ${size + 2 * viewBoxMargin}`;
   return (
-    <svg
-      width={props.size}
-      height={props.size}
-      style={{ backgroundColor: props.backgroundColor ?? "white" }}
-      viewBox={viewBox}
-    >
+    <svg width={size} height={size} style={{ backgroundColor: backgroundColor ?? "white" }} viewBox={viewBox}>
       <defs>
-        <Stage0 size={props.size} idPrefix={props.idPrefix} key={0} color={props.foregroundColor ?? "black"} />
+        <Stage0 size={size} idPrefix={idPrefix} key={0} color={foregroundColor ?? "black"} />
         {iterations}
       </defs>
-      <use href={getStageId(props.iterationCount, `#${props.idPrefix}`)} />
+      <use href={getStageId(iterationCount, `#${idPrefix}`)} />
     </svg>
   );
 }

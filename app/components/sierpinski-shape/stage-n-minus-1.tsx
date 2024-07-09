@@ -9,19 +9,19 @@ type Props = Readonly<{
   rotation: number | null;
 }>;
 
-export default function StageNMinus1(props: Props) {
+export default function StageNMinus1({ idPrefix, size, stageNMinus1, x, y, rotation }: Props) {
   //
-  if (props.rotation === null) {
+  if (rotation === null) {
     return;
   } else {
-    const rotationCenterX = props.x + props.size / 2;
-    const rotationCenterY = props.y + props.size / 2;
+    const rotationCenterX = x + size / 2;
+    const rotationCenterY = y + size / 2;
     return (
       <use
-        href={getStageId(props.stageNMinus1, `#${props.idPrefix}`)}
-        x={props.x}
-        y={props.y}
-        transform={`scale(0.5) rotate(${props.rotation}, ${rotationCenterX}, ${rotationCenterY})`}
+        href={getStageId(stageNMinus1, `#${idPrefix}`)}
+        x={x}
+        y={y}
+        transform={`scale(0.5) rotate(${rotation}, ${rotationCenterX}, ${rotationCenterY})`}
       />
     );
   }

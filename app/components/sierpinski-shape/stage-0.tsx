@@ -6,13 +6,7 @@ type Props = Readonly<{
   color: string;
 }>;
 
-export default function Stage0(props: Props) {
+export default function Stage0({ idPrefix, size, color }: Props) {
   //
-  return (
-    <polygon
-      style={{ fill: props.color }}
-      points={`0,0 ${props.size},${props.size} 0,${props.size}`}
-      id={getStageId(0, props.idPrefix)}
-    />
-  );
+  return <polygon style={{ fill: color }} points={`0,0 ${size},${size} 0,${size}`} id={getStageId(0, idPrefix)} />;
 }

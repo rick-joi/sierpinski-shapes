@@ -8,42 +8,42 @@ type Props = Readonly<{
   childRotations: ChildRotations;
 }>;
 
-export default function StageN(props: Props) {
+export default function StageN({ idPrefix, stage, size, childRotations }: Props) {
   //
-  const previousStage = props.stage - 1;
+  const previousStage = stage - 1;
   return (
-    <g id={getStageId(props.stage, props.idPrefix)}>
+    <g id={getStageId(stage, idPrefix)}>
       <StageNMinus1
-        size={props.size}
+        size={size}
         stageNMinus1={previousStage}
         x={0}
         y={0}
-        rotation={props.childRotations[0]}
-        idPrefix={props.idPrefix}
+        rotation={childRotations[0]}
+        idPrefix={idPrefix}
       />
       <StageNMinus1
-        size={props.size}
+        size={size}
         stageNMinus1={previousStage}
-        x={props.size}
+        x={size}
         y={0}
-        rotation={props.childRotations[1]}
-        idPrefix={props.idPrefix}
+        rotation={childRotations[1]}
+        idPrefix={idPrefix}
       />
       <StageNMinus1
-        size={props.size}
+        size={size}
         stageNMinus1={previousStage}
-        x={props.size}
-        y={props.size}
-        rotation={props.childRotations[2]}
-        idPrefix={props.idPrefix}
+        x={size}
+        y={size}
+        rotation={childRotations[2]}
+        idPrefix={idPrefix}
       />
       <StageNMinus1
-        size={props.size}
+        size={size}
         stageNMinus1={previousStage}
         x={0}
-        y={props.size}
-        rotation={props.childRotations[3]}
-        idPrefix={props.idPrefix}
+        y={size}
+        rotation={childRotations[3]}
+        idPrefix={idPrefix}
       />
     </g>
   );
