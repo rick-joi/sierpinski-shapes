@@ -1,43 +1,27 @@
-import { Dispatch, SetStateAction, useId, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
+import NumberInput from "./number-input";
 
 type Props = Readonly<{
   label: string;
-  value: number;
-  setValue: Dispatch<SetStateAction<number>>;
-  minValue?: number;
-  maxValue?: number;
-  roundFunction?: (newValue: number, oldValue: number) => number;
+  isOn: boolean;
+  setIsOn: Dispatch<SetStateAction<boolean>>;
+  rotation: number;
+  setRotation: Dispatch<SetStateAction<number>>;
 }>;
 
-export default function NumberInput(props: Props) {
+export default function RotationInput(props: Props) {
   //
-  const constrainedValue = Math.min(
-    Math.max(props.value, props.minValue ?? Number.MIN_SAFE_INTEGER),
-    props.maxValue ?? Number.MAX_SAFE_INTEGER
-  );
-  const [previousValue, setPreviousValue] = useState(constrainedValue);
+  if (props.rotation < -359 || props.rotation > 359) {
+    props.setRotation(props.rotation % 360);
+  }
   return (
-    <>
-      <label htmlFor={useId()} style={{ padding: "1rem" }}>
-        {props.label}:
-      </label>
-      <input
-        id={useId()}
-        type="number"
-        value={constrainedValue}
-        min={props.minValue}
-        max={props.maxValue}
-        onChange={handleIterationsChange}
-        style={{ height: "2rem", width: "4rem", textAlign: "center" }}
-      />
-    </>
+    <span style={{ whiteSpace: "nowrap", textAlign: "right" }}>
+      <NumberInput label={props.label} value={props.rotation} setValue={props.setRotation} isDisabled={!props.isOn} />
+      <input type="checkbox" checked={props.isOn} onChange={checkBoxChange} style={{ marginLeft: "0.5rem" }} />
+    </span>
   );
 
-  function handleIterationsChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const roundFunction = props.roundFunction ?? ((newValue: number) => newValue);
-    const newValue = Number(event.target.value);
-    const adjustedValue = roundFunction(newValue, previousValue);
-    props.setValue(adjustedValue);
-    setPreviousValue(adjustedValue);
+  function checkBoxChange(event: React.ChangeEvent<HTMLInputElement>) {
+    props.setIsOn(event.target.checked);
   }
 }

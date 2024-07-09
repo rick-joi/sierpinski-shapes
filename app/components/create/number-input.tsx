@@ -7,6 +7,7 @@ type Props = Readonly<{
   minValue?: number;
   maxValue?: number;
   roundFunction?: (newValue: number, oldValue: number) => number;
+  isDisabled?: boolean;
 }>;
 
 export default function NumberInput(props: Props) {
@@ -16,24 +17,26 @@ export default function NumberInput(props: Props) {
     props.maxValue ?? Number.MAX_SAFE_INTEGER
   );
   const [previousValue, setPreviousValue] = useState(constrainedValue);
+  const id = useId();
   return (
-    <>
-      <label htmlFor={useId()} style={{ padding: "1rem" }}>
+    <span style={{ whiteSpace: "nowrap", textAlign: "right" }}>
+      <label htmlFor={id} style={{ padding: "1rem", color: props.isDisabled ? "lightgray" : "default" }}>
         {props.label}:
       </label>
       <input
-        id={useId()}
+        id={id}
         type="number"
         value={constrainedValue}
         min={props.minValue}
         max={props.maxValue}
-        onChange={handleIterationsChange}
+        onChange={inputOnChange}
         style={{ height: "2rem", width: "4rem", textAlign: "center" }}
+        disabled={props.isDisabled}
       />
-    </>
+    </span>
   );
 
-  function handleIterationsChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function inputOnChange(event: React.ChangeEvent<HTMLInputElement>) {
     const roundFunction = props.roundFunction ?? ((newValue: number) => newValue);
     const newValue = Number(event.target.value);
     const adjustedValue = roundFunction(newValue, previousValue);

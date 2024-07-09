@@ -7,10 +7,13 @@ type Props = Readonly<{
   iterationCount: number;
   size: number;
   childRotations: ChildRotations;
+  foregroundColor?: string;
+  backgroundColor?: string;
 }>;
 
 export default function SierpinskiShape(props: Props) {
   //
+
   const iterations = [];
   for (let i = 1; i <= props.iterationCount; i++) {
     iterations.push(
@@ -18,9 +21,9 @@ export default function SierpinskiShape(props: Props) {
     );
   }
   return (
-    <svg width={props.size} height={props.size}>
+    <svg width={props.size} height={props.size} style={{ backgroundColor: props.backgroundColor ?? "white" }}>
       <defs>
-        <Stage0 size={props.size} idPrefix={props.idPrefix} key={0} />
+        <Stage0 size={props.size} idPrefix={props.idPrefix} key={0} color={props.foregroundColor ?? "black"} />
         {iterations}
       </defs>
       <use href={getStageId(props.iterationCount, `#${props.idPrefix}`)} />
