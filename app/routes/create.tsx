@@ -81,12 +81,12 @@ export default function Index() {
         idPrefix={"create"}
         iterationCount={iterations}
         size={size}
-        childRotations={[
-          topLeftIsOn ? topLeftRotation : null,
-          topRightIsOn ? topRightRotation : null,
-          bottomRightIsOn ? bottomRightRotation : null,
-          bottomLeftIsOn ? bottomLeftRotation : null,
-        ]}
+        quadrants={{
+          topLeft: topLeftIsOn ? { rotation: topLeftRotation, color: "black", opacity: 1 } : null,
+          topRight: topRightIsOn ? { rotation: topRightRotation, color: "black", opacity: 1 } : null,
+          bottomLeft: bottomRightIsOn ? { rotation: bottomRightRotation, color: "black", opacity: 1 } : null,
+          bottomRight: bottomLeftIsOn ? { rotation: bottomLeftRotation, color: "black", opacity: 1 } : null,
+        }}
         foregroundColor={foregroundColor}
         backgroundColor={backgroundColor}
       />
