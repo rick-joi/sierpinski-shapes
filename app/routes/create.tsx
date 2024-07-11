@@ -84,8 +84,8 @@ export default function Index() {
         quadrants={{
           topLeft: topLeftIsOn ? { rotation: topLeftRotation, color: "black", opacity: 1 } : null,
           topRight: topRightIsOn ? { rotation: topRightRotation, color: "black", opacity: 1 } : null,
-          bottomLeft: bottomRightIsOn ? { rotation: bottomRightRotation, color: "black", opacity: 1 } : null,
-          bottomRight: bottomLeftIsOn ? { rotation: bottomLeftRotation, color: "black", opacity: 1 } : null,
+          bottomRight: bottomRightIsOn ? { rotation: bottomRightRotation, color: "black", opacity: 1 } : null,
+          bottomLeft: bottomLeftIsOn ? { rotation: bottomLeftRotation, color: "black", opacity: 1 } : null,
         }}
         foregroundColor={foregroundColor}
         backgroundColor={backgroundColor}
