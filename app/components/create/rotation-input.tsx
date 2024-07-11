@@ -11,8 +11,8 @@ type Props = Readonly<{
 
 export default function RotationInput(props: Props) {
   //
-  if (props.rotation < -359 || props.rotation > 359) {
-    props.setRotation(props.rotation % 360);
+  if (props.rotation < 0 || props.rotation > 359) {
+    props.setRotation((props.rotation + 360) % 360);
   }
   return (
     <span style={{ whiteSpace: "nowrap", textAlign: "right" }}>

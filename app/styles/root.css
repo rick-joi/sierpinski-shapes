@@ -89,6 +89,12 @@ main {
 p {
   margin: 1rem 0;
 }
+ul {
+  margin: 1rem 2rem;
+}
+ul li {
+  margin: 0.5rem 0;
+}
 footer {
   margin-top: 10rem;
 }
