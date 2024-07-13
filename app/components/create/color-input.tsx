@@ -7,7 +7,7 @@ type Props = Readonly<{
   isDisabled?: boolean;
 }>;
 
-export default function NumberInput(props: Props) {
+export default function ColorInput(props: Props) {
   //
   const id = useId();
   return (

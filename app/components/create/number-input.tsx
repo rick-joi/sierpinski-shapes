@@ -26,6 +26,7 @@ export default function NumberInput(props: Props) {
       <input
         id={id}
         type="number"
+        pattern="\d*"
         value={constrainedValue}
         min={props.minValue}
         max={props.maxValue}

@@ -7,18 +7,9 @@ type Props = Readonly<{
   iterationCount: number;
   size: number;
   quadrants: Quadrants;
-  foregroundColor?: string;
-  backgroundColor?: string;
 }>;
 
-export default function SierpinskiShape({
-  idPrefix,
-  iterationCount,
-  size,
-  quadrants,
-  foregroundColor,
-  backgroundColor,
-}: Props) {
+export default function SierpinskiShape({ idPrefix, iterationCount, size, quadrants }: Props) {
   //
   const iterations = [];
   for (let i = 1; i <= iterationCount; i++) {
@@ -27,9 +18,9 @@ export default function SierpinskiShape({
   const viewBoxMargin = size / 8; //todo: could get more precise?
   const viewBox = `${-viewBoxMargin} ${-viewBoxMargin} ${size + 2 * viewBoxMargin} ${size + 2 * viewBoxMargin}`;
   return (
-    <svg width={size} height={size} style={{ backgroundColor: backgroundColor ?? "white" }} viewBox={viewBox}>
+    <svg width={size} height={size} viewBox={viewBox}>
       <defs>
-        <Stage0 size={size} idPrefix={idPrefix} key={0} color={foregroundColor ?? "black"} />
+        <Stage0 size={size} idPrefix={idPrefix} key={0} />
         {iterations}
       </defs>
       <use href={getStageId(iterationCount, `#${idPrefix}`)} />

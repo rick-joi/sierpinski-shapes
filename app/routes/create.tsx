@@ -1,36 +1,30 @@
 import { useState } from "react";
-import ColorInput from "~/components/create/color-input";
 import NumberInput from "~/components/create/number-input";
-import RotationInput from "~/components/create/rotation-input";
+import QuadrantInput, { QuandrantInputProps } from "~/components/create/quandrant-input";
 import SierpinskiShape from "~/components/sierpinski-shape/sierpinski-shape";
 import { getMeta } from "~/model/utility/route-utilities";
 
 export const meta = getMeta("Create", "Create your own Sierpinski Shape!");
 
+function useQuandrantInputProps(name: string, isOnDefault: boolean): QuandrantInputProps {
+  const [isOn, setIsOn] = useState<boolean>(isOnDefault);
+  const [rotation, setRotation] = useState<number>(0);
+  const [color, setColor] = useState<string>("#000000");
+  return { name, isOn, rotation, color, setIsOn, setRotation, setColor };
+}
+
 export default function Index() {
   //
   const [size, setSize] = useState(512);
-  const maxIterations = Math.floor(Math.log2(size));
   const [iterations, setIterations] = useState(1);
-  const [topLeftIsOn, setTopLeftIsOn] = useState<boolean>(true);
-  const [topRightIsOn, setTopRightIsOn] = useState<boolean>(false);
-  const [bottomRightIsOn, setBottomRightIsOn] = useState<boolean>(true);
-  const [bottomLeftIsOn, setBottomLeftIsOn] = useState<boolean>(true);
-  const [topLeftRotation, setTopLeftRotation] = useState<number>(0);
-  const [topRightRotation, setTopRightRotation] = useState<number>(0);
-  const [bottomRightRotation, setBottomRightRotation] = useState<number>(0);
-  const [bottomLeftRotation, setBottomLeftRotation] = useState<number>(0);
-  const [foregroundColor, setForegroundColor] = useState<string>("#000000");
-  const [backgroundColor, setBackgroundColor] = useState<string>("#ffffff");
+  const maxIterations = Math.floor(Math.log2(size));
+  const topLeftProps = useQuandrantInputProps("Top left", true);
+  const topRightProps = useQuandrantInputProps("Top right", false);
+  const bottomLeftProps = useQuandrantInputProps("Bottom left", true);
+  const bottomRightProps = useQuandrantInputProps("Bottom right", true);
   return (
     <>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "15rem 15rem 15rem 15rem",
-          gridTemplateRows: "1fr 1fr",
-        }}
-      >
+      <div>
         <NumberInput
           label="Size"
           value={size}
@@ -39,56 +33,38 @@ export default function Index() {
           maxValue={Number.MAX_SAFE_INTEGER}
           roundFunction={roundToPowerOfTwo}
         />
-        <RotationInput
-          label="Top left"
-          isOn={topLeftIsOn}
-          setIsOn={setTopLeftIsOn}
-          rotation={topLeftRotation}
-          setRotation={setTopLeftRotation}
+        <input
+          type="range"
+          min={0}
+          max={maxIterations}
+          value={maxIterations}
+          onChange={(e) => setIterations(Number(e.target.value))}
         />
-        <RotationInput
-          label="Top right"
-          isOn={topRightIsOn}
-          setIsOn={setTopRightIsOn}
-          rotation={topRightRotation}
-          setRotation={setTopRightRotation}
-        />
-        <ColorInput label="Foreground" value={foregroundColor} setValue={setForegroundColor} />
-        <NumberInput
-          label="Iterations"
-          value={iterations}
-          setValue={setIterations}
-          minValue={0}
-          maxValue={maxIterations}
-        />
-        <RotationInput
-          label="Bottom left"
-          isOn={bottomLeftIsOn}
-          setIsOn={setBottomLeftIsOn}
-          rotation={bottomLeftRotation}
-          setRotation={setBottomLeftRotation}
-        />
-        <RotationInput
-          label="Bottom right"
-          isOn={bottomRightIsOn}
-          setIsOn={setBottomRightIsOn}
-          rotation={bottomRightRotation}
-          setRotation={setBottomRightRotation}
-        />
-        <ColorInput label="Background" value={backgroundColor} setValue={setBackgroundColor} />
+      </div>
+      <div>
+        <QuadrantInput {...topLeftProps} />
+        <QuadrantInput {...topRightProps} />
+        <QuadrantInput {...bottomLeftProps} />
+        <QuadrantInput {...bottomRightProps} />
       </div>
       <SierpinskiShape
         idPrefix={"create"}
         iterationCount={iterations}
         size={size}
         quadrants={{
-          topLeft: topLeftIsOn ? { rotation: topLeftRotation, color: "black", opacity: 1 } : null,
-          topRight: topRightIsOn ? { rotation: topRightRotation, color: "black", opacity: 1 } : null,
-          bottomRight: bottomRightIsOn ? { rotation: bottomRightRotation, color: "black", opacity: 1 } : null,
-          bottomLeft: bottomLeftIsOn ? { rotation: bottomLeftRotation, color: "black", opacity: 1 } : null,
+          topLeft: topLeftProps.isOn
+            ? { rotation: topLeftProps.rotation, color: topLeftProps.color, opacity: 1 }
+            : null,
+          topRight: topRightProps.isOn
+            ? { rotation: topRightProps.rotation, color: topRightProps.color, opacity: 1 }
+            : null,
+          bottomLeft: bottomLeftProps.isOn
+            ? { rotation: bottomLeftProps.rotation, color: bottomLeftProps.color, opacity: 1 }
+            : null,
+          bottomRight: bottomRightProps.isOn
+            ? { rotation: bottomRightProps.rotation, color: bottomRightProps.color, opacity: 1 }
+            : null,
         }}
-        foregroundColor={foregroundColor}
-        backgroundColor={backgroundColor}
       />
       <br />
       <span style={{ width: "5rem", display: "inline-block" }}></span>
