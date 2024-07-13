@@ -1,13 +1,22 @@
 type Props = Readonly<{
   label: string;
+  isDisabled: boolean;
   id: string;
   children: React.ReactNode;
 }>;
 
-export default function ControlWithLabelLayout({ label, id, children }: Props) {
+export default function ControlWithLabelLayout({ label, isDisabled, id, children }: Props) {
   return (
-    <div style={{ display: "inline-block", width: "100%", whiteSpace: "nowrap" }}>
-      <label htmlFor={id} style={{ fontSize: "small" }}>
+    <div style={{ display: "inline-block", width: "100%", whiteSpace: "nowrap", margin: "0.5rem 0" }}>
+      <label
+        htmlFor={id}
+        style={{
+          fontSize: "small",
+          color: isDisabled ? "lightgray" : undefined,
+          display: "inline-block",
+          paddingBottom: "0.25rem",
+        }}
+      >
         {label}
       </label>
       <br />

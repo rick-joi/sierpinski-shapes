@@ -1,4 +1,4 @@
-import { Quadrant, getStageId } from "./sierpinski-utilities";
+import { getStageId } from "./sierpinski-utilities";
 
 type Props = Readonly<{
   idPrefix: string;
@@ -6,14 +6,12 @@ type Props = Readonly<{
   stageNMinus1: number;
   x: number;
   y: number;
-  quadrant: Quadrant | null;
+  rotation: number | null;
 }>;
 
-export default function StageNMinus1({ idPrefix, size, stageNMinus1, x, y, quadrant }: Props) {
+export default function StageNMinus1({ idPrefix, size, stageNMinus1, x, y, rotation }: Props) {
   //
-  if (quadrant === null) {
-    return;
-  } else {
+  if (rotation !== null) {
     const rotationCenterX = x + size / 2;
     const rotationCenterY = y + size / 2;
     return (
@@ -21,7 +19,7 @@ export default function StageNMinus1({ idPrefix, size, stageNMinus1, x, y, quadr
         href={getStageId(stageNMinus1, `#${idPrefix}`)}
         x={x}
         y={y}
-        transform={`scale(0.5) rotate(${quadrant.rotation}, ${rotationCenterX}, ${rotationCenterY})`}
+        transform={`scale(0.5) rotate(${rotation}, ${rotationCenterX}, ${rotationCenterY})`}
       />
     );
   }

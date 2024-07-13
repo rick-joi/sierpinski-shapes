@@ -4,13 +4,14 @@ type Props = Readonly<{
   max: number;
   value: number;
   setValue: Dispatch<SetStateAction<number>>;
+  rangeLabelSuffix?: string;
   isDisabled?: boolean;
   id: string;
 }>;
-export default function RangeInput({ max, value, setValue, isDisabled, id }: Props) {
+export default function RangeInput({ max, value, setValue, rangeLabelSuffix, isDisabled, id }: Props) {
   return (
     <>
-      <span style={{ fontSize: "x-small", verticalAlign: "top" }}>0</span>
+      <span style={{ fontSize: "x-small", verticalAlign: "top" }}>0{rangeLabelSuffix}</span>
       <input
         type="range"
         min={0}
@@ -21,7 +22,10 @@ export default function RangeInput({ max, value, setValue, isDisabled, id }: Pro
         style={{ verticalAlign: "middle", flexGrow: 1 }}
         id={id}
       />
-      <span style={{ fontSize: "x-small", verticalAlign: "bottom" }}>{max}</span>
+      <span style={{ fontSize: "x-small", verticalAlign: "bottom" }}>
+        {max}
+        {rangeLabelSuffix}
+      </span>
     </>
   );
 }

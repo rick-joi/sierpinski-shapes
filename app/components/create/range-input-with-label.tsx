@@ -12,7 +12,7 @@ type Props = Readonly<{
 export default function RangeInputWithLabel({ label, max, value, setValue, isDisabled }: Props) {
   const id = useId();
   return (
-    <ControlWithLabelLayout label={label} id={id}>
+    <ControlWithLabelLayout label={label} isDisabled={false} id={id}>
       <RangeInput max={max} value={value} setValue={setValue} isDisabled={isDisabled} id={id} />
     </ControlWithLabelLayout>
   );

@@ -1,24 +1,34 @@
 import StageN from "./stage-n";
 import Stage0 from "./stage-0";
-import { Quadrants, getStageId } from "./sierpinski-utilities";
+import { Rotations, getStageId } from "./sierpinski-utilities";
 
 type Props = Readonly<{
   idPrefix: string;
   size: number;
   iterationCount: number;
-  quadrants: Quadrants;
+  rotations: Rotations;
 }>;
 
-export default function SierpinskiShape({ idPrefix, size, iterationCount, quadrants }: Props) {
+export function getSizeWithMargins(size: number) {
+  return size + 2 * getMargin(size);
+}
+
+function getMargin(size: number) {
+  return size / 9;
+}
+
+export default function SierpinskiShape({ idPrefix, size, iterationCount, rotations }: Props) {
   //
   const iterations = [];
   for (let i = 1; i <= iterationCount; i++) {
-    iterations.push(<StageN stage={i} size={size} quadrants={quadrants} idPrefix={idPrefix} key={i} />);
+    iterations.push(<StageN stage={i} size={size} rotations={rotations} idPrefix={idPrefix} key={i} />);
   }
-  const viewBoxMargin = size / 9; //todo: could get more precise?
-  const viewBox = `${-viewBoxMargin} ${-viewBoxMargin} ${size + 2 * viewBoxMargin} ${size + 2 * viewBoxMargin}`;
+  const margin = getMargin(size);
+  const sizeWithMargins = getSizeWithMargins(size);
+  const viewBox = `${-margin} ${-margin} ${sizeWithMargins} ${sizeWithMargins}`;
+  const opacity = idPrefix.endsWith("-background") ? "10%" : "100%";
   return (
-    <svg width={size} height={size} viewBox={viewBox} style={{ border: "1px solid #fafafa" }}>
+    <svg width={size} height={size} viewBox={viewBox} style={{ border: "1px solid #fafafa", opacity: opacity }}>
       <defs>
         <Stage0 size={size} idPrefix={idPrefix} key={0} />
         {iterations}

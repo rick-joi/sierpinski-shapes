@@ -1,33 +1,34 @@
 import { useEffect, useState } from "react";
 import QuadrantInput, { QuandrantInputProps } from "~/components/create/quandrant-input";
 import RangeInputWithLabel from "~/components/create/range-input-with-label";
-import SierpinskiShape from "~/components/sierpinski-shape/sierpinski-shape";
+import SierpinskiShape, { getSizeWithMargins } from "~/components/sierpinski-shape/sierpinski-shape";
 import { getMeta } from "~/model/utility/route-utilities";
 
 export const meta = getMeta("Create", "Create your own Sierpinski Shape!");
 
-function useQuandrantInputState(label: string, isOnDefault: boolean): QuandrantInputProps {
+function useQuandrantInputState(label: string, isDisabledDefault: boolean): QuandrantInputProps {
   //
-  const [isOn, setIsOn] = useState<boolean>(isOnDefault);
+  const [isDisabled, setIsDisabled] = useState<boolean>(isDisabledDefault);
   const [rotation, setRotation] = useState<number>(0);
-  return { label, isOn, rotation, setIsOn, setRotation };
+  return { label, isDisabled, rotation, setIsDisabled, setRotation };
 }
 
 export default function Index() {
   //
+  const maxSize = getSizeWithMargins(512);
   const windowSize = useWindowSize();
-  const size = Math.min(windowSize.width, windowSize.height) * 0.9;
+  const size = Math.min(maxSize, Math.min(windowSize.width, windowSize.height) * 0.9);
 
-  const maxIterations = Math.min(8, Math.floor(Math.log2(size)) - 2);
+  const maxIterations = Math.min(8, Math.ceil(Math.log2(size)) - 2);
   const [iterations, setIterations] = useState(1);
   if (iterations > maxIterations) {
     setIterations(maxIterations);
   }
 
-  const topLeftProps = useQuandrantInputState("Top left", true);
-  const topRightProps = useQuandrantInputState("Top right", false);
-  const bottomLeftProps = useQuandrantInputState("Bottom left", true);
-  const bottomRightProps = useQuandrantInputState("Bottom right", true);
+  const topLeftProps = useQuandrantInputState("Top left", false);
+  const topRightProps = useQuandrantInputState("Top right", true);
+  const bottomLeftProps = useQuandrantInputState("Bottom left", false);
+  const bottomRightProps = useQuandrantInputState("Bottom right", false);
 
   return (
     <div>
@@ -35,25 +36,23 @@ export default function Index() {
         {iterations} iteration{iterations == 1 ? "" : "s"}, {bottomRightProps.rotation}&deg; ,{" "}
         {bottomLeftProps.rotation}&deg; , {topLeftProps.rotation}&deg; , {topRightProps.rotation}&deg;
       </div>
-      <div>
-        <SierpinskiShape
-          idPrefix={"create"}
-          size={size}
-          iterationCount={iterations}
-          quadrants={{
-            topRight: topRightProps.isOn ? { position: 1, rotation: topRightProps.rotation } : null,
-            topLeft: topLeftProps.isOn ? { position: 2, rotation: topLeftProps.rotation } : null,
-            bottomLeft: bottomLeftProps.isOn ? { position: 3, rotation: bottomLeftProps.rotation } : null,
-            bottomRight: bottomRightProps.isOn ? { position: 4, rotation: bottomRightProps.rotation } : null,
-          }}
-        />
-      </div>
-      <div style={{ maxWidth: "400px" }}>
-        <div style={{ display: "flex" }}>
+      <SierpinskiShape
+        idPrefix={"create"}
+        size={size}
+        iterationCount={iterations}
+        rotations={{
+          topRight: topRightProps.isDisabled ? null : topRightProps.rotation,
+          topLeft: topLeftProps.isDisabled ? null : topLeftProps.rotation,
+          bottomLeft: bottomLeftProps.isDisabled ? null : bottomLeftProps.rotation,
+          bottomRight: bottomRightProps.isDisabled ? null : bottomRightProps.rotation,
+        }}
+      />
+      <div style={{ maxWidth: maxSize + "px" }}>
+        <div style={{ display: "flex", gap: "1rem" }}>
           <QuadrantInput {...topLeftProps} />
           <QuadrantInput {...topRightProps} />
         </div>
-        <div style={{ display: "flex" }}>
+        <div style={{ display: "flex", gap: "1rem" }}>
           <QuadrantInput {...bottomLeftProps} />
           <QuadrantInput {...bottomRightProps} />
         </div>

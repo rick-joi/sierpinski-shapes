@@ -1,40 +1,44 @@
 import { Dispatch, SetStateAction, useId } from "react";
 import ControlWithLabelLayout from "./control-with-label-layout";
+import RangeInput from "./range-input";
 
 export type QuandrantInputProps = Readonly<{
   label: string;
-  isOn: boolean;
+  isDisabled: boolean;
   rotation: number;
-  setIsOn: Dispatch<SetStateAction<boolean>>;
+  setIsDisabled: Dispatch<SetStateAction<boolean>>;
   setRotation: Dispatch<SetStateAction<number>>;
 }>;
 
-export default function QuadrantInput({ label, isOn, rotation, setIsOn, setRotation }: QuandrantInputProps) {
+export default function QuadrantInput({
+  label,
+  setIsDisabled,
+  rotation,
+  isDisabled,
+  setRotation,
+}: QuandrantInputProps) {
   const id = useId();
   return (
-    <ControlWithLabelLayout label={label} id={id}>
+    <ControlWithLabelLayout label={label} isDisabled={isDisabled} id={id}>
       <>
         <input
           type="checkbox"
-          checked={isOn}
-          onChange={(e) => setIsOn(e.target.checked)}
-          style={{ verticalAlign: "middle", height: "1rem", width: "1rem" }}
-        />
-        <input
-          type="number"
-          pattern="\d*"
-          min={-1}
-          max={360}
-          disabled={!isOn}
-          value={rotation}
-          onChange={(e) => setRotation((Number(e.target.value) + 360) % 360)}
+          checked={!isDisabled}
+          onChange={(e) => setIsDisabled(!e.target.checked)}
           style={{
-            height: "1.5rem",
-            padding: "0.1rem",
-            textAlign: "center",
-            marginLeft: "0.25rem",
-            color: isOn ? "black" : "#f0f0f0",
+            verticalAlign: "middle",
+            height: "1rem",
+            width: "1rem",
+            marginRight: "0.25rem",
           }}
+        />
+        <RangeInput
+          max={359}
+          value={rotation}
+          setValue={setRotation}
+          id={id}
+          rangeLabelSuffix="º"
+          isDisabled={isDisabled}
         />
       </>
     </ControlWithLabelLayout>

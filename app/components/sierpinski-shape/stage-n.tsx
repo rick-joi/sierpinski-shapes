@@ -1,14 +1,14 @@
 import StageNMinus1 from "./stage-n-minus-1";
-import { Quadrants, getStageId } from "./sierpinski-utilities";
+import { Rotations, getStageId } from "./sierpinski-utilities";
 
 type Props = Readonly<{
   idPrefix: string;
   stage: number;
   size: number;
-  quadrants: Quadrants;
+  rotations: Rotations;
 }>;
 
-export default function StageN({ idPrefix, stage, size, quadrants }: Props) {
+export default function StageN({ idPrefix, stage, size, rotations }: Props) {
   //
   const previousStage = stage - 1;
   return (
@@ -18,7 +18,7 @@ export default function StageN({ idPrefix, stage, size, quadrants }: Props) {
         stageNMinus1={previousStage}
         x={0}
         y={0}
-        quadrant={quadrants.topLeft}
+        rotation={rotations.topLeft}
         idPrefix={idPrefix}
       />
       <StageNMinus1
@@ -26,7 +26,7 @@ export default function StageN({ idPrefix, stage, size, quadrants }: Props) {
         stageNMinus1={previousStage}
         x={size}
         y={0}
-        quadrant={quadrants.topRight}
+        rotation={rotations.topRight}
         idPrefix={idPrefix}
       />
       <StageNMinus1
@@ -34,7 +34,7 @@ export default function StageN({ idPrefix, stage, size, quadrants }: Props) {
         stageNMinus1={previousStage}
         x={size}
         y={size}
-        quadrant={quadrants.bottomRight}
+        rotation={rotations.bottomRight}
         idPrefix={idPrefix}
       />
       <StageNMinus1
@@ -42,7 +42,7 @@ export default function StageN({ idPrefix, stage, size, quadrants }: Props) {
         stageNMinus1={previousStage}
         x={0}
         y={size}
-        quadrant={quadrants.bottomLeft}
+        rotation={rotations.bottomLeft}
         idPrefix={idPrefix}
       />
     </g>
