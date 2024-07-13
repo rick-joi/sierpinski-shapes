@@ -31,6 +31,27 @@ export default function Index() {
 
   return (
     <div>
+      <div>
+        <SierpinskiShape
+          idPrefix={"create"}
+          iterationCount={iterations}
+          size={size}
+          quadrants={{
+            topLeft: topLeftProps.isOn
+              ? { rotation: topLeftProps.rotation, color: topLeftProps.color, opacity: 1 }
+              : null,
+            topRight: topRightProps.isOn
+              ? { rotation: topRightProps.rotation, color: topRightProps.color, opacity: 1 }
+              : null,
+            bottomLeft: bottomLeftProps.isOn
+              ? { rotation: bottomLeftProps.rotation, color: bottomLeftProps.color, opacity: 1 }
+              : null,
+            bottomRight: bottomRightProps.isOn
+              ? { rotation: bottomRightProps.rotation, color: bottomRightProps.color, opacity: 1 }
+              : null,
+          }}
+        />
+      </div>
       <div style={{ display: "inline-block", marginRight: "1rem", marginBottom: "1rem" }}>
         <span style={{ display: "inline-block", marginRight: "0.5rem" }}>Image</span>
         <div
@@ -38,7 +59,7 @@ export default function Index() {
           style={{
             display: "inline-grid",
             gridTemplateColumns: "auto auto",
-            border: "solid lightgray 1px",
+            border: "solid #f0f0f0 1px",
             padding: "0.25rem 0.5rem",
           }}
         >
@@ -48,32 +69,13 @@ export default function Index() {
       </div>
       <div style={{ display: "inline-block" }}>
         <span style={{ display: "inline-block", marginRight: "0.5rem" }}>Triangles</span>
-        <div style={{ display: "inline-grid", gridTemplateColumns: "auto auto", border: "solid lightgray 1px" }}>
+        <div style={{ display: "inline-grid", gridTemplateColumns: "auto auto", border: "solid #f0f0f0 1px" }}>
           <QuadrantInput {...topLeftProps} />
           <QuadrantInput {...topRightProps} />
           <QuadrantInput {...bottomLeftProps} />
           <QuadrantInput {...bottomRightProps} />
         </div>
       </div>
-      <SierpinskiShape
-        idPrefix={"create"}
-        iterationCount={iterations}
-        size={size}
-        quadrants={{
-          topLeft: topLeftProps.isOn
-            ? { rotation: topLeftProps.rotation, color: topLeftProps.color, opacity: 1 }
-            : null,
-          topRight: topRightProps.isOn
-            ? { rotation: topRightProps.rotation, color: topRightProps.color, opacity: 1 }
-            : null,
-          bottomLeft: bottomLeftProps.isOn
-            ? { rotation: bottomLeftProps.rotation, color: bottomLeftProps.color, opacity: 1 }
-            : null,
-          bottomRight: bottomRightProps.isOn
-            ? { rotation: bottomRightProps.rotation, color: bottomRightProps.color, opacity: 1 }
-            : null,
-        }}
-      />
       <br />
       <span style={{ width: "5rem", display: "inline-block" }}></span>
       <input type="button" value="Add to gallery" onClick={notImplementedYet} />
