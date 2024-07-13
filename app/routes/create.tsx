@@ -1,6 +1,7 @@
 import { useState } from "react";
 import IterationsInput from "~/components/create/iterations-input";
 import QuadrantInput, { QuandrantInputProps } from "~/components/create/quandrant-input";
+import RangeInput from "~/components/create/range-input";
 import SizeInput from "~/components/create/size-input";
 import SierpinskiShape from "~/components/sierpinski-shape/sierpinski-shape";
 import { getMeta } from "~/model/utility/route-utilities";
@@ -11,8 +12,7 @@ function useQuandrantInputState(isOnDefault: boolean): QuandrantInputProps {
   //
   const [isOn, setIsOn] = useState<boolean>(isOnDefault);
   const [rotation, setRotation] = useState<number>(0);
-  const [color, setColor] = useState<string>("#000000");
-  return { isOn, rotation, color, setIsOn, setRotation, setColor };
+  return { isOn, rotation, setIsOn, setRotation };
 }
 
 export default function Index() {
@@ -32,56 +32,34 @@ export default function Index() {
   return (
     <div>
       <div>
+        {iterations} iteration{iterations == 1 ? "" : "s"}, {bottomRightProps.rotation}&deg; ,{" "}
+        {bottomLeftProps.rotation}&deg; , {topLeftProps.rotation}&deg; , {topRightProps.rotation}&deg;
+      </div>
+      <div>
         <SierpinskiShape
           idPrefix={"create"}
           iterationCount={iterations}
-          size={size}
           quadrants={{
-            topLeft: topLeftProps.isOn
-              ? { rotation: topLeftProps.rotation, color: topLeftProps.color, opacity: 1 }
-              : null,
-            topRight: topRightProps.isOn
-              ? { rotation: topRightProps.rotation, color: topRightProps.color, opacity: 1 }
-              : null,
-            bottomLeft: bottomLeftProps.isOn
-              ? { rotation: bottomLeftProps.rotation, color: bottomLeftProps.color, opacity: 1 }
-              : null,
-            bottomRight: bottomRightProps.isOn
-              ? { rotation: bottomRightProps.rotation, color: bottomRightProps.color, opacity: 1 }
-              : null,
+            topRight: topRightProps.isOn ? { position: 1, rotation: topRightProps.rotation } : null,
+            topLeft: topLeftProps.isOn ? { position: 2, rotation: topLeftProps.rotation } : null,
+            bottomLeft: bottomLeftProps.isOn ? { position: 3, rotation: bottomLeftProps.rotation } : null,
+            bottomRight: bottomRightProps.isOn ? { position: 4, rotation: bottomRightProps.rotation } : null,
           }}
         />
       </div>
-      <div style={{ display: "inline-block", marginRight: "1rem", marginBottom: "1rem" }}>
-        <span style={{ display: "inline-block", marginRight: "0.5rem" }}>Image</span>
-        <div
-          id="image-settings"
-          style={{
-            display: "inline-grid",
-            gridTemplateColumns: "auto auto",
-            border: "solid #f0f0f0 1px",
-            padding: "0.25rem 0.5rem",
-          }}
-        >
-          <SizeInput size={size} setSize={setSize} />
-          <IterationsInput maxIterations={maxIterations} iterations={iterations} setIterations={setIterations} />
-        </div>
+      <div style={{ maxWidth: "400px" }}>
+        <QuadrantInput {...topLeftProps} />
+        <QuadrantInput {...topRightProps} />
+        <QuadrantInput {...bottomLeftProps} />
+        <QuadrantInput {...bottomRightProps} />
+        <RangeInput label="Iterations" max={maxIterations} value={iterations} setValue={setIterations} />
       </div>
-      <div style={{ display: "inline-block" }}>
-        <span style={{ display: "inline-block", marginRight: "0.5rem" }}>Triangles</span>
-        <div style={{ display: "inline-grid", gridTemplateColumns: "auto auto", border: "solid #f0f0f0 1px" }}>
-          <QuadrantInput {...topLeftProps} />
-          <QuadrantInput {...topRightProps} />
-          <QuadrantInput {...bottomLeftProps} />
-          <QuadrantInput {...bottomRightProps} />
-        </div>
+      <div>
+        <input type="button" value="Add to gallery" onClick={notImplementedYet} />
+        <input type="button" value="Animate" onClick={notImplementedYet} />
+        <input type="button" value="Download" onClick={notImplementedYet} />
+        <input type="button" value="Buy print" onClick={notImplementedYet} />
       </div>
-      <br />
-      <span style={{ width: "5rem", display: "inline-block" }}></span>
-      <input type="button" value="Add to gallery" onClick={notImplementedYet} />
-      <input type="button" value="Animate" onClick={notImplementedYet} />
-      <input type="button" value="Download" onClick={notImplementedYet} />
-      <input type="button" value="Buy print" onClick={notImplementedYet} />
     </div>
   );
 

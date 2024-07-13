@@ -1,16 +1,18 @@
 import StageN from "./stage-n";
 import Stage0 from "./stage-0";
 import { Quadrants, getStageId } from "./sierpinski-utilities";
+import { useEffect, useState } from "react";
 
 type Props = Readonly<{
   idPrefix: string;
   iterationCount: number;
-  size: number;
   quadrants: Quadrants;
 }>;
 
-export default function SierpinskiShape({ idPrefix, iterationCount, size, quadrants }: Props) {
+export default function SierpinskiShape({ idPrefix, iterationCount, quadrants }: Props) {
   //
+  const windowSize = useWindowSize();
+  const size = Math.min(windowSize.width, windowSize.height) * 0.9;
   const iterations = [];
   for (let i = 1; i <= iterationCount; i++) {
     iterations.push(<StageN stage={i} size={size} quadrants={quadrants} idPrefix={idPrefix} key={i} />);
@@ -26,4 +28,30 @@ export default function SierpinskiShape({ idPrefix, iterationCount, size, quadra
       <use href={getStageId(iterationCount, `#${idPrefix}`)} />
     </svg>
   );
+}
+// Hook
+function useWindowSize() {
+  // Initialize state with undefined width/height so server and client renders match
+  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+  const [windowSize, setWindowSize] = useState({
+    width: 256,
+    height: 256,
+  });
+  useEffect(() => {
+    // Handler to call on window resize
+    function handleResize() {
+      // Set window width/height to state
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+    // Call handler right away so state gets updated with initial window size
+    handleResize();
+    // Remove event listener on cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []); // Empty array ensures that effect is only run on mount
+  return windowSize;
 }

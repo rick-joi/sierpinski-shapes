@@ -7,5 +7,11 @@ type Props = Readonly<{
 
 export default function Stage0({ idPrefix, size }: Props) {
   //
-  return <polygon points={`0,0 ${size},${size} 0,${size}`} id={getStageId(0, idPrefix)} />;
+  return (
+    <polygon
+      points={`0,0 ${size},${size} 0,${size}`}
+      id={getStageId(0, idPrefix)}
+      style={{ fill: "black", opacity: "75%" }}
+    />
+  );
 }

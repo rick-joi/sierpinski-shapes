@@ -3,15 +3,13 @@ import { Dispatch, SetStateAction } from "react";
 export type QuandrantInputProps = Readonly<{
   isOn: boolean;
   rotation: number;
-  color: string;
   setIsOn: Dispatch<SetStateAction<boolean>>;
   setRotation: Dispatch<SetStateAction<number>>;
-  setColor: Dispatch<SetStateAction<string>>;
 }>;
 
-export default function QuadrantInput({ isOn, rotation, color, setIsOn, setRotation, setColor }: QuandrantInputProps) {
+export default function QuadrantInput({ isOn, rotation, setIsOn, setRotation }: QuandrantInputProps) {
   return (
-    <span style={{ display: "inline-block", padding: "0.25rem 0.5rem", verticalAlign: "middle" }}>
+    <div style={{ display: "inline-block", padding: "0.25rem 0.5rem", verticalAlign: "middle" }}>
       <input
         type="checkbox"
         checked={isOn}
@@ -34,13 +32,6 @@ export default function QuadrantInput({ isOn, rotation, color, setIsOn, setRotat
           color: isOn ? "black" : "#f0f0f0",
         }}
       />
-      <input
-        type="color"
-        disabled={!isOn}
-        value={isOn ? color : "#f0f0f0"}
-        onChange={(e) => setColor(e.target.value)}
-        style={{ height: "1.5rem", width: "1.5rem", verticalAlign: "middle", marginLeft: "0.25rem" }}
-      />
-    </span>
+    </div>
   );
 }

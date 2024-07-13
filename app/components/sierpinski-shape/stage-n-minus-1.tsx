@@ -22,7 +22,6 @@ export default function StageNMinus1({ idPrefix, size, stageNMinus1, x, y, quadr
         x={x}
         y={y}
         transform={`scale(0.5) rotate(${quadrant.rotation}, ${rotationCenterX}, ${rotationCenterY})`}
-        fill={quadrant.color}
       />
     );
   }

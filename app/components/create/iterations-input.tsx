@@ -21,7 +21,6 @@ export default function IterationsInput({ maxIterations, iterations, setIteratio
         disabled={isDisabled}
         value={iterations}
         onChange={(e) => setIterations(Number(e.target.value))}
-        style={{ width: "6rem", height: "1.5rem", textAlign: "center" }}
         id={id}
       />
     </>
