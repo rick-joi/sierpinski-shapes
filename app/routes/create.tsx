@@ -47,7 +47,7 @@ export default function Index() {
           bottomRight: bottomRightProps.isDisabled ? null : bottomRightProps.rotation,
         }}
       />
-      <div style={{ maxWidth: maxSize + "px" }}>
+      <div style={{ maxWidth: size + "px" }}>
         <div style={{ display: "flex", gap: "1rem" }}>
           <QuadrantInput {...topLeftProps} />
           <QuadrantInput {...topRightProps} />

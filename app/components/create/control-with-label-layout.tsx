@@ -7,7 +7,14 @@ type Props = Readonly<{
 
 export default function ControlWithLabelLayout({ label, isDisabled, id, children }: Props) {
   return (
-    <div style={{ display: "inline-block", width: "100%", whiteSpace: "nowrap", margin: "0.5rem 0" }}>
+    <div
+      style={{
+        display: "inline-block",
+        width: "100%",
+        whiteSpace: "nowrap",
+        margin: "0.5rem 0",
+      }}
+    >
       <label
         htmlFor={id}
         style={{
