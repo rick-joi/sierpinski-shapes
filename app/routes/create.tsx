@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ColorInput from "~/components/create/color-input";
 import QuadrantInput, { QuadrantInputProps } from "~/components/create/quandrant-input";
 import RangeInputWithLabel from "~/components/create/range-input-with-label";
 import SierpinskiShape, { getSizeWithMargins } from "~/components/sierpinski-shape/sierpinski-shape";
@@ -24,6 +25,7 @@ export default function Index() {
   if (iterations > maxIterations) {
     setIterations(maxIterations);
   }
+  const [color, setColor] = useState("#000000");
 
   const topLeftProps = useQuandrantInputState("Top left", false);
   const topRightProps = useQuandrantInputState("Top right", true);
@@ -56,39 +58,60 @@ export default function Index() {
   );
 
   return (
-    <div style={{ width: size }}>
-      <div style={{ textAlign: "right", color: "gray", fontSize: "smaller" }}>{shapeDescription}</div>
-      <SierpinskiShape
-        idPrefix={"create"}
-        size={size}
-        iterationCount={iterations}
-        rotations={{
-          topRight: topRightProps.isDisabled ? null : topRightProps.rotation,
-          topLeft: topLeftProps.isDisabled ? null : topLeftProps.rotation,
-          bottomLeft: bottomLeftProps.isDisabled ? null : bottomLeftProps.rotation,
-          bottomRight: bottomRightProps.isDisabled ? null : bottomRightProps.rotation,
-        }}
-      />
-      <div style={{ maxWidth: size + "px" }}>
-        <div style={{ display: "flex", gap: "1rem" }}>
-          <QuadrantInput {...topLeftProps} />
-          <QuadrantInput {...topRightProps} />
+    <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", columnGap: "1rem" }}>
+      <div style={{ width: size }}>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div className="touch-screen-only" style={{ color: "gray", fontSize: "smaller" }}>
+            ☞ Tap on a quadrant or swipe left / right
+          </div>
+          <div style={{ color: "gray", textAlign: "right", fontSize: "smaller" }}>{shapeDescription}</div>
         </div>
-        <div style={{ display: "flex", gap: "1rem" }}>
-          <QuadrantInput {...bottomLeftProps} />
-          <QuadrantInput {...bottomRightProps} />
-        </div>
-        <RangeInputWithLabel label="Iterations" max={maxIterations} value={iterations} setValue={setIterations} />
-      </div>
-      <div>
-        <input
-          type="button"
-          value={isAnimating ? "Stop animation" : "Animate"}
-          onClick={() => setIsAnimating((previous) => !previous)}
+        <SierpinskiShape
+          idPrefix={"create"}
+          size={size}
+          iterationCount={iterations}
+          rotations={{
+            topRight: topRightProps.isDisabled ? null : topRightProps.rotation,
+            topLeft: topLeftProps.isDisabled ? null : topLeftProps.rotation,
+            bottomLeft: bottomLeftProps.isDisabled ? null : bottomLeftProps.rotation,
+            bottomRight: bottomRightProps.isDisabled ? null : bottomRightProps.rotation,
+          }}
+          color={color}
         />
-        <input type="button" value="Add to gallery" onClick={notImplementedYet} />
-        <input type="button" value="Download" onClick={notImplementedYet} />
-        <input type="button" value="Buy print" onClick={notImplementedYet} />
+        <div style={{ display: "flex", justifyContent: "space-between", gap: "1rem" }}>
+          <input type="button" value="Add to gallery" onClick={notImplementedYet} style={{ flexGrow: 1, margin: 0 }} />
+          <input type="button" value="Download" onClick={notImplementedYet} style={{ flexGrow: 1, margin: 0 }} />
+          <input type="button" value="Buy merch" onClick={notImplementedYet} style={{ flexGrow: 1, margin: 0 }} />
+        </div>
+      </div>
+      <div style={{ width: size }}>
+        <div style={{ maxWidth: size + "px" }}>
+          <div style={{ display: "flex", gap: "1rem" }}>
+            <QuadrantInput {...topLeftProps} />
+            <QuadrantInput {...topRightProps} />
+          </div>
+          <div style={{ display: "flex", gap: "1rem" }}>
+            <QuadrantInput {...bottomLeftProps} />
+            <QuadrantInput {...bottomRightProps} />
+          </div>
+          <div style={{ display: "flex", gap: "1rem" }}>
+            <div style={{ flexGrow: "1" }}>
+              <RangeInputWithLabel label="Iterations" max={maxIterations} value={iterations} setValue={setIterations} />
+            </div>
+            <div>
+              <ColorInput label={"Color"} color={color} setColor={setColor} />
+            </div>
+            <div style={{ alignSelf: "flex-end" }}>
+              <input
+                type="button"
+                value={isAnimating ? "Stop animation" : "Animate"}
+                onClick={() => setIsAnimating((previous) => !previous)}
+                disabled={iterations === 0}
+                style={{ width: "9em" }}
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

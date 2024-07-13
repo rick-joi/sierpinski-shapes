@@ -7,6 +7,7 @@ type Props = Readonly<{
   size: number;
   iterationCount: number;
   rotations: Rotations;
+  color: string;
 }>;
 
 export function getSizeWithMargins(size: number) {
@@ -17,7 +18,7 @@ function getMargin(size: number) {
   return size / 9;
 }
 
-export default function SierpinskiShape({ idPrefix, size, iterationCount, rotations }: Props) {
+export default function SierpinskiShape({ idPrefix, size, iterationCount, rotations, color }: Props) {
   //
   const iterations = [];
   for (let i = 1; i <= iterationCount; i++) {
@@ -30,7 +31,7 @@ export default function SierpinskiShape({ idPrefix, size, iterationCount, rotati
   return (
     <svg width={size} height={size} viewBox={viewBox} style={{ border: "1px solid #fafafa", opacity: opacity }}>
       <defs>
-        <Stage0 size={size} idPrefix={idPrefix} key={0} />
+        <Stage0 size={size} idPrefix={idPrefix} key={0} color={color} />
         {iterations}
       </defs>
       <use href={getStageId(iterationCount, `#${idPrefix}`)} />
