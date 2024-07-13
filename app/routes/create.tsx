@@ -112,6 +112,10 @@ export default function Index() {
             </div>
           </div>
         </div>
+        <div style={{ position: "relative", top: "25%", width: "100%", textAlign: "center" }}>
+          <h2>Welcome to sierpinski-shapes.com!</h2>
+          <p>We&lsquo;re glad you&lsquo;re here to share our love of fractals.</p>
+        </div>
       </div>
     </div>
   );

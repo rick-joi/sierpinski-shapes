@@ -1,70 +1,47 @@
-import { ChildRotations } from "~/components/sierpinski-shape/sierpinski-utilities";
-import SierpinskiShape from "~/components/sierpinski-shape/sierpinski-shape";
 import { getMeta } from "~/model/utility/route-utilities";
+import GalleryItemCard, { GalleryItem } from "~/components/gallery/gallery-item-card";
 
 export const meta = getMeta("Gallery", "View Sierpinski Shapes created by others!");
 
 export default function Index() {
   //
-  const maxIterations = 7;
-  const size = 256;
-  const standardRotations: ChildRotations = [0, null, 0, 0];
-  const educationalRotations: ChildRotations = [90, null, 0, 0];
-  const interestingRotations: ChildRotations = [180, null, 180, 270];
-  const carpetRotations: ChildRotations = [180, 90, 180, 270];
-  const messyRotations: ChildRotations = [167, 52, null, 294];
 
-  const sierpinskiShapes = [];
-  for (let i = 0; i <= maxIterations; i++) {
-    sierpinskiShapes.push(
-      <tr key={i}>
-        <td style={{ verticalAlign: "middle", paddingBottom: "40px", textAlign: "right" }}>{i}:</td>
-        <td>
-          <SierpinskiShape
-            iterationCount={i}
-            size={size}
-            childRotations={standardRotations}
-            idPrefix={`standard${i}`}
-          />
-        </td>
-        <td>
-          <SierpinskiShape
-            iterationCount={i}
-            size={size}
-            childRotations={educationalRotations}
-            idPrefix={`educational${i}`}
-          />
-        </td>
-        <td>
-          <SierpinskiShape
-            iterationCount={i}
-            size={size}
-            childRotations={interestingRotations}
-            idPrefix={`interesting${i}`}
-          />
-        </td>
-        <td>
-          <SierpinskiShape iterationCount={i} size={size} childRotations={carpetRotations} idPrefix={`carpet${i}`} />
-        </td>
-        <td>
-          <SierpinskiShape iterationCount={i} size={size} childRotations={messyRotations} idPrefix={`messy${i}`} />
-        </td>
-      </tr>
-    );
-  }
+  const galleryItems: GalleryItem[] = [];
+  galleryItems.push({
+    key: "1",
+    name: "The original Sierpinski Triangle",
+    rotations: { topLeft: 0, topRight: null, bottomLeft: 0, bottomRight: 0 },
+    color: "#000000",
+  });
+  galleryItems.push({
+    key: "2",
+    name: "Ferns",
+    rotations: { topLeft: 330, topRight: null, bottomLeft: 145, bottomRight: 0 },
+    color: "#005500",
+  });
+  galleryItems.push({
+    key: "3",
+    name: "Butterflies",
+    rotations: { topLeft: 186, topRight: null, bottomLeft: 174, bottomRight: 210 },
+    color: "#c38a28",
+  });
+  galleryItems.push({
+    key: "4",
+    name: "Star fighters",
+    rotations: { topLeft: 101, topRight: null, bottomLeft: 259, bottomRight: 153 },
+    color: "#735591",
+  });
+  galleryItems.push({
+    key: "5",
+    name: "So many peppermints",
+    rotations: { topLeft: 46, topRight: null, bottomLeft: 315, bottomRight: 115 },
+    color: "#c02668",
+  });
   return (
-    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
-      <table>
-        <thead>
-          <th>stage</th>
-          <th>standard Sierpinski Triangle</th>
-          <th>simple one-triangle rotation</th>
-          <th>rotating all the triangles</th>
-          <th>including the fourth quadrant</th>
-          <th>rotations other than 90, 180, 270</th>
-        </thead>
-        <tbody>{sierpinskiShapes}</tbody>
-      </table>
+    <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", justifyContent: "center" }}>
+      {galleryItems.map((item) => (
+        <GalleryItemCard key={item.key} item={item} />
+      ))}
     </div>
   );
 }
