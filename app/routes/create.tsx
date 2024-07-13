@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import QuadrantInput, { QuandrantInputProps } from "~/components/create/quandrant-input";
+import QuadrantInput, { QuadrantInputProps } from "~/components/create/quandrant-input";
 import RangeInputWithLabel from "~/components/create/range-input-with-label";
 import SierpinskiShape, { getSizeWithMargins } from "~/components/sierpinski-shape/sierpinski-shape";
 import { getMeta } from "~/model/utility/route-utilities";
 
 export const meta = getMeta("Create", "Create your own Sierpinski Shape!");
 
-function useQuandrantInputState(label: string, isDisabledDefault: boolean): QuandrantInputProps {
+function useQuandrantInputState(label: string, isDisabledDefault: boolean): QuadrantInputProps {
   //
   const [isDisabled, setIsDisabled] = useState<boolean>(isDisabledDefault);
   const [rotation, setRotation] = useState<number>(0);
@@ -30,12 +30,34 @@ export default function Index() {
   const bottomLeftProps = useQuandrantInputState("Bottom left", false);
   const bottomRightProps = useQuandrantInputState("Bottom right", false);
 
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [animationValues, setAnimationValues] = useState<AnimationValues>({
+    hasLastAnimationCompleted: true,
+    counter: 0,
+    rotations: [0, 0, 0, 0],
+    increments: [-1, 1, 1, -1],
+  });
+  useAnimation(
+    isAnimating,
+    animationValues,
+    setAnimationValues,
+    topLeftProps.setRotation,
+    topRightProps.setRotation,
+    bottomLeftProps.setRotation,
+    bottomRightProps.setRotation
+  );
+
+  const shapeDescription = getShapeDescription(
+    iterations,
+    topLeftProps,
+    topRightProps,
+    bottomLeftProps,
+    bottomRightProps
+  );
+
   return (
-    <div>
-      <div>
-        {iterations} iteration{iterations == 1 ? "" : "s"}, {bottomRightProps.rotation}&deg; ,{" "}
-        {bottomLeftProps.rotation}&deg; , {topLeftProps.rotation}&deg; , {topRightProps.rotation}&deg;
-      </div>
+    <div style={{ width: size }}>
+      <div style={{ textAlign: "right", color: "gray", fontSize: "smaller" }}>{shapeDescription}</div>
       <SierpinskiShape
         idPrefix={"create"}
         size={size}
@@ -59,7 +81,11 @@ export default function Index() {
         <RangeInputWithLabel label="Iterations" max={maxIterations} value={iterations} setValue={setIterations} />
       </div>
       <div>
-        <input type="button" value="Animate" onClick={notImplementedYet} />
+        <input
+          type="button"
+          value={isAnimating ? "Stop animation" : "Animate"}
+          onClick={() => setIsAnimating((previous) => !previous)}
+        />
         <input type="button" value="Add to gallery" onClick={notImplementedYet} />
         <input type="button" value="Download" onClick={notImplementedYet} />
         <input type="button" value="Buy print" onClick={notImplementedYet} />
@@ -97,4 +123,93 @@ function useWindowSize() {
   }, []); // Empty array ensures that effect is only run on mount
 
   return windowSize;
+}
+
+type AnimationValues = {
+  hasLastAnimationCompleted: boolean;
+  counter: number;
+  rotations: [number, number, number, number];
+  increments: [number, number, number, number];
+};
+
+function useAnimation(
+  isAnimating: boolean,
+  animationValues: AnimationValues,
+  setAnimationValues: React.Dispatch<React.SetStateAction<AnimationValues>>,
+  setTopLeftRotation: React.Dispatch<React.SetStateAction<number>>,
+  setTopRightRotation: React.Dispatch<React.SetStateAction<number>>,
+  setBottomLeftRotation: React.Dispatch<React.SetStateAction<number>>,
+  setBottomRightRotation: React.Dispatch<React.SetStateAction<number>>
+) {
+  useEffect(() => {
+    if (isAnimating && animationValues.hasLastAnimationCompleted) {
+      setAnimationValues((previous) => ({
+        hasLastAnimationCompleted: false,
+        counter: previous.counter,
+        rotations: [
+          previous.rotations[0] + previous.increments[0],
+          previous.rotations[1] + previous.increments[1],
+          previous.rotations[2] + previous.increments[2],
+          previous.rotations[3] + previous.increments[3],
+        ],
+        increments: previous.increments,
+      }));
+      setTopLeftRotation((previous) => (360 + previous + animationValues.increments[0]) % 360);
+      setTopRightRotation((previous) => (360 + previous + animationValues.increments[1]) % 360);
+      setBottomLeftRotation((previous) => (360 + previous + animationValues.increments[2]) % 360);
+      setBottomRightRotation((previous) => (360 + previous + animationValues.increments[3]) % 360);
+      setTimeout(() => {
+        setAnimationValues((previous) => ({
+          hasLastAnimationCompleted: true,
+          counter: (previous.counter + 1) % 15,
+          rotations: previous.rotations,
+          increments: [
+            getNextIncrement(previous.counter, previous.increments[0]),
+            getNextIncrement(previous.counter, previous.increments[1]),
+            getNextIncrement(previous.counter, previous.increments[2]),
+            getNextIncrement(previous.counter, previous.increments[3]),
+          ],
+        }));
+      }, 100);
+    }
+  }, [
+    isAnimating,
+    animationValues,
+    setAnimationValues,
+    setTopLeftRotation,
+    setTopRightRotation,
+    setBottomLeftRotation,
+    setBottomRightRotation,
+  ]);
+}
+
+function getNextIncrement(counter: number, previousIncrement: number) {
+  //
+  const shouldChange = counter === 0 && Math.random() > 0.75;
+  if (shouldChange) {
+    const unconstrainedNextIncrement = previousIncrement + 0.25 - 0.5 * Math.random();
+    return Math.min(Math.max(unconstrainedNextIncrement, -1), 1);
+  } else {
+    return previousIncrement;
+  }
+}
+
+function getShapeDescription(
+  iterations: number,
+  topLeftProps: QuadrantInputProps,
+  topRightProps: QuadrantInputProps,
+  bottomLeftProps: QuadrantInputProps,
+  bottomRightProps: QuadrantInputProps
+) {
+  return (
+    `${iterations} iteration${iterations == 1 ? "" : "s"}` +
+    getQuadrantDescription(topLeftProps) +
+    getQuadrantDescription(topRightProps) +
+    getQuadrantDescription(bottomLeftProps) +
+    getQuadrantDescription(bottomRightProps)
+  );
+}
+
+function getQuadrantDescription(quadrantInputProps: QuadrantInputProps) {
+  return ", " + (quadrantInputProps.isDisabled ? "—" : Math.round(quadrantInputProps.rotation) + "º");
 }

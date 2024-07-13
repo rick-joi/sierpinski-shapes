@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction, useId } from "react";
 import ControlWithLabelLayout from "./control-with-label-layout";
 import RangeInput from "./range-input";
 
-export type QuandrantInputProps = Readonly<{
+export type QuadrantInputProps = Readonly<{
   label: string;
   isDisabled: boolean;
   rotation: number;
@@ -10,13 +10,7 @@ export type QuandrantInputProps = Readonly<{
   setRotation: Dispatch<SetStateAction<number>>;
 }>;
 
-export default function QuadrantInput({
-  label,
-  setIsDisabled,
-  rotation,
-  isDisabled,
-  setRotation,
-}: QuandrantInputProps) {
+export default function QuadrantInput({ label, setIsDisabled, rotation, isDisabled, setRotation }: QuadrantInputProps) {
   const id = useId();
   return (
     <ControlWithLabelLayout label={label} isDisabled={isDisabled} id={id}>
