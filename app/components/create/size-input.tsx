@@ -19,7 +19,7 @@ export default function SizeInput({ size, setSize, isDisabled }: Props) {
         max={Math.log2(1024)}
         disabled={isDisabled}
         value={Math.log2(size)}
-        onChange={(e) => setSize(2 ** Number(e.target.value))}
+        onChange={(e) => setSize(Math.min(2 ** Number(e.target.value), window ? window.innerWidth * 0.85 : 1024))}
         style={{ width: "6rem", height: "1.5rem", textAlign: "center" }}
         id={id}
       />

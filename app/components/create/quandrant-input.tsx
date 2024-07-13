@@ -26,12 +26,18 @@ export default function QuadrantInput({ isOn, rotation, color, setIsOn, setRotat
         disabled={!isOn}
         value={rotation}
         onChange={(e) => setRotation((Number(e.target.value) + 360) % 360)}
-        style={{ height: "1.5rem", padding: "0.1rem", textAlign: "center", marginLeft: "0.25rem" }}
+        style={{
+          height: "1.5rem",
+          padding: "0.1rem",
+          textAlign: "center",
+          marginLeft: "0.25rem",
+          color: isOn ? "black" : "#f0f0f0",
+        }}
       />
       <input
         type="color"
         disabled={!isOn}
-        value={color}
+        value={isOn ? color : "#f0f0f0"}
         onChange={(e) => setColor(e.target.value)}
         style={{ height: "1.5rem", width: "1.5rem", verticalAlign: "middle", marginLeft: "0.25rem" }}
       />
