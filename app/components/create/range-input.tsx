@@ -19,7 +19,7 @@ export default function RangeInput({ max, value, setValue, rangeLabelSuffix, isD
         disabled={isDisabled}
         value={value}
         onChange={(e) => setValue(Number(e.target.value))}
-        style={{ verticalAlign: "middle", flexGrow: 1 }}
+        style={{ verticalAlign: "middle", flexGrow: 1, width: "100%", minWidth: "2rem" }}
         id={id}
       />
       <span style={{ fontSize: "x-small", verticalAlign: "bottom" }}>
