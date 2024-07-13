@@ -1,51 +1,59 @@
 import { useState } from "react";
-import NumberInput from "~/components/create/number-input";
+import IterationsInput from "~/components/create/iterations-input";
 import QuadrantInput, { QuandrantInputProps } from "~/components/create/quandrant-input";
+import SizeInput from "~/components/create/size-input";
 import SierpinskiShape from "~/components/sierpinski-shape/sierpinski-shape";
 import { getMeta } from "~/model/utility/route-utilities";
 
 export const meta = getMeta("Create", "Create your own Sierpinski Shape!");
 
-function useQuandrantInputProps(name: string, isOnDefault: boolean): QuandrantInputProps {
+function useQuandrantInputState(isOnDefault: boolean): QuandrantInputProps {
+  //
   const [isOn, setIsOn] = useState<boolean>(isOnDefault);
   const [rotation, setRotation] = useState<number>(0);
   const [color, setColor] = useState<string>("#000000");
-  return { name, isOn, rotation, color, setIsOn, setRotation, setColor };
+  return { isOn, rotation, color, setIsOn, setRotation, setColor };
 }
 
 export default function Index() {
   //
   const [size, setSize] = useState(512);
+  const maxIterations = Math.min(8, Math.floor(Math.log2(size)) - 2);
   const [iterations, setIterations] = useState(1);
-  const maxIterations = Math.floor(Math.log2(size));
-  const topLeftProps = useQuandrantInputProps("Top left", true);
-  const topRightProps = useQuandrantInputProps("Top right", false);
-  const bottomLeftProps = useQuandrantInputProps("Bottom left", true);
-  const bottomRightProps = useQuandrantInputProps("Bottom right", true);
+  if (iterations > maxIterations) {
+    setIterations(maxIterations);
+  }
+
+  const topLeftProps = useQuandrantInputState(true);
+  const topRightProps = useQuandrantInputState(false);
+  const bottomLeftProps = useQuandrantInputState(true);
+  const bottomRightProps = useQuandrantInputState(true);
+
   return (
-    <>
-      <div>
-        <NumberInput
-          label="Size"
-          value={size}
-          setValue={setSize}
-          minValue={0}
-          maxValue={Number.MAX_SAFE_INTEGER}
-          roundFunction={roundToPowerOfTwo}
-        />
-        <input
-          type="range"
-          min={0}
-          max={maxIterations}
-          value={maxIterations}
-          onChange={(e) => setIterations(Number(e.target.value))}
-        />
+    <div>
+      <div style={{ display: "inline-block", marginRight: "1rem", marginBottom: "1rem" }}>
+        <span style={{ display: "inline-block", marginRight: "0.5rem" }}>Image</span>
+        <div
+          id="image-settings"
+          style={{
+            display: "inline-grid",
+            gridTemplateColumns: "auto auto",
+            border: "solid lightgray 1px",
+            padding: "0.25rem 0.5rem",
+          }}
+        >
+          <SizeInput size={size} setSize={setSize} />
+          <IterationsInput maxIterations={maxIterations} iterations={iterations} setIterations={setIterations} />
+        </div>
       </div>
-      <div>
-        <QuadrantInput {...topLeftProps} />
-        <QuadrantInput {...topRightProps} />
-        <QuadrantInput {...bottomLeftProps} />
-        <QuadrantInput {...bottomRightProps} />
+      <div style={{ display: "inline-block" }}>
+        <span style={{ display: "inline-block", marginRight: "0.5rem" }}>Triangles</span>
+        <div style={{ display: "inline-grid", gridTemplateColumns: "auto auto", border: "solid lightgray 1px" }}>
+          <QuadrantInput {...topLeftProps} />
+          <QuadrantInput {...topRightProps} />
+          <QuadrantInput {...bottomLeftProps} />
+          <QuadrantInput {...bottomRightProps} />
+        </div>
       </div>
       <SierpinskiShape
         idPrefix={"create"}
@@ -72,14 +80,8 @@ export default function Index() {
       <input type="button" value="Animate" onClick={notImplementedYet} />
       <input type="button" value="Download" onClick={notImplementedYet} />
       <input type="button" value="Buy print" onClick={notImplementedYet} />
-    </>
+    </div>
   );
-
-  function roundToPowerOfTwo(newValue: number, oldValue: number) {
-    const powerOfTwo = Math.log2(newValue);
-    const adjustedPowerOfTwo = newValue < oldValue ? Math.floor(powerOfTwo) : Math.ceil(powerOfTwo);
-    return Math.pow(2, adjustedPowerOfTwo);
-  }
 
   function notImplementedYet() {
     alert("not implemented, yet");

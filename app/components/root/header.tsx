@@ -1,6 +1,6 @@
 import { NavLink } from "@remix-run/react";
 
-import styles from "./header.module.css";
+import classes from "./header.module.css";
 
 // todo: https://dev.to/devggaurav/let-s-build-a-responsive-navbar-and-hamburger-menu-using-html-css-and-javascript-4gci
 export function Header() {
@@ -36,10 +36,10 @@ export function Header() {
             </NavLink>
           </li>
         </menu>
-        <button className={styles.hamburger} onClick={hamburgerOnClick}>
-          <span className={styles.bar}></span>
-          <span className={styles.bar}></span>
-          <span className={styles.bar}></span>
+        <button className={classes.hamburger} onClick={hamburgerOnClick}>
+          <span className={classes.bar}></span>
+          <span className={classes.bar}></span>
+          <span className={classes.bar}></span>
         </button>
       </nav>
     </header>
@@ -47,17 +47,17 @@ export function Header() {
 }
 
 function hamburgerOnClick() {
-  const hamburger = querySelector(`.${styles.hamburger}`);
+  const hamburger = querySelector(`.${classes.hamburger}`);
   const navMenu = querySelector("menu");
-  hamburger.classList.toggle(styles.active);
-  navMenu.classList.toggle(styles.active);
+  hamburger.classList.toggle(classes.active);
+  navMenu.classList.toggle(classes.active);
 }
 
 function closeMenu() {
-  const hamburger = querySelector(`.${styles.hamburger}`);
+  const hamburger = querySelector(`.${classes.hamburger}`);
   const navMenu = querySelector("menu");
-  hamburger.classList.remove(styles.active);
-  navMenu.classList.remove(styles.active);
+  hamburger.classList.remove(classes.active);
+  navMenu.classList.remove(classes.active);
 }
 
 function querySelector(selector: string): Element {
