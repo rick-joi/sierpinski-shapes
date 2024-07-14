@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ColorInput from "~/components/create/color-input";
 import QuadrantInput, { QuadrantInputProps } from "~/components/create/quandrant-input";
 import RangeInputWithLabel from "~/components/create/range-input-with-label";
+import ClickableSierpinskiShape from "~/components/sierpinski-shape/clickable-sierpinski-shape";
 import SierpinskiShape, { getSizeWithMargins } from "~/components/sierpinski-shape/sierpinski-shape";
 import { getMeta } from "~/model/utility/route-utilities";
 
@@ -19,6 +20,7 @@ export default function Index() {
   const maxSize = getSizeWithMargins(512);
   const windowSize = useWindowSize();
   const size = Math.min(maxSize, Math.min(windowSize.width, windowSize.height) * 0.9);
+  const fullScreenSize = Math.min(windowSize.width, windowSize.height);
 
   const maxIterations = Math.min(8, Math.ceil(Math.log2(size)) - 2);
   const [iterations, setIterations] = useState(1);
@@ -66,7 +68,7 @@ export default function Index() {
           </div>
           <div style={{ color: "gray", textAlign: "right", fontSize: "smaller" }}>{shapeDescription}</div>
         </div>
-        <SierpinskiShape
+        <ClickableSierpinskiShape
           idPrefix={"create"}
           size={size}
           iterationCount={iterations}
@@ -77,6 +79,10 @@ export default function Index() {
             bottomRight: bottomRightProps.isDisabled ? null : bottomRightProps.rotation,
           }}
           color={color}
+          setTopLeftRotation={topLeftProps.setRotation}
+          setTopRightRotation={topRightProps.setRotation}
+          setBottomLeftRotation={bottomLeftProps.setRotation}
+          setBottomRightRotation={bottomRightProps.setRotation}
         />
         <div style={{ display: "flex", justifyContent: "space-between", gap: "1rem" }}>
           <input type="button" value="Add to gallery" onClick={notImplementedYet} style={{ flexGrow: 1, margin: 0 }} />
@@ -116,6 +122,32 @@ export default function Index() {
           <h2>Welcome to sierpinski-shapes.com!</h2>
           <p>We&lsquo;re glad you&lsquo;re here to share our love of fractals.</p>
         </div>
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          backgroundColor: "white",
+          zIndex: 500,
+          textAlign: "center",
+          display: "none",
+        }}
+      >
+        <SierpinskiShape
+          idPrefix={"full-screen"}
+          size={fullScreenSize}
+          iterationCount={iterations}
+          rotations={{
+            topRight: topRightProps.isDisabled ? null : topRightProps.rotation,
+            topLeft: topLeftProps.isDisabled ? null : topLeftProps.rotation,
+            bottomLeft: bottomLeftProps.isDisabled ? null : bottomLeftProps.rotation,
+            bottomRight: bottomRightProps.isDisabled ? null : bottomRightProps.rotation,
+          }}
+          color={color}
+        />
       </div>
     </div>
   );

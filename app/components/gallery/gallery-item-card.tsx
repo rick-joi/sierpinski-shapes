@@ -23,19 +23,31 @@ export default function GalleryItemCard({ item }: Props) {
       }}
     >
       <h3
-        style={{ fontSize: "1.1rem", color: "white", backgroundColor: "var(--dark-neutral-color)", padding: "0.25rem" }}
+        style={{
+          fontSize: "1.1rem",
+          color: "white",
+          backgroundColor: "var(--dark-neutral-color)",
+          padding: "0.25rem",
+          paddingBottom: "0.5rem",
+        }}
       >
         {item.name}
       </h3>
       <SierpinskiShape
         idPrefix={item.key}
         size={313}
-        iterationCount={6}
+        iterationCount={7}
         rotations={item.rotations}
         color={item.color}
       />
-      <div style={{ marginBottom: "1rem" }}>
-        <Link to=".">❤️ like (1)</Link> &nbsp; | &nbsp; <Link to=".">👀 view (1)</Link>
+      <div style={{ padding: "1rem 0", borderTop: "4px solid var(--dark-neutral-color)" }}>
+        <Link to=".">
+          ♡ like <span style={{ fontSize: "smaller" }}>(1)</span>
+        </Link>{" "}
+        &nbsp; | &nbsp;{" "}
+        <Link to=".">
+          $ buy <span style={{ fontSize: "smaller" }}>(0)</span>
+        </Link>
       </div>
     </div>
   );
