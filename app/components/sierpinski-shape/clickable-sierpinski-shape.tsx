@@ -30,33 +30,48 @@ export default function ClickableSierpinskiShape({
 }: Props) {
   //
   useEffect(() => {
-    document.addEventListener("touchmove", handleTouchMove, false);
+    document.addEventListener("touchstart", handleTouchStart, false);
+    document.addEventListener("touchend", handleTouchEnd, false);
+    //document.addEventListener("touchmove", handleTouchMove, false);
+    let firstTouch: Touch | undefined = undefined;
 
-    function handleTouchMove(evt: TouchEvent) {
+    function handleTouchStart(evt: TouchEvent) {
       //todo: what's the difference between touches and changedTouches?
-      const firstTouch = evt.changedTouches[0];
+      firstTouch = evt.touches[0];
+      console.log(`Start evtchangedTouches.length: ${evt.changedTouches.length}`);
+      console.log(`Start evt.touches.length: ${evt.touches.length}`);
+    }
+
+    function handleTouchEnd(evt: TouchEvent) {
+      //todo: what's the difference between touches and changedTouches?
       const lastTouch = evt.changedTouches[evt.changedTouches.length - 1];
+      console.log(`End evtchangedTouches.length: ${evt.changedTouches.length}`);
+      console.log(`End evt.touches.length: ${evt.touches.length}`);
 
-      const firstX = firstTouch.clientX;
-      const firstY = firstTouch.clientY;
-      const lastX = lastTouch.clientX;
-      const lastY = lastTouch.clientY;
-      console.log(`firstX: ${firstX}, firstY: ${firstY}, lastX: ${lastX}, lastY: ${lastY}`);
+      if (firstTouch) {
+        const firstX = firstTouch.clientX;
+        const firstY = firstTouch.clientY;
+        firstTouch = undefined;
+        const lastX = lastTouch.clientX;
+        const lastY = lastTouch.clientY;
+        console.log(`firstX: ${firstX}, firstY: ${firstY}, lastX: ${lastX}, lastY: ${lastY}`);
 
-      const xDiff = lastX - firstX;
-      const yDiff = lastY - firstY;
-      console.log(`xDiff: ${xDiff}, yDiff: ${yDiff}`);
+        const xDiff = lastX - firstX;
+        const yDiff = lastY - firstY;
+        console.log(`xDiff: ${xDiff}, yDiff: ${yDiff}`);
 
-      // We only want horizontal swipes...
-      if (Math.abs(xDiff) > Math.abs(yDiff)) {
-        if (xDiff > 0) {
-          setIterations((previous) => previous + 1);
-        } else {
-          setIterations((previous) => Math.max(0, previous - 1));
+        // We only want horizontal swipes...
+        if (Math.abs(xDiff) > Math.abs(yDiff)) {
+          if (xDiff > 0) {
+            setIterations((previous) => previous + 1);
+          } else {
+            setIterations((previous) => Math.max(1, previous - 1));
+          }
         }
+        firstTouch = undefined;
       }
     }
-  });
+  }, [setIterations]);
 
   return (
     <div style={{ position: "relative" }}>
