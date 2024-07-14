@@ -19,7 +19,7 @@ export default function RangeInput({ max, value, setValue, rangeLabelSuffix, isD
         min={0}
         max={max}
         disabled={isDisabled}
-        value={value}
+        value={isDisabled ? 0 : value}
         onChange={(e) => setValue(Number(e.target.value))}
         style={{
           verticalAlign: "middle",
