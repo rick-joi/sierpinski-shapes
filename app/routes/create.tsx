@@ -1,19 +1,15 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { getMeta } from "~/view/shared/utilities/route-utilities";
 import useWindowSize from "~/view/shared/utilities/use-window-size";
 import ColorInput from "~/view/create/color-input";
-import QuadrantInput, {
-  AllFourQuadrantInputProps,
-  getRotations,
-  QuadrantInputProps,
-  useAllFourQuadrantInputProps,
-} from "~/view/create/quadrant-input";
+import QuadrantInput, { getRotations, useAllFourQuadrantInputProps } from "~/view/create/quadrant-input";
 import RangeInput from "~/view/create/range-input";
 import useAnimation from "~/view/create/use-animation";
 import TouchableSierpinskiShape from "~/view/create/touchable-sierpinski-shape";
 import SierpinskiShape, { getSizeWithMargins } from "~/view/shared/sierpinski-shape/sierpinski-shape";
 import SierpinskiText from "~/view/shared/sierpinski-shape/sierpinski-text";
+import useHistoryReplaceState from "~/view/create/use-history-replace-state";
 
 export const meta = getMeta("Create", "Create your own Sierpinski Shape!");
 
@@ -49,7 +45,7 @@ export default function Index() {
   );
 
   // update URL...
-  useHistoryReplaceState(quadrantProps, iterations, color);
+  useHistoryReplaceState(quadrantProps, iterations, color, isAnimating);
 
   return (
     <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", columnGap: "1rem" }}>
@@ -131,27 +127,4 @@ export default function Index() {
   function notImplementedYet() {
     alert("not implemented, yet");
   }
-}
-
-function useHistoryReplaceState(quadrantProps: AllFourQuadrantInputProps, iterations: number, color: string) {
-  useEffect(() => {
-    //todo: make requests to these URLs use these values as defaults...
-    //todo: make the gallery images link to create using these URLs...
-    const url = getUrl(quadrantProps, iterations, color);
-    history.replaceState(null, "", url);
-  }, [quadrantProps, iterations, color]);
-}
-
-function getUrl(quadrantProps: AllFourQuadrantInputProps, iterations: number, color: string) {
-  const tl = formatRotation(quadrantProps.topLeft);
-  const tr = formatRotation(quadrantProps.topRight);
-  const bl = formatRotation(quadrantProps.bottomLeft);
-  const br = formatRotation(quadrantProps.bottomRight);
-  const c = encodeURIComponent(color);
-
-  return `/create?tl=${tl}&tr=${tr}&bl=${bl}&br=${br}&i=${iterations}&c=${c}`;
-}
-
-function formatRotation(quadrantInputProps: QuadrantInputProps) {
-  return quadrantInputProps.isDisabled ? "-" : Math.round(quadrantInputProps.rotation).toString();
 }
