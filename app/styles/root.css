@@ -119,3 +119,23 @@ input[type="submit"] {
   background: none;
   cursor: pointer;
 }
+
+.slidecontainer {
+  width: 100%;
+}
+
+input[type="range"]:hover {
+  opacity: 1.2;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  background: lightgray;
+  outline: none;
+  opacity: 0.8;
+  transition: opacity 0.4s;
+  border-radius: 15px;
+}

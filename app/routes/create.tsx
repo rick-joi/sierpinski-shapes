@@ -51,6 +51,19 @@ export default function Index() {
     bottomRightProps.setRotation
   );
 
+  useEffect(() => {
+    //todo: make this work for quadrants that are off...
+    //todo: make requests to these URLs use these values as defaults...
+    //todo: make the gallery images link to create using these URLs...
+    history.replaceState(
+      null,
+      "",
+      `/create?tl=${Math.round(topLeftProps.rotation)}&tr=${Math.round(topRightProps.rotation)}&bl=${Math.round(
+        bottomLeftProps.rotation
+      )}&br=${Math.round(bottomRightProps.rotation)}&i=${iterations}&c=${encodeURIComponent(color)}`
+    );
+  }, [iterations, topLeftProps, topRightProps, bottomLeftProps, bottomRightProps, color]);
+
   const shapeDescription = getShapeDescription(
     iterations,
     topLeftProps,
