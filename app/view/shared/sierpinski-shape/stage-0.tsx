@@ -14,7 +14,8 @@ export default function Stage0({ idPrefix, size, color }: Props) {
       id={getStageId(0, idPrefix)}
       fill={color}
       opacity={"67%"}
-      //      style={{ fill: color, opacity: "67%" }}
+      // using style seemed to lead to out-of-memory errors:
+      // style={{ fill: color, opacity: "67%" }}
     />
   );
 }
