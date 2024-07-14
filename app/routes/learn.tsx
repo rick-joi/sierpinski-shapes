@@ -3,9 +3,9 @@ export default function Index() {
     <div>
       <h2>Learn</h2>
       <p>Welcome to the fascinating world of Sierpinski Shapes!</p>
-      <p>They&lsquo;re a wonderful combination of math and beauty.</p>
+      <p>They&rsquo;re a wonderful combination of math and beauty.</p>
       <p>
-        The math is so simple, it&lsquo;s not really even math — you can create Sierpinski Shapes with squares of paper
+        The math is so simple, it&rsquo;s not really even math — you can create Sierpinski Shapes with squares of paper
         and a pair of scissors.
       </p>
       <p>
@@ -18,7 +18,7 @@ export default function Index() {
       <h3>Articles</h3>
       <p>Do you love Sierpinsi Shapes? Have something to say about them? Write a guest article!</p>
       <ul>
-        <li>What&lsquo;s a Sierpinski Shape?</li>
+        <li>What&rsquo;s a Sierpinski Shape?</li>
         <li>Who was Wacław Sierpiński?</li>
         <li>How many Sierpinski Shapes are there?</li>
         <li>Why is the simple triangle the best simple shape?</li>

@@ -1,5 +1,6 @@
 import StageNMinus1 from "./stage-n-minus-1";
-import { Rotations, getStageId } from "./sierpinski-utilities";
+import { getStageId } from "./sierpinski-utilities";
+import { Rotations } from "~/model/shared/rotations";
 
 type Props = Readonly<{
   idPrefix: string;

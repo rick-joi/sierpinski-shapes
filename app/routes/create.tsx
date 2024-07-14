@@ -13,6 +13,7 @@ import RangeInput from "~/view/create/range-input";
 import useAnimation from "~/view/create/use-animation";
 import TouchableSierpinskiShape from "~/view/create/touchable-sierpinski-shape";
 import SierpinskiShape, { getSizeWithMargins } from "~/view/shared/sierpinski-shape/sierpinski-shape";
+import SierpinskiText from "~/view/shared/sierpinski-shape/sierpinski-text";
 
 export const meta = getMeta("Create", "Create your own Sierpinski Shape!");
 
@@ -50,8 +51,6 @@ export default function Index() {
   // update URL...
   useHistoryReplaceState(quadrantProps, iterations, color);
 
-  const shapeDescription = getShapeDescription(quadrantProps, iterations, color);
-
   return (
     <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", columnGap: "1rem" }}>
       <div style={{ width: size }}>
@@ -59,7 +58,6 @@ export default function Index() {
           <div className="touch-screen-only" style={{ color: "gray", fontSize: "smaller" }}>
             ☞ Tap on a quadrant or swipe left / right
           </div>
-          <div style={{ color: "gray", textAlign: "right", fontSize: "smaller" }}>{shapeDescription}</div>
         </div>
         <TouchableSierpinskiShape
           idPrefix={"create"}
@@ -102,10 +100,13 @@ export default function Index() {
               />
             </div>
           </div>
+          <div style={{ color: "gray", fontSize: "smaller" }}>
+            <SierpinskiText rotations={getRotations(quadrantProps)} iterations={iterations} color={color} />
+          </div>
         </div>
         <div style={{ position: "relative", top: "25%", width: "100%", textAlign: "center" }}>
           <h2>Welcome to sierpinski&#8209;shapes.com!</h2>
-          <p>We&lsquo;re glad you&lsquo;re here to share our love of fractals</p>
+          <p>We&rsquo;re glad you&rsquo;re here to share our love of fractals</p>
         </div>
       </div>
       <div
@@ -158,19 +159,4 @@ function getUrl(quadrantProps: AllFourQuadrantInputProps, iterations: number, co
 
 function formatRotation(quadrantInputProps: QuadrantInputProps) {
   return quadrantInputProps.isDisabled ? "-" : Math.round(quadrantInputProps.rotation).toString();
-}
-
-function getShapeDescription(quadrantProps: AllFourQuadrantInputProps, iterations: number, color: string) {
-  return (
-    `${iterations} iteration${iterations == 1 ? "" : "s"}` +
-    getQuadrantDescription(quadrantProps.topLeft) +
-    getQuadrantDescription(quadrantProps.topRight) +
-    getQuadrantDescription(quadrantProps.bottomLeft) +
-    getQuadrantDescription(quadrantProps.bottomRight) +
-    `, ${color}`
-  );
-}
-
-function getQuadrantDescription(quadrantInputProps: QuadrantInputProps) {
-  return ", " + (quadrantInputProps.isDisabled ? "—" : Math.round(quadrantInputProps.rotation) + "º");
 }

@@ -1,19 +1,12 @@
 import { Link } from "@remix-run/react";
 import SierpinskiShape from "../shared/sierpinski-shape/sierpinski-shape";
-import { Rotations } from "../shared/sierpinski-shape/sierpinski-utilities";
-
-export type GalleryItem = Readonly<{
-  key: string;
-  name: string;
-  rotations: Rotations;
-  color: string;
-}>;
+import SierpinskiShapeData from "~/model/shared/sierpinski-shape";
 
 type Props = Readonly<{
-  item: GalleryItem;
+  shape: SierpinskiShapeData;
 }>;
 
-export default function GalleryItemCard({ item }: Props) {
+export default function GalleryItemCard({ shape }: Props) {
   return (
     <div
       style={{
@@ -31,14 +24,14 @@ export default function GalleryItemCard({ item }: Props) {
           paddingBottom: "0.5rem",
         }}
       >
-        {item.name}
+        {shape.name}
       </h3>
       <SierpinskiShape
-        idPrefix={item.key}
+        idPrefix={shape.id.toString()}
         size={313}
         iterationCount={7}
-        rotations={item.rotations}
-        color={item.color}
+        rotations={shape.rotations}
+        color={shape.color}
       />
       <div style={{ padding: "1rem 0", borderTop: "4px solid var(--dark-neutral-color)" }}>
         <Link to=".">
