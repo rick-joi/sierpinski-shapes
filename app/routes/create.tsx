@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ColorInput from "~/components/create/color-input";
 import QuadrantInput, { QuadrantInputProps } from "~/components/create/quandrant-input";
-import RangeInputWithLabel from "~/components/create/range-input-with-label";
+import RangeInput from "~/components/create/range-input";
 import ClickableSierpinskiShape from "~/components/sierpinski-shape/clickable-sierpinski-shape";
 import SierpinskiShape, { getSizeWithMargins } from "~/components/sierpinski-shape/sierpinski-shape";
 import { getMeta } from "~/model/utility/route-utilities";
@@ -120,7 +120,7 @@ export default function Index() {
           </div>
           <div style={{ display: "flex", gap: "1rem" }}>
             <div style={{ flexGrow: "1" }}>
-              <RangeInputWithLabel label="Iterations" max={maxIterations} value={iterations} setValue={setIterations} />
+              <RangeInput label="Iterations" max={maxIterations} value={iterations} setValue={setIterations} />
             </div>
             <div>
               <ColorInput label={"Color"} color={color} setColor={setColor} />

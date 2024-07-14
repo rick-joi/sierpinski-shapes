@@ -1,38 +1,19 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useId } from "react";
+import ControlWithLabelLayout from "./control-with-label-layout";
+import RangeInputWithoutLabel from "./range-input-without-label";
 
 type Props = Readonly<{
+  label: string;
   max: number;
   value: number;
   setValue: Dispatch<SetStateAction<number>>;
-  rangeLabelSuffix?: string;
   isDisabled?: boolean;
-  id: string;
 }>;
-export default function RangeInput({ max, value, setValue, rangeLabelSuffix, isDisabled, id }: Props) {
+export default function RangeInputWithLabel({ label, max, value, setValue, isDisabled }: Props) {
+  const id = useId();
   return (
-    <>
-      <span style={{ fontSize: "x-small", verticalAlign: "top", color: isDisabled ? "lightgray" : undefined }}>
-        0{rangeLabelSuffix}
-      </span>
-      <input
-        type="range"
-        min={0}
-        max={max}
-        disabled={isDisabled}
-        value={isDisabled ? 0 : value}
-        onChange={(e) => setValue(Number(e.target.value))}
-        style={{
-          verticalAlign: "middle",
-          flexGrow: 1,
-          width: "100%",
-          minWidth: "2rem",
-        }}
-        id={id}
-      />
-      <span style={{ fontSize: "x-small", verticalAlign: "bottom", color: isDisabled ? "lightgray" : undefined }}>
-        {max}
-        {rangeLabelSuffix}
-      </span>
-    </>
+    <ControlWithLabelLayout label={label} isDisabled={false} id={id}>
+      <RangeInputWithoutLabel max={max} value={value} setValue={setValue} isDisabled={isDisabled} id={id} />
+    </ControlWithLabelLayout>
   );
 }

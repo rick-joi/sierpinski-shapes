@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useId } from "react";
 import ControlWithLabelLayout from "./control-with-label-layout";
-import RangeInput from "./range-input";
+import RangeInputWithoutLabel from "./range-input-without-label";
 
 export type QuadrantInputProps = Readonly<{
   label: string;
@@ -26,7 +26,7 @@ export default function QuadrantInput({ label, setIsDisabled, rotation, isDisabl
             marginRight: "0.25rem",
           }}
         />
-        <RangeInput
+        <RangeInputWithoutLabel
           max={359}
           value={rotation}
           setValue={setRotation}
