@@ -11,7 +11,9 @@ type Props = Readonly<{
 export default function RangeInput({ max, value, setValue, rangeLabelSuffix, isDisabled, id }: Props) {
   return (
     <>
-      <span style={{ fontSize: "x-small", verticalAlign: "top" }}>0{rangeLabelSuffix}</span>
+      <span style={{ fontSize: "x-small", verticalAlign: "top", color: isDisabled ? "lightgray" : undefined }}>
+        0{rangeLabelSuffix}
+      </span>
       <input
         type="range"
         min={0}
@@ -27,7 +29,7 @@ export default function RangeInput({ max, value, setValue, rangeLabelSuffix, isD
         }}
         id={id}
       />
-      <span style={{ fontSize: "x-small", verticalAlign: "bottom" }}>
+      <span style={{ fontSize: "x-small", verticalAlign: "bottom", color: isDisabled ? "lightgray" : undefined }}>
         {max}
         {rangeLabelSuffix}
       </span>

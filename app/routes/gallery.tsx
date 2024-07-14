@@ -67,6 +67,12 @@ export default function Index() {
     rotations: { topLeft: 0, topRight: null, bottomLeft: 14, bottomRight: 352 },
     color: "#218e1f",
   });
+  galleryItems.push({
+    key: "11",
+    name: "Can you see the hidden face?",
+    rotations: { topLeft: 39, topRight: null, bottomLeft: 209, bottomRight: 122 },
+    color: "#000000",
+  });
   return (
     <>
       <p style={{ textAlign: "center" }}>There are over 16 billion Sierpinski Shapes! 🫨</p>

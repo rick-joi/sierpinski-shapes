@@ -83,8 +83,9 @@ export default function Index() {
           setTopRightRotation={topRightProps.setRotation}
           setBottomLeftRotation={bottomLeftProps.setRotation}
           setBottomRightRotation={bottomRightProps.setRotation}
+          setIterations={setIterations}
         />
-        <div style={{ display: "flex", justifyContent: "space-between", gap: "1rem" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", gap: "1rem", marginBottom: "2rem" }}>
           <input type="button" value="Add to gallery" onClick={notImplementedYet} style={{ flexGrow: 1, margin: 0 }} />
           <input type="button" value="Download" onClick={notImplementedYet} style={{ flexGrow: 1, margin: 0 }} />
           <input type="button" value="Buy merch" onClick={notImplementedYet} style={{ flexGrow: 1, margin: 0 }} />
@@ -119,7 +120,7 @@ export default function Index() {
           </div>
         </div>
         <div style={{ position: "relative", top: "25%", width: "100%", textAlign: "center" }}>
-          <h2>Welcome to sierpinski-shapes.com!</h2>
+          <h2>Welcome to sierpinski&#8209;shapes.com!</h2>
           <p>We&lsquo;re glad you&lsquo;re here to share our love of fractals.</p>
         </div>
       </div>
