@@ -1,8 +1,8 @@
 export type Rotations = Readonly<{
-  topRight: number | null;
   topLeft: number | null;
-  bottomRight: number | null;
+  topRight: number | null;
   bottomLeft: number | null;
+  bottomRight: number | null;
 }>;
 
 export function getStageId(stage: number, prefix: string) {

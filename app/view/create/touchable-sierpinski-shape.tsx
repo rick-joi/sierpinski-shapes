@@ -1,32 +1,24 @@
 import { Dispatch, SetStateAction, useEffect } from "react";
-import SierpinskiShape from "./sierpinski-shape";
-import { Rotations } from "./sierpinski-utilities";
-import ClickableSierpinskiShapeQuadrant from "./clickable-sierpinski-shape-quadrant";
+import SierpinskiShape from "../shared/sierpinski-shape/sierpinski-shape";
+import TouchableSierpinskiShapeQuadrant from "./touchable-sierpinski-shape-quadrant";
+import { AllFourQuadrantInputProps, getRotations } from "./quadrant-input";
 
 type Props = Readonly<{
   idPrefix: string;
   size: number;
+  quadrantsProps: AllFourQuadrantInputProps;
   iterationCount: number;
-  rotations: Rotations;
   color: string;
-  setTopLeftRotation: Dispatch<SetStateAction<number>>;
-  setTopRightRotation: Dispatch<SetStateAction<number>>;
-  setBottomLeftRotation: Dispatch<SetStateAction<number>>;
-  setBottomRightRotation: Dispatch<SetStateAction<number>>;
   setIterations: Dispatch<SetStateAction<number>>;
 }>;
 
-export default function ClickableSierpinskiShape({
+export default function TouchableSierpinskiShape({
   idPrefix,
   size,
+  quadrantsProps,
   iterationCount,
-  rotations,
-  color,
-  setTopLeftRotation,
-  setTopRightRotation,
-  setBottomLeftRotation,
-  setBottomRightRotation,
   setIterations,
+  color,
 }: Props) {
   //
   useEffect(() => {
@@ -68,17 +60,32 @@ export default function ClickableSierpinskiShape({
         idPrefix={idPrefix}
         size={size}
         iterationCount={iterationCount}
-        rotations={rotations}
+        rotations={getRotations(quadrantsProps)}
         color={color}
       />
-      <ClickableSierpinskiShapeQuadrant top={0} left={0} size={size / 2} setRotation={setTopLeftRotation} />
-      <ClickableSierpinskiShapeQuadrant top={0} left={size / 2} size={size / 2} setRotation={setTopRightRotation} />
-      <ClickableSierpinskiShapeQuadrant top={size / 2} left={0} size={size / 2} setRotation={setBottomLeftRotation} />
-      <ClickableSierpinskiShapeQuadrant
+      <TouchableSierpinskiShapeQuadrant
+        top={0}
+        left={0}
+        size={size / 2}
+        setRotation={quadrantsProps.topLeft.setRotation}
+      />
+      <TouchableSierpinskiShapeQuadrant
+        top={0}
+        left={size / 2}
+        size={size / 2}
+        setRotation={quadrantsProps.topRight.setRotation}
+      />
+      <TouchableSierpinskiShapeQuadrant
+        top={size / 2}
+        left={0}
+        size={size / 2}
+        setRotation={quadrantsProps.bottomLeft.setRotation}
+      />
+      <TouchableSierpinskiShapeQuadrant
         top={size / 2}
         left={size / 2}
         size={size / 2}
-        setRotation={setBottomRightRotation}
+        setRotation={quadrantsProps.bottomRight.setRotation}
       />
     </div>
   );

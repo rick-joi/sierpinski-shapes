@@ -2,7 +2,7 @@ import { NavLink } from "@remix-run/react";
 
 import classes from "./header.module.css";
 
-// todo: https://dev.to/devggaurav/let-s-build-a-responsive-navbar-and-hamburger-menu-using-html-css-and-javascript-4gci
+// inpsired by: https://dev.to/devggaurav/let-s-build-a-responsive-navbar-and-hamburger-menu-using-html-css-and-javascript-4gci
 export function Header() {
   return (
     <header>

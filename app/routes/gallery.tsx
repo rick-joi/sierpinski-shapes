@@ -1,5 +1,5 @@
-import { getMeta } from "~/model/utility/route-utilities";
-import GalleryItemCard, { GalleryItem } from "~/components/gallery/gallery-item-card";
+import { getMeta } from "~/view/shared/utilities/route-utilities";
+import GalleryItemCard, { GalleryItem } from "~/view/gallery/gallery-item-card";
 
 export const meta = getMeta("Gallery", "View Sierpinski Shapes created by others!");
 

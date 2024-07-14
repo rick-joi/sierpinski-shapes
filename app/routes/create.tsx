@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
-import ColorInput from "~/components/create/color-input";
-import QuadrantInput, { QuadrantInputProps } from "~/components/create/quandrant-input";
-import RangeInput from "~/components/create/range-input";
-import ClickableSierpinskiShape from "~/components/sierpinski-shape/clickable-sierpinski-shape";
-import SierpinskiShape, { getSizeWithMargins } from "~/components/sierpinski-shape/sierpinski-shape";
-import { getMeta } from "~/model/utility/route-utilities";
+
+import { getMeta } from "~/view/shared/utilities/route-utilities";
+import useWindowSize from "~/view/shared/utilities/use-window-size";
+import ColorInput from "~/view/create/color-input";
+import QuadrantInput, {
+  AllFourQuadrantInputProps,
+  getRotations,
+  QuadrantInputProps,
+  useAllFourQuadrantInputProps,
+} from "~/view/create/quadrant-input";
+import RangeInput from "~/view/create/range-input";
+import useAnimation from "~/view/create/use-animation";
+import TouchableSierpinskiShape from "~/view/create/touchable-sierpinski-shape";
+import SierpinskiShape, { getSizeWithMargins } from "~/view/shared/sierpinski-shape/sierpinski-shape";
 
 export const meta = getMeta("Create", "Create your own Sierpinski Shape!");
-
-function useQuandrantInputState(label: string, isDisabledDefault: boolean): QuadrantInputProps {
-  //
-  const [isDisabled, setIsDisabled] = useState<boolean>(isDisabledDefault);
-  const [rotation, setRotation] = useState<number>(0);
-  return { label, isDisabled, rotation, setIsDisabled, setRotation };
-}
 
 //todo: create new row with description, animate button, and full-screen button
 //todo: make "tap or swipe" message only show on mobile
@@ -21,60 +22,35 @@ function useQuandrantInputState(label: string, isDisabledDefault: boolean): Quad
 //todo: convert accent color to the bright blue from the checkboxes and ranges
 export default function Index() {
   //
-  const maxSize = getSizeWithMargins(512);
+  // screen math...
   const windowSize = useWindowSize();
-  const size = Math.min(maxSize, Math.min(windowSize.width, windowSize.height) * 0.9);
+  const maxSizeWithMargins = getSizeWithMargins(512);
+  const size = Math.min(maxSizeWithMargins, Math.min(windowSize.width, windowSize.height) * 0.9);
   const fullScreenSize = Math.min(windowSize.width, windowSize.height);
 
+  // state...
   const maxIterations = Math.min(8, Math.ceil(Math.log2(size)) - 2);
   const [iterations, setIterations] = useState(1);
   if (iterations > maxIterations) {
     setIterations(maxIterations);
   }
   const [color, setColor] = useState("#000000");
+  const quadrantProps = useAllFourQuadrantInputProps();
 
-  const topLeftProps = useQuandrantInputState("Top left", false);
-  const topRightProps = useQuandrantInputState("Top right", true);
-  const bottomLeftProps = useQuandrantInputState("Bottom left", false);
-  const bottomRightProps = useQuandrantInputState("Bottom right", false);
-
+  // animation...
   const [isAnimating, setIsAnimating] = useState(false);
-  const [animationValues, setAnimationValues] = useState<AnimationValues>({
-    hasLastAnimationCompleted: true,
-    counter: 0,
-    rotations: [0, 0, 0, 0],
-    increments: [-1, 1, 1, -1],
-  });
   useAnimation(
     isAnimating,
-    animationValues,
-    setAnimationValues,
-    topLeftProps.setRotation,
-    topRightProps.setRotation,
-    bottomLeftProps.setRotation,
-    bottomRightProps.setRotation
+    quadrantProps.topLeft.setRotation,
+    quadrantProps.topRight.setRotation,
+    quadrantProps.bottomLeft.setRotation,
+    quadrantProps.bottomRight.setRotation
   );
 
-  useEffect(() => {
-    //todo: make this work for quadrants that are off...
-    //todo: make requests to these URLs use these values as defaults...
-    //todo: make the gallery images link to create using these URLs...
-    history.replaceState(
-      null,
-      "",
-      `/create?tl=${Math.round(topLeftProps.rotation)}&tr=${Math.round(topRightProps.rotation)}&bl=${Math.round(
-        bottomLeftProps.rotation
-      )}&br=${Math.round(bottomRightProps.rotation)}&i=${iterations}&c=${encodeURIComponent(color)}`
-    );
-  }, [iterations, topLeftProps, topRightProps, bottomLeftProps, bottomRightProps, color]);
+  // update URL...
+  useHistoryReplaceState(quadrantProps, iterations, color);
 
-  const shapeDescription = getShapeDescription(
-    iterations,
-    topLeftProps,
-    topRightProps,
-    bottomLeftProps,
-    bottomRightProps
-  );
+  const shapeDescription = getShapeDescription(quadrantProps, iterations, color);
 
   return (
     <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", columnGap: "1rem" }}>
@@ -85,21 +61,12 @@ export default function Index() {
           </div>
           <div style={{ color: "gray", textAlign: "right", fontSize: "smaller" }}>{shapeDescription}</div>
         </div>
-        <ClickableSierpinskiShape
+        <TouchableSierpinskiShape
           idPrefix={"create"}
           size={size}
           iterationCount={iterations}
-          rotations={{
-            topRight: topRightProps.isDisabled ? null : topRightProps.rotation,
-            topLeft: topLeftProps.isDisabled ? null : topLeftProps.rotation,
-            bottomLeft: bottomLeftProps.isDisabled ? null : bottomLeftProps.rotation,
-            bottomRight: bottomRightProps.isDisabled ? null : bottomRightProps.rotation,
-          }}
+          quadrantsProps={quadrantProps}
           color={color}
-          setTopLeftRotation={topLeftProps.setRotation}
-          setTopRightRotation={topRightProps.setRotation}
-          setBottomLeftRotation={bottomLeftProps.setRotation}
-          setBottomRightRotation={bottomRightProps.setRotation}
           setIterations={setIterations}
         />
         <div style={{ display: "flex", justifyContent: "space-between", gap: "1rem", marginBottom: "2rem" }}>
@@ -111,12 +78,12 @@ export default function Index() {
       <div style={{ width: size }}>
         <div style={{ maxWidth: size + "px" }}>
           <div style={{ display: "flex", gap: "1rem" }}>
-            <QuadrantInput {...topLeftProps} />
-            <QuadrantInput {...topRightProps} />
+            <QuadrantInput {...quadrantProps.topLeft} />
+            <QuadrantInput {...quadrantProps.topRight} />
           </div>
           <div style={{ display: "flex", gap: "1rem" }}>
-            <QuadrantInput {...bottomLeftProps} />
-            <QuadrantInput {...bottomRightProps} />
+            <QuadrantInput {...quadrantProps.bottomLeft} />
+            <QuadrantInput {...quadrantProps.bottomRight} />
           </div>
           <div style={{ display: "flex", gap: "1rem" }}>
             <div style={{ flexGrow: "1" }}>
@@ -158,12 +125,7 @@ export default function Index() {
           idPrefix={"full-screen"}
           size={fullScreenSize}
           iterationCount={iterations}
-          rotations={{
-            topRight: topRightProps.isDisabled ? null : topRightProps.rotation,
-            topLeft: topLeftProps.isDisabled ? null : topLeftProps.rotation,
-            bottomLeft: bottomLeftProps.isDisabled ? null : bottomLeftProps.rotation,
-            bottomRight: bottomRightProps.isDisabled ? null : bottomRightProps.rotation,
-          }}
+          rotations={getRotations(quadrantProps)}
           color={color}
         />
       </div>
@@ -175,115 +137,37 @@ export default function Index() {
   }
 }
 
-function useWindowSize() {
-  //
-  const [windowSize, setWindowSize] = useState({
-    width: 256,
-    height: 256,
-  });
-
+function useHistoryReplaceState(quadrantProps: AllFourQuadrantInputProps, iterations: number, color: string) {
   useEffect(() => {
-    // Handler to call on window resize
-    function handleResize() {
-      // Set window width/height to state
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    }
-    // Add event listener
-    window.addEventListener("resize", handleResize);
-    // Call handler right away so state gets updated with initial window size
-    handleResize();
-    // Remove event listener on cleanup
-    return () => window.removeEventListener("resize", handleResize);
-  }, []); // Empty array ensures that effect is only run on mount
-
-  return windowSize;
+    //todo: make requests to these URLs use these values as defaults...
+    //todo: make the gallery images link to create using these URLs...
+    const url = getUrl(quadrantProps, iterations, color);
+    history.replaceState(null, "", url);
+  }, [quadrantProps, iterations, color]);
 }
 
-type AnimationValues = {
-  hasLastAnimationCompleted: boolean;
-  counter: number;
-  rotations: [number, number, number, number];
-  increments: [number, number, number, number];
-};
+function getUrl(quadrantProps: AllFourQuadrantInputProps, iterations: number, color: string) {
+  const tl = formatRotation(quadrantProps.topLeft);
+  const tr = formatRotation(quadrantProps.topRight);
+  const bl = formatRotation(quadrantProps.bottomLeft);
+  const br = formatRotation(quadrantProps.bottomRight);
+  const c = encodeURIComponent(color);
 
-function useAnimation(
-  isAnimating: boolean,
-  animationValues: AnimationValues,
-  setAnimationValues: React.Dispatch<React.SetStateAction<AnimationValues>>,
-  setTopLeftRotation: React.Dispatch<React.SetStateAction<number>>,
-  setTopRightRotation: React.Dispatch<React.SetStateAction<number>>,
-  setBottomLeftRotation: React.Dispatch<React.SetStateAction<number>>,
-  setBottomRightRotation: React.Dispatch<React.SetStateAction<number>>
-) {
-  useEffect(() => {
-    if (isAnimating && animationValues.hasLastAnimationCompleted) {
-      setAnimationValues((previous) => ({
-        hasLastAnimationCompleted: false,
-        counter: previous.counter,
-        rotations: [
-          previous.rotations[0] + previous.increments[0],
-          previous.rotations[1] + previous.increments[1],
-          previous.rotations[2] + previous.increments[2],
-          previous.rotations[3] + previous.increments[3],
-        ],
-        increments: previous.increments,
-      }));
-      setTopLeftRotation((previous) => (360 + previous + animationValues.increments[0]) % 360);
-      setTopRightRotation((previous) => (360 + previous + animationValues.increments[1]) % 360);
-      setBottomLeftRotation((previous) => (360 + previous + animationValues.increments[2]) % 360);
-      setBottomRightRotation((previous) => (360 + previous + animationValues.increments[3]) % 360);
-      setTimeout(() => {
-        setAnimationValues((previous) => ({
-          hasLastAnimationCompleted: true,
-          counter: (previous.counter + 1) % 15,
-          rotations: previous.rotations,
-          increments: [
-            getNextIncrement(previous.counter, previous.increments[0]),
-            getNextIncrement(previous.counter, previous.increments[1]),
-            getNextIncrement(previous.counter, previous.increments[2]),
-            getNextIncrement(previous.counter, previous.increments[3]),
-          ],
-        }));
-      }, 100);
-    }
-  }, [
-    isAnimating,
-    animationValues,
-    setAnimationValues,
-    setTopLeftRotation,
-    setTopRightRotation,
-    setBottomLeftRotation,
-    setBottomRightRotation,
-  ]);
+  return `/create?tl=${tl}&tr=${tr}&bl=${bl}&br=${br}&i=${iterations}&c=${c}`;
 }
 
-function getNextIncrement(counter: number, previousIncrement: number) {
-  //
-  const shouldChange = counter === 0 && Math.random() > 0.75;
-  if (shouldChange) {
-    const unconstrainedNextIncrement = previousIncrement + 0.25 - 0.5 * Math.random();
-    return Math.min(Math.max(unconstrainedNextIncrement, -1), 1);
-  } else {
-    return previousIncrement;
-  }
+function formatRotation(quadrantInputProps: QuadrantInputProps) {
+  return quadrantInputProps.isDisabled ? "-" : Math.round(quadrantInputProps.rotation).toString();
 }
 
-function getShapeDescription(
-  iterations: number,
-  topLeftProps: QuadrantInputProps,
-  topRightProps: QuadrantInputProps,
-  bottomLeftProps: QuadrantInputProps,
-  bottomRightProps: QuadrantInputProps
-) {
+function getShapeDescription(quadrantProps: AllFourQuadrantInputProps, iterations: number, color: string) {
   return (
     `${iterations} iteration${iterations == 1 ? "" : "s"}` +
-    getQuadrantDescription(topLeftProps) +
-    getQuadrantDescription(topRightProps) +
-    getQuadrantDescription(bottomLeftProps) +
-    getQuadrantDescription(bottomRightProps)
+    getQuadrantDescription(quadrantProps.topLeft) +
+    getQuadrantDescription(quadrantProps.topRight) +
+    getQuadrantDescription(quadrantProps.bottomLeft) +
+    getQuadrantDescription(quadrantProps.bottomRight) +
+    `, ${color}`
   );
 }
 

@@ -1,6 +1,6 @@
 import { Link } from "@remix-run/react";
-import SierpinskiShape from "../sierpinski-shape/sierpinski-shape";
-import { Rotations } from "../sierpinski-shape/sierpinski-utilities";
+import SierpinskiShape from "../shared/sierpinski-shape/sierpinski-shape";
+import { Rotations } from "../shared/sierpinski-shape/sierpinski-utilities";
 
 export type GalleryItem = Readonly<{
   key: string;

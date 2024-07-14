@@ -1,8 +1,8 @@
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
 
-import "./styles/root.css";
-import { Footer } from "./components/root/footer";
-import { Header } from "./components/root/header";
+import "~/view/shared/root/root.css";
+import { Footer } from "./view/shared/root/footer";
+import { Header } from "./view/shared/root/header";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (

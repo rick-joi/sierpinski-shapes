@@ -7,7 +7,7 @@ type Props = Readonly<{
   setRotation: Dispatch<SetStateAction<number>>;
 }>;
 
-export default function ClickableSierpinskiShapeQuadrant({ top, left, size, setRotation }: Props) {
+export default function TouchableSierpinskiShapeQuadrant({ top, left, size, setRotation }: Props) {
   //
   return (
     <button
