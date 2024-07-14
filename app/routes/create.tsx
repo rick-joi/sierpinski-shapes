@@ -15,6 +15,10 @@ function useQuandrantInputState(label: string, isDisabledDefault: boolean): Quad
   return { label, isDisabled, rotation, setIsDisabled, setRotation };
 }
 
+//todo: create new row with description, animate button, and full-screen button
+//todo: make "tap or swipe" message only show on mobile
+//todo: set up blank about and privacy pages
+//todo: convert accent color to the bright blue from the checkboxes and ranges
 export default function Index() {
   //
   const maxSize = getSizeWithMargins(512);
