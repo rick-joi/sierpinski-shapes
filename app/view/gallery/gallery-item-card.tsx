@@ -29,7 +29,7 @@ export default function GalleryItemCard({ shape }: Props) {
       <SierpinskiShape
         idPrefix={shape.id.toString()}
         size={313}
-        iterationCount={7}
+        iterations={7}
         rotations={shape.rotations}
         color={shape.color}
       />

@@ -17,7 +17,7 @@ import SierpinskiText from "~/view/shared/sierpinski-shape/sierpinski-text";
 
 export const meta = getMeta("Create", "Create your own Sierpinski Shape!");
 
-//todo: create new row with description, animate button, and full-screen button
+//todo: figure out where to put full-screen button
 //todo: make "tap or swipe" message only show on mobile
 //todo: set up blank about and privacy pages
 //todo: convert accent color to the bright blue from the checkboxes and ranges
@@ -54,15 +54,10 @@ export default function Index() {
   return (
     <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", columnGap: "1rem" }}>
       <div style={{ width: size }}>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <div className="touch-screen-only" style={{ color: "gray", fontSize: "smaller" }}>
-            ☞ Tap on a quadrant or swipe left / right
-          </div>
-        </div>
         <TouchableSierpinskiShape
           idPrefix={"create"}
           size={size}
-          iterationCount={iterations}
+          iterations={iterations}
           quadrantsProps={quadrantProps}
           color={color}
           setIterations={setIterations}
@@ -125,7 +120,7 @@ export default function Index() {
         <SierpinskiShape
           idPrefix={"full-screen"}
           size={fullScreenSize}
-          iterationCount={iterations}
+          iterations={iterations}
           rotations={getRotations(quadrantProps)}
           color={color}
         />

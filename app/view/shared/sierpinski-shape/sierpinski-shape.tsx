@@ -6,7 +6,7 @@ import { Rotations } from "~/model/shared/rotations";
 type Props = Readonly<{
   idPrefix: string;
   size: number;
-  iterationCount: number;
+  iterations: number;
   rotations: Rotations;
   color: string;
 }>;
@@ -19,11 +19,11 @@ function getMargin(size: number) {
   return size / 9;
 }
 
-export default function SierpinskiShape({ idPrefix, size, iterationCount, rotations, color }: Props) {
+export default function SierpinskiShape({ idPrefix, size, iterations, rotations, color }: Props) {
   //
-  const iterations = [];
-  for (let i = 1; i <= iterationCount; i++) {
-    iterations.push(<StageN stage={i} size={size} rotations={rotations} idPrefix={idPrefix} key={i} />);
+  const stages = [];
+  for (let i = 1; i <= iterations; i++) {
+    stages.push(<StageN stage={i} size={size} rotations={rotations} idPrefix={idPrefix} key={i} />);
   }
   const margin = getMargin(size);
   const sizeWithMargins = getSizeWithMargins(size);
@@ -33,9 +33,9 @@ export default function SierpinskiShape({ idPrefix, size, iterationCount, rotati
     <svg width={size} height={size} viewBox={viewBox} style={{ border: "1px solid #fafafa", opacity: opacity }}>
       <defs>
         <Stage0 size={size} idPrefix={idPrefix} key={0} color={color} />
-        {iterations}
+        {stages}
       </defs>
-      <use href={getStageId(iterationCount, `#${idPrefix}`)} />
+      <use href={getStageId(iterations, `#${idPrefix}`)} />
     </svg>
   );
 }

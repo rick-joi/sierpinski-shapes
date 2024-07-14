@@ -1,13 +1,14 @@
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import SierpinskiShape from "../shared/sierpinski-shape/sierpinski-shape";
 import TouchableSierpinskiShapeQuadrant from "./touchable-sierpinski-shape-quadrant";
 import { AllFourQuadrantInputProps, getRotations } from "./quadrant-input";
+import TouchableHelpMessage from "./touchable-help-message";
 
 type Props = Readonly<{
   idPrefix: string;
   size: number;
   quadrantsProps: AllFourQuadrantInputProps;
-  iterationCount: number;
+  iterations: number;
   color: string;
   setIterations: Dispatch<SetStateAction<number>>;
 }>;
@@ -16,11 +17,14 @@ export default function TouchableSierpinskiShape({
   idPrefix,
   size,
   quadrantsProps,
-  iterationCount,
+  iterations,
   setIterations,
   color,
 }: Props) {
   //
+  const [hasTapped, setHasTapped] = useState(false);
+  const [hasSwiped, setHasSwiped] = useState(false);
+
   useEffect(() => {
     document.addEventListener("touchstart", handleTouchStart, false);
     document.addEventListener("touchend", handleTouchEnd, false);
@@ -28,6 +32,7 @@ export default function TouchableSierpinskiShape({
 
     function handleTouchStart(evt: TouchEvent) {
       firstTouch = evt.touches[0];
+      setHasTapped(true);
     }
 
     function handleTouchEnd(evt: TouchEvent) {
@@ -47,6 +52,7 @@ export default function TouchableSierpinskiShape({
             setIterations((previous) => Math.max(1, previous - 1));
           } else {
             setIterations((previous) => previous + 1);
+            setHasSwiped(true);
           }
         }
         firstTouch = undefined;
@@ -59,10 +65,11 @@ export default function TouchableSierpinskiShape({
       <SierpinskiShape
         idPrefix={idPrefix}
         size={size}
-        iterationCount={iterationCount}
+        iterations={iterations}
         rotations={getRotations(quadrantsProps)}
         color={color}
       />
+      <TouchableHelpMessage size={size / 2} top={0} left={size / 2} hasTapped={hasTapped} hasSwiped={hasSwiped} />
       <TouchableSierpinskiShapeQuadrant
         top={0}
         left={0}

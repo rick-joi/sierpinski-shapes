@@ -8,7 +8,7 @@ type Props = {
 
 export default function SierpinskiText({ rotations, iterations, color }: Props) {
   return (
-    <span style={{ color: color, cursor: "" }} title={`color: ${color}`}>
+    <span style={{ color: color, cursor: "default" }} title={`color: ${color}`}>
       {iterations} × (<Rotation rotation={rotations.topLeft} />, <Rotation rotation={rotations.topRight} />,{" "}
       <Rotation rotation={rotations.bottomLeft} />, <Rotation rotation={rotations.bottomRight} />)
     </span>
