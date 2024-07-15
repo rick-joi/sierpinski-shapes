@@ -20,6 +20,7 @@ export default function StageNMinus1({ idPrefix, size, stageNMinus1, x, y, rotat
         x={x}
         y={y}
         transform={`scale(0.5) rotate(${rotation}, ${rotationCenterX}, ${rotationCenterY})`}
+        key={stageNMinus1}
       />
     );
   }

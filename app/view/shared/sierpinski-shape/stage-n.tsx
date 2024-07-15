@@ -21,6 +21,7 @@ export default function StageN({ idPrefix, stage, size, rotations }: Props) {
         y={0}
         rotation={rotations.topLeft}
         idPrefix={idPrefix}
+        key="tl"
       />
       <StageNMinus1
         size={size}
@@ -29,14 +30,7 @@ export default function StageN({ idPrefix, stage, size, rotations }: Props) {
         y={0}
         rotation={rotations.topRight}
         idPrefix={idPrefix}
-      />
-      <StageNMinus1
-        size={size}
-        stageNMinus1={previousStage}
-        x={size}
-        y={size}
-        rotation={rotations.bottomRight}
-        idPrefix={idPrefix}
+        key="tr"
       />
       <StageNMinus1
         size={size}
@@ -45,6 +39,16 @@ export default function StageN({ idPrefix, stage, size, rotations }: Props) {
         y={size}
         rotation={rotations.bottomLeft}
         idPrefix={idPrefix}
+        key="bl"
+      />
+      <StageNMinus1
+        size={size}
+        stageNMinus1={previousStage}
+        x={size}
+        y={size}
+        rotation={rotations.bottomRight}
+        idPrefix={idPrefix}
+        key="br"
       />
     </g>
   );
