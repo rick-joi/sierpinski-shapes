@@ -14,9 +14,7 @@ import useHistoryReplaceState from "~/view/create/use-history-replace-state";
 export const meta = getMeta("Create", "Create your own Sierpinski Shape!");
 
 //todo: figure out where to put full-screen button
-//todo: make "tap or swipe" message only show on mobile
 //todo: set up blank about and privacy pages
-//todo: convert accent color to the bright blue from the checkboxes and ranges
 export default function Index() {
   //
   // screen math...

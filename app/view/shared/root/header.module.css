@@ -11,7 +11,7 @@ header a:visited {
 }
 header a:hover,
 header a:active {
-  color: var(--primary-accent-color);
+  color: var(--light-accent-color);
 }
 
 header img {
@@ -82,7 +82,7 @@ nav menu li a {
 }
 nav menu li a:hover,
 nav menu li a:active {
-  border-color: var(--primary-accent-color);
+  border-color: var(--light-accent-color);
   border-bottom-color: var(--dark-neutral-color);
 }
 

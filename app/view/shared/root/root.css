@@ -1,6 +1,7 @@
 :root {
-  --primary-accent-color: #0ac1e8;
+  --primary-accent-color: #3388ff;
   --secondary-accent-color: #86238c;
+  --light-accent-color: #80b5ff;
   --dark-neutral-color: #475569;
   --light-neutral-color: #e2e8f0;
 }
@@ -121,8 +122,23 @@ input[type="submit"] {
   cursor: pointer;
 }
 
-input[type="range"]:hover {
-  opacity: 1.2;
+input[type="color"] {
+  border-radius: 5px;
+  padding: 0;
+  border-width: 0;
+}
+
+input[type="color"]::-moz-color-swatch {
+  border: none;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+  border-radius: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+  border: none;
 }
 
 input[type="range"] {
