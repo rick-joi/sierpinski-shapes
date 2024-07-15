@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useId, useState } from "react";
 import ControlWithLabelLayout from "./control-with-label-layout";
 import RangeInputWithoutLabel from "./range-input-without-label";
-import { Rotations } from "../shared/sierpinski-shape/sierpinski-utilities";
+import { Rotations } from "~/model/shared/rotations";
 
 export type QuadrantInputProps = Readonly<{
   label: string;
@@ -47,20 +47,20 @@ export default function QuadrantInput({ label, setIsDisabled, rotation, isDisabl
   );
 }
 
-export function useQuadrantInputProps(label: string, isDisabledDefault: boolean): QuadrantInputProps {
+export function useQuadrantInputProps(label: string, initialRotation: number | null): QuadrantInputProps {
   //
-  const [isDisabled, setIsDisabled] = useState<boolean>(isDisabledDefault);
-  const [rotation, setRotation] = useState<number>(0);
+  const [isDisabled, setIsDisabled] = useState<boolean>(initialRotation === null);
+  const [rotation, setRotation] = useState<number>(initialRotation ?? 0);
 
   return { label, isDisabled, rotation, setIsDisabled, setRotation };
 }
 
-export function useAllFourQuadrantInputProps(): AllFourQuadrantInputProps {
+export function useAllFourQuadrantInputProps(initialRotations: Rotations): AllFourQuadrantInputProps {
   //
-  const topLeft = useQuadrantInputProps("Top left", false);
-  const topRight = useQuadrantInputProps("Top right", true);
-  const bottomLeft = useQuadrantInputProps("Bottom left", false);
-  const bottomRight = useQuadrantInputProps("Bottom right", false);
+  const topLeft = useQuadrantInputProps("Top left", initialRotations.topLeft);
+  const topRight = useQuadrantInputProps("Top right", initialRotations.topRight);
+  const bottomLeft = useQuadrantInputProps("Bottom left", initialRotations.bottomLeft);
+  const bottomRight = useQuadrantInputProps("Bottom right", initialRotations.bottomRight);
 
   return { topLeft, topRight, bottomLeft, bottomRight };
 }

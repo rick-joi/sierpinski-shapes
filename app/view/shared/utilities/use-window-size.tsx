@@ -5,8 +5,8 @@ type WindowSize = { width: number; height: number };
 export default function useWindowSize() {
   //
   const [windowSize, setWindowSize] = useState<WindowSize>({
-    width: 256,
-    height: 256,
+    width: 1024,
+    height: 1024,
   });
 
   useEffect(() => {

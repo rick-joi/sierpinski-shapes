@@ -10,6 +10,8 @@ import TouchableSierpinskiShape from "~/view/create/touchable-sierpinski-shape";
 import SierpinskiShape, { getSizeWithMargins } from "~/view/shared/sierpinski-shape/sierpinski-shape";
 import SierpinskiText from "~/view/shared/sierpinski-shape/sierpinski-text";
 import useHistoryReplaceState from "~/view/create/use-history-replace-state";
+import { LoaderFunctionArgs } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
 
 export const meta = getMeta("Create", "Create your own Sierpinski Shape!");
 
@@ -24,13 +26,14 @@ export default function Index() {
   const fullScreenSize = Math.min(windowSize.width, windowSize.height);
 
   // state...
+  const initialValues = useLoaderData<typeof loader>();
   const maxIterations = Math.min(8, Math.ceil(Math.log2(size)) - 2);
-  const [iterations, setIterations] = useState(1);
+  const [iterations, setIterations] = useState(initialValues.iterations);
   if (iterations > maxIterations) {
     setIterations(maxIterations);
   }
-  const [color, setColor] = useState("#000000");
-  const quadrantProps = useAllFourQuadrantInputProps();
+  const [color, setColor] = useState(initialValues.color);
+  const quadrantProps = useAllFourQuadrantInputProps(initialValues.rotations);
 
   // animation...
   const [isAnimating, setIsAnimating] = useState(false);
@@ -45,6 +48,7 @@ export default function Index() {
   // update URL...
   useHistoryReplaceState(quadrantProps, iterations, color, isAnimating);
 
+  // TSX...
   return (
     <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", columnGap: "1rem" }}>
       <div style={{ width: size }}>
@@ -121,8 +125,37 @@ export default function Index() {
       </div>
     </div>
   );
+}
 
-  function notImplementedYet() {
-    alert("not implemented, yet");
+function notImplementedYet() {
+  alert("not implemented, yet");
+}
+
+export async function loader({ request }: LoaderFunctionArgs) {
+  //
+  const { searchParams } = new URL(request.url);
+  const rotations = {
+    topLeft: getParameterInt(searchParams, "tl", 0),
+    topRight: getParameterInt(searchParams, "tr", null),
+    bottomLeft: getParameterInt(searchParams, "bl", 0),
+    bottomRight: getParameterInt(searchParams, "br", 0),
+  };
+  //todo; is there a better way than this "as number"?...
+  const iterations = getParameterInt(searchParams, "i", 1) as number;
+  const color = searchParams.get("c") ?? "#000000";
+
+  return { rotations, iterations, color };
+}
+
+function getParameterInt(searchParams: URLSearchParams, key: string, defaultValue: number | null): number | null {
+  //
+  const value = searchParams.get(key);
+  if (value === null) {
+    return defaultValue;
   }
+  const parsedValue = parseInt(value, 10);
+  if (isNaN(parsedValue)) {
+    return defaultValue;
+  }
+  return parsedValue;
 }
