@@ -38,13 +38,10 @@ export default function GalleryItemCard({ shape }: Props) {
         />
       </Link>
       <div style={{ padding: "1rem 0", borderTop: "4px solid var(--dark-neutral-color)" }}>
-        <Link to=".">
+        <Link to="." onClick={() => alert("not implemented yet")}>
           ♡ like <span style={{ fontSize: "smaller" }}>(1)</span>
         </Link>{" "}
-        &nbsp; | &nbsp;{" "}
-        <Link to=".">
-          $ buy <span style={{ fontSize: "smaller" }}>(0)</span>
-        </Link>
+        &nbsp; | &nbsp; <Link to="/shop">$ buy</Link>
       </div>
     </div>
   );

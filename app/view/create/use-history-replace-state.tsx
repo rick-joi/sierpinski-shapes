@@ -13,7 +13,10 @@ export default function useHistoryReplaceState(
     if (!isAnimating) {
       const id = setTimeout(() => {
         const rotations = getRotations(quadrantProps);
-        const url = getCreateShapeUrl(rotations, iterations, color);
+        let url = getCreateShapeUrl(rotations, iterations, color);
+        if ("/create?tl=0&tr=-&bl=0&br=0&i=1&c=%23000000" === url) {
+          url = "/create";
+        }
         history.replaceState(null, "", url);
       }, 250);
       return () => clearTimeout(id);
@@ -21,6 +24,7 @@ export default function useHistoryReplaceState(
   }, [quadrantProps, iterations, color, isAnimating]);
 }
 
+//todo: make it smarter so that it only adds the query parameters that are different from the default...
 export function getCreateShapeUrl(rotations: Rotations, iterations: number, color: string) {
   //
   const tl = formatRotation(rotations.topLeft);
