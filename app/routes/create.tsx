@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { LoaderFunctionArgs } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
 
-import { getMeta } from "~/view/shared/utilities/route-utilities";
+import { getMeta, getParameterInt, getParameterIntOrNull } from "~/view/shared/utilities/route-utilities";
 import useWindowSize from "~/view/shared/utilities/use-window-size";
 import ColorInput from "~/view/create/color-input";
 import QuadrantInput, { getRotations, useAllFourQuadrantInputProps } from "~/view/create/quadrant-input";
@@ -10,8 +12,6 @@ import TouchableSierpinskiShape from "~/view/create/touchable-sierpinski-shape";
 import SierpinskiShape, { getSizeWithMargins } from "~/view/shared/sierpinski-shape/sierpinski-shape";
 import SierpinskiText from "~/view/shared/sierpinski-shape/sierpinski-text";
 import useHistoryReplaceState from "~/view/create/use-history-replace-state";
-import { LoaderFunctionArgs } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
 
 export const meta = getMeta("Create", "Create your own Sierpinski Shape!");
 
@@ -135,27 +135,14 @@ export async function loader({ request }: LoaderFunctionArgs) {
   //
   const { searchParams } = new URL(request.url);
   const rotations = {
-    topLeft: getParameterInt(searchParams, "tl", 0),
-    topRight: getParameterInt(searchParams, "tr", null),
-    bottomLeft: getParameterInt(searchParams, "bl", 0),
-    bottomRight: getParameterInt(searchParams, "br", 0),
+    topLeft: getParameterIntOrNull(searchParams, "tl", 0),
+    topRight: getParameterIntOrNull(searchParams, "tr", null),
+    bottomLeft: getParameterIntOrNull(searchParams, "bl", 0),
+    bottomRight: getParameterIntOrNull(searchParams, "br", 0),
   };
   //todo; is there a better way than this "as number"?...
-  const iterations = getParameterInt(searchParams, "i", 1) as number;
+  const iterations = getParameterInt(searchParams, "i", 1);
   const color = searchParams.get("c") ?? "#000000";
 
   return { rotations, iterations, color };
-}
-
-function getParameterInt(searchParams: URLSearchParams, key: string, defaultValue: number | null): number | null {
-  //
-  const value = searchParams.get(key);
-  if (value === null) {
-    return defaultValue;
-  }
-  const parsedValue = parseInt(value, 10);
-  if (isNaN(parsedValue)) {
-    return defaultValue;
-  }
-  return parsedValue;
 }
