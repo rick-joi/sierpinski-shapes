@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useState, Touch, TouchEvent } from "react";
 import SierpinskiShape from "../shared/sierpinski-shape/sierpinski-shape";
 import TouchableSierpinskiShapeQuadrant from "./touchable-sierpinski-shape-quadrant";
 import { AllFourQuadrantInputProps, getRotations } from "./quadrant-input";
@@ -25,43 +25,39 @@ export default function TouchableSierpinskiShape({
   const [hasTapped, setHasTapped] = useState(false);
   const [hasSwiped, setHasSwiped] = useState(false);
 
-  useEffect(() => {
-    document.addEventListener("touchstart", handleTouchStart, false);
-    document.addEventListener("touchend", handleTouchEnd, false);
-    let firstTouch: Touch | undefined = undefined;
+  let firstTouch: Touch | undefined = undefined;
 
-    function handleTouchStart(evt: TouchEvent) {
-      firstTouch = evt.touches[0];
-      setHasTapped(true);
-    }
+  function handleTouchStart(evt: TouchEvent<HTMLDivElement>) {
+    firstTouch = evt.touches[0];
+    setHasTapped(true);
+  }
 
-    function handleTouchEnd(evt: TouchEvent) {
-      //
-      if (firstTouch) {
-        const lastTouch = evt.changedTouches[evt.changedTouches.length - 1];
-        const firstX = firstTouch.clientX;
-        const firstY = firstTouch.clientY;
-        const lastX = lastTouch.clientX;
-        const lastY = lastTouch.clientY;
-        const xDiff = lastX - firstX;
-        const yDiff = lastY - firstY;
+  function handleTouchEnd(evt: TouchEvent<HTMLDivElement>) {
+    //
+    if (firstTouch) {
+      const lastTouch = evt.changedTouches[evt.changedTouches.length - 1];
+      const firstX = firstTouch.clientX;
+      const firstY = firstTouch.clientY;
+      const lastX = lastTouch.clientX;
+      const lastY = lastTouch.clientY;
+      const xDiff = lastX - firstX;
+      const yDiff = lastY - firstY;
 
-        // We only want horizontal swipes...
-        if (Math.abs(xDiff) > Math.abs(yDiff)) {
-          if (xDiff > 0) {
-            setIterations((previous) => Math.max(1, previous - 1));
-          } else {
-            setIterations((previous) => previous + 1);
-            setHasSwiped(true);
-          }
+      // We only want horizontal swipes...
+      if (Math.abs(xDiff) > Math.abs(yDiff)) {
+        if (xDiff > 0) {
+          setIterations((previous) => Math.max(1, previous - 1));
+        } else {
+          setIterations((previous) => previous + 1);
+          setHasSwiped(true);
         }
-        firstTouch = undefined;
       }
+      firstTouch = undefined;
     }
-  }, [setIterations]);
+  }
 
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: "relative" }} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
       <SierpinskiShape
         idPrefix={idPrefix}
         size={size}
