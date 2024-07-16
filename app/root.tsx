@@ -3,6 +3,7 @@ import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/reac
 import "~/view/shared/root/root.css";
 import { Footer } from "./view/shared/root/footer";
 import { Header } from "./view/shared/root/header";
+import MessageBanner from "./view/shared/utilities/message-banner";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -15,9 +16,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <Header />
+        <MessageBanner />
         <main>{children}</main>
         <Footer />
-
         <ScrollRestoration />
         <Scripts />
       </body>

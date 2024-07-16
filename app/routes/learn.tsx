@@ -2,19 +2,21 @@ export default function Index() {
   return (
     <div>
       <h2>Learn</h2>
-      <p>Welcome to the fascinating world of Sierpinski Shapes!</p>
-      <p>They&rsquo;re a wonderful combination of math and beauty.</p>
       <p>
-        The math is so simple, it&rsquo;s not really even math — you can create Sierpinski Shapes with squares of paper
-        and a pair of scissors.
+        Welcome to the <strong>beautiful</strong> <strong>math</strong> of Sierpinski Shapes!
       </p>
       <p>
-        The beauty comes from from the infinite variations and the way in which they mimic how the patterns in nature
-        form — like plants and shorelines and clouds.
+        The <strong>math</strong> is so simple, it&rsquo;s not really even math — you can create Sierpinski Shapes with
+        squares of paper and a pair of scissors.
       </p>
-      <p>The well known Sierpinski Triangle is just one of those 17 billion Sierpinski Shapes.</p>
-      <p>Intrigued?</p>
-      <p>Explore some more...</p>
+      <p>
+        The <strong>beauty</strong> comes from from the infinite variations and the way in which they mimic how the
+        patterns in nature form — like plants and shorelines and clouds.
+      </p>
+      <p>
+        The well known Sierpinski Triangle is just one of over 16 billion Sierpinski Shapes —{" "}
+        <strong>intrigued?</strong>
+      </p>
       <h3>Articles</h3>
       <p>Do you love Sierpinsi Shapes? Have something to say about them? Write a guest article!</p>
       <ul>

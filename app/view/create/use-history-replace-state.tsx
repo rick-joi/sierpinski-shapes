@@ -9,7 +9,6 @@ export default function useHistoryReplaceState(
   isAnimating: boolean
 ) {
   useEffect(() => {
-    //todo: make the gallery images link to create using these URLs...
     if (!isAnimating) {
       const id = setTimeout(() => {
         const rotations = getRotations(quadrantProps);

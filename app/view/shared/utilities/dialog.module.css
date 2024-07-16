@@ -1,0 +1,38 @@
+.standard-dialog-component {
+  border-radius: 1rem;
+  border-width: 1px;
+  border-color: black;
+  margin: auto;
+}
+.standard-dialog-component::backdrop {
+  background-color: rgba(0, 0, 0, 0.75);
+  animation: fade 5s ease normal;
+}
+.standard-dialog-component .header {
+  text-align: right;
+}
+.standard-dialog-component .header button {
+  background: none;
+  border: 1px solid lightgray;
+  color: #777777;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  font-size: large;
+  cursor: pointer;
+}
+.standard-dialog-component .header button:hover {
+  color: var(--primary-accent-color);
+  border-color: var(--primary-accent-color);
+}
+.standard-dialog-component .header {
+  text-align: right;
+}
+.standard-dialog-component .body {
+  padding: 2rem;
+}
+.standard-dialog-component .footer {
+  text-align: center;
+  padding-bottom: 1rem;
+}

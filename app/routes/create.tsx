@@ -2,7 +2,7 @@ import { useState } from "react";
 import { LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 
-import { getMeta, getParameterInt, getParameterIntOrNull } from "~/view/shared/utilities/route-utilities";
+import * as RouteUtilities from "~/view/shared/utilities/route-utilities";
 import useWindowSize from "~/view/shared/utilities/use-window-size";
 import ColorInput from "~/view/create/color-input";
 import QuadrantInput, { getRotations, useAllFourQuadrantInputProps } from "~/view/create/quadrant-input";
@@ -12,11 +12,10 @@ import TouchableSierpinskiShape from "~/view/create/touchable-sierpinski-shape";
 import SierpinskiShape, { getSizeWithMargins } from "~/view/shared/sierpinski-shape/sierpinski-shape";
 import SierpinskiText from "~/view/shared/sierpinski-shape/sierpinski-text";
 import useHistoryReplaceState from "~/view/create/use-history-replace-state";
+import AddToGalleryDialog from "~/view/create/add-to-gallery-dialog";
 
-export const meta = getMeta("Create", "Create your own Sierpinski Shape!");
+export const meta = RouteUtilities.getMeta("Create", "Create your own Sierpinski Shape!");
 
-//todo: figure out where to put full-screen button
-//todo: set up blank about and privacy pages
 export default function Index() {
   //
   // screen math...
@@ -34,6 +33,7 @@ export default function Index() {
   }
   const [color, setColor] = useState(initialValues.color);
   const quadrantProps = useAllFourQuadrantInputProps(initialValues.rotations);
+  const [isAddToGalleryDialogOpen, setIsAddToGalleryDialogOpen] = useState(false);
 
   // animation...
   const [isAnimating, setIsAnimating] = useState(false);
@@ -64,7 +64,7 @@ export default function Index() {
           <input
             type="button"
             value="Add to gallery"
-            onClick={notImplementedYet}
+            onClick={() => setIsAddToGalleryDialogOpen(true)}
             disabled={isAnimating}
             style={{ flexGrow: 1, margin: 0 }}
           />
@@ -141,6 +141,7 @@ export default function Index() {
           color={color}
         />
       </div>
+      <AddToGalleryDialog isOpen={isAddToGalleryDialogOpen} setIsOpen={setIsAddToGalleryDialogOpen} />
     </div>
   );
 }
@@ -153,13 +154,12 @@ export async function loader({ request }: LoaderFunctionArgs) {
   //
   const { searchParams } = new URL(request.url);
   const rotations = {
-    topLeft: getParameterIntOrNull(searchParams, "tl", 0),
-    topRight: getParameterIntOrNull(searchParams, "tr", null),
-    bottomLeft: getParameterIntOrNull(searchParams, "bl", 0),
-    bottomRight: getParameterIntOrNull(searchParams, "br", 0),
+    topLeft: RouteUtilities.getParameterIntOrNull(searchParams, "tl", 0),
+    topRight: RouteUtilities.getParameterIntOrNull(searchParams, "tr", null),
+    bottomLeft: RouteUtilities.getParameterIntOrNull(searchParams, "bl", 0),
+    bottomRight: RouteUtilities.getParameterIntOrNull(searchParams, "br", 0),
   };
-  //todo; is there a better way than this "as number"?...
-  const iterations = getParameterInt(searchParams, "i", 1);
+  const iterations = RouteUtilities.getParameterInt(searchParams, "i", 1);
   const color = searchParams.get("c") ?? "#000000";
 
   return { rotations, iterations, color };
