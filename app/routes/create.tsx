@@ -61,9 +61,27 @@ export default function Index() {
           setIterations={setIterations}
         />
         <div style={{ display: "flex", justifyContent: "space-between", gap: "1rem", marginBottom: "2rem" }}>
-          <input type="button" value="Add to gallery" onClick={notImplementedYet} style={{ flexGrow: 1, margin: 0 }} />
-          <input type="button" value="Download" onClick={notImplementedYet} style={{ flexGrow: 1, margin: 0 }} />
-          <input type="button" value="Buy merch" onClick={notImplementedYet} style={{ flexGrow: 1, margin: 0 }} />
+          <input
+            type="button"
+            value="Add to gallery"
+            onClick={notImplementedYet}
+            disabled={isAnimating}
+            style={{ flexGrow: 1, margin: 0 }}
+          />
+          <input
+            type="button"
+            value="Download"
+            onClick={notImplementedYet}
+            disabled={isAnimating}
+            style={{ flexGrow: 1, margin: 0 }}
+          />
+          <input
+            type="button"
+            value="Buy merch"
+            onClick={notImplementedYet}
+            disabled={isAnimating}
+            style={{ flexGrow: 1, margin: 0 }}
+          />
         </div>
       </div>
       <div style={{ width: size }}>

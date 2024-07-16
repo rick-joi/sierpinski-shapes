@@ -121,6 +121,12 @@ input[type="submit"] {
   background: none;
   cursor: pointer;
 }
+input[type="button"]:disabled,
+input[type="submit"]:disabled {
+  color: lightgray;
+  border-color: lightgray;
+  cursor: default;
+}
 
 input[type="color"] {
   border-radius: 5px;
