@@ -111,6 +111,7 @@ input[type="email"] {
   border-width: 1px;
   border-radius: 0.2rem;
   border-color: gray;
+  font-size: 1rem;
 }
 button,
 input[type="button"],

@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useRef } from "react";
+import { Dispatch, ReactNode, SetStateAction, useEffect, useRef } from "react";
 import classes from "./dialog.module.css";
 import { Form } from "@remix-run/react";
 
@@ -8,9 +8,10 @@ type Props = {
   width: string;
   actionText: string;
   children: React.ReactNode;
+  disclaimer: ReactNode;
 };
 
-export default function Dialog({ isOpen, setIsOpen, width, actionText, children }: Props) {
+export default function Dialog({ isOpen, setIsOpen, width, actionText, children, disclaimer }: Props) {
   //
   const dialogRef = useRef<HTMLDialogElement>(null);
 
@@ -39,6 +40,7 @@ export default function Dialog({ isOpen, setIsOpen, width, actionText, children 
         <div className={classes["body"]}>{children}</div>
         <div className={classes["footer"]}>
           <input type="submit" value={actionText} />
+          <p className={classes["disclaimer"]}>{disclaimer}</p>
         </div>
       </Form>
     </dialog>

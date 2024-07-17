@@ -12,7 +12,6 @@ export default function ControlWithLabelLayout({ label, parenthetical, isDisable
       style={{
         display: "inline-block",
         width: "100%",
-        whiteSpace: "nowrap",
         margin: "0.5rem 0",
       }}
     >
@@ -26,7 +25,8 @@ export default function ControlWithLabelLayout({ label, parenthetical, isDisable
         }}
       >
         {label}
-        <span style={{ color: "#999999" }}>&nbsp; {parenthetical}</span>
+        <span>&nbsp; </span>
+        <span style={{ color: "#999999", whiteSpace: "nowrap" }}>{parenthetical}</span>
       </label>
       <br />
       <div style={{ display: "flex", alignItems: "stretch", alignContent: "stretch", gap: "0.25rem" }}>{children}</div>
