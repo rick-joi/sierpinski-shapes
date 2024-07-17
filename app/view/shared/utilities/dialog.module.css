@@ -31,8 +31,10 @@
 }
 .standard-dialog-component .body {
   padding: 2rem;
+  padding-top: 0;
+  padding-bottom: 1rem;
 }
 .standard-dialog-component .footer {
   text-align: center;
-  padding-bottom: 1rem;
+  padding-bottom: 2rem;
 }

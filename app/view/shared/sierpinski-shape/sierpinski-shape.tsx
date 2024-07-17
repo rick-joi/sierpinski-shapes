@@ -30,7 +30,7 @@ export default function SierpinskiShape({ idPrefix, size, iterations, rotations,
   const viewBox = `${-margin} ${-margin} ${sizeWithMargins} ${sizeWithMargins}`;
   const opacity = idPrefix.endsWith("-background") ? "10%" : "100%";
   return (
-    <svg width={size} height={size} viewBox={viewBox} style={{ border: "1px solid #fafafa", opacity: opacity }}>
+    <svg width={size} height={size} viewBox={viewBox} style={{ border: "1px solid #f0f0f0", opacity: opacity }}>
       <defs>
         <Stage0 size={size} idPrefix={idPrefix} key={0} color={color} />
         {stages}

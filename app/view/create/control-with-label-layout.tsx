@@ -1,11 +1,12 @@
 type Props = Readonly<{
   label: string;
+  parenthetical?: string;
   isDisabled: boolean;
   id: string;
   children: React.ReactNode;
 }>;
 
-export default function ControlWithLabelLayout({ label, isDisabled, id, children }: Props) {
+export default function ControlWithLabelLayout({ label, parenthetical, isDisabled, id, children }: Props) {
   return (
     <div
       style={{
@@ -25,6 +26,7 @@ export default function ControlWithLabelLayout({ label, isDisabled, id, children
         }}
       >
         {label}
+        <span style={{ color: "#999999" }}>&nbsp; {parenthetical}</span>
       </label>
       <br />
       <div style={{ display: "flex", alignItems: "stretch", alignContent: "stretch", gap: "0.25rem" }}>{children}</div>

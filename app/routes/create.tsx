@@ -115,7 +115,7 @@ export default function Index() {
             <SierpinskiText rotations={getRotations(quadrantProps)} iterations={iterations} color={color} />
           </div>
         </div>
-        <div style={{ position: "relative", top: "25%", width: "100%", textAlign: "center" }}>
+        <div style={{ position: "relative", top: "25%", width: "100%", textAlign: "center", marginBottom: "12rem" }}>
           <h2>Welcome to sierpinski&#8209;shapes.com!</h2>
           <p>We&rsquo;re glad you&rsquo;re here to share our love of fractals</p>
         </div>

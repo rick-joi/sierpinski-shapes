@@ -15,10 +15,11 @@ export default function AddToGalleryDialog({ isOpen, setIsOpen }: Props) {
 
   return (
     <Dialog isOpen={isOpen} setIsOpen={setIsOpen} actionText="Add to gallery" width="30em">
-      <h3>All fields are optional</h3>
+      <h3 style={{ marginBottom: "1rem" }}>All fields are optional</h3>
       <TextInput
         type={"text"}
         label={"Shape name"}
+        parenthetical={"(it's more fun if you name it)"}
         name="shape-name"
         placeholder="untitled"
         value={shapeName}
@@ -27,6 +28,7 @@ export default function AddToGalleryDialog({ isOpen, setIsOpen }: Props) {
       <TextInput
         type={"text"}
         label={"Your name"}
+        parenthetical={"(it's more fun if you claim it)"}
         name={"your-name"}
         placeholder="anonymous"
         value={name}
@@ -35,13 +37,15 @@ export default function AddToGalleryDialog({ isOpen, setIsOpen }: Props) {
       <TextInput
         type={"email"}
         label={"Your email address"}
+        parenthetical={"(don't get stuck having to declaim it)"}
         name={"your-email-address"}
         value={email}
         setValue={setEmail}
       />
-      <p style={{ fontSize: "smaller" }}>
-        (providing your email address will allow us to show you your gallery items when you visit the gallery from any
-        device)
+      <p style={{ fontSize: "smaller", lineHeight: "150%", textAlign: "center" }}>
+        Providing your email address will allow us to still know it&rsquo;s you after your session times out or if you
+        visit from another device — knowing it&rsquo;s you will allow us to show you your chosen gallery items when
+        you&nbsp;visit&nbsp;the&nbsp;gallery
       </p>
     </Dialog>
   );
