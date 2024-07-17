@@ -21,6 +21,7 @@ export default function TouchableIterationOverlay({ size, iterationIncrement, it
 
   return (
     <button
+      className="non-touch-screen-only"
       style={{
         background: "transparent",
         borderBottom: `${size / 2}px solid transparent`,
