@@ -1,6 +1,6 @@
 # sierpinski-shapes
 
-Web application for creating a kind of fractal called a Sierpinski Shape.
+Web application for creating a kind of fractal called a Sierpinski Shape
 
 * [create your own Sierpinski Shape](https://www.sierpinski-shapes.com/create)
 * [add your shape to the public gallery and view others's shapes](https://www.sierpinski-shapes.com/create)
