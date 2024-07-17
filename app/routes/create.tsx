@@ -12,8 +12,7 @@ import TouchableSierpinskiShape from "~/view/create/touchable-sierpinski-shape";
 import SierpinskiShape, { getSizeWithMargins } from "~/view/shared/sierpinski-shape/sierpinski-shape";
 import SierpinskiText from "~/view/shared/sierpinski-shape/sierpinski-text";
 import useHistoryReplaceState from "~/view/create/use-history-replace-state";
-import AddToGalleryDialog from "~/view/create/add-to-gallery-dialog";
-import IconButton from "~/view/create/icon-button";
+import LikeThisShapeToolbar from "~/view/create/like-this-shape-toolbar";
 
 export const meta = RouteUtilities.getMeta("Create", "Create your own Sierpinski Shape!");
 
@@ -34,7 +33,6 @@ export default function Index() {
   }
   const [color, setColor] = useState(initialValues.color);
   const quadrantProps = useAllFourQuadrantInputProps(initialValues.rotations);
-  const [isAddToGalleryDialogOpen, setIsAddToGalleryDialogOpen] = useState(false);
 
   // animation...
   const [isAnimating, setIsAnimating] = useState(false);
@@ -46,7 +44,7 @@ export default function Index() {
     quadrantProps.bottomRight.setRotation
   );
 
-  // update URL...
+  // update URL when created shape changes...
   useHistoryReplaceState(quadrantProps, iterations, color, isAnimating);
 
   // TSX...
@@ -61,39 +59,7 @@ export default function Index() {
           color={color}
           setIterations={setIterations}
         />
-        <div style={{ fontSize: "smaller" }}>like this shape?...</div>
-        <div style={{ display: "flex", gap: "1rem" }}>
-          <IconButton
-            buttonText={"Add to gallery"}
-            hoverText={"Add this Sierpinski Shape to our gallery, and name if if you'd like"}
-            iconImage={"/like-icon.png"}
-            isDisabled={isAnimating}
-            onClick={() => setIsAddToGalleryDialogOpen(true)}
-          />
-          <IconButton
-            buttonText={"Download .png"}
-            hoverText={"Download this Sierpinski Shape as a .png image file"}
-            iconImage={"/download-icon.png"}
-            isDisabled={isAnimating}
-            onClick={notImplementedYet}
-          />
-          <IconButton
-            buttonText={"Download .svg"}
-            hoverText={"Download this Sierpinski Shape as an .svg image file"}
-            iconImage={"/download-icon.png"}
-            isDisabled={isAnimating}
-            onClick={notImplementedYet}
-          />
-          <IconButton
-            buttonText={"Buy merch"}
-            hoverText={
-              "Shop for t-shirts, wall prints, pillows, and more ... all with Sierpinski Shapes printed on them!"
-            }
-            iconImage={"/t-shirt-icon.png"}
-            isDisabled={isAnimating}
-            onClick={notImplementedYet}
-          />
-        </div>
+        <LikeThisShapeToolbar isAnimating={isAnimating} />
       </div>
       <div style={{ width: size }}>
         <div style={{ maxWidth: size + "px" }}>
@@ -157,13 +123,8 @@ export default function Index() {
           color={color}
         />
       </div>
-      <AddToGalleryDialog isOpen={isAddToGalleryDialogOpen} setIsOpen={setIsAddToGalleryDialogOpen} />
     </div>
   );
-}
-
-function notImplementedYet() {
-  alert("not implemented, yet");
 }
 
 export async function loader({ request }: LoaderFunctionArgs) {

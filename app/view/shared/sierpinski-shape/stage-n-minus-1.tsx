@@ -7,20 +7,24 @@ type Props = Readonly<{
   x: number;
   y: number;
   rotation: number | null;
+  quadrantAcronym: string;
+  key: string;
 }>;
 
-export default function StageNMinus1({ idPrefix, size, stageNMinus1, x, y, rotation }: Props) {
+export default function StageNMinus1({ idPrefix, size, stageNMinus1, x, y, rotation, quadrantAcronym }: Props) {
   //
   if (rotation !== null) {
     const rotationCenterX = x + size / 2;
     const rotationCenterY = y + size / 2;
+
     return (
       <use
         href={getStageId(stageNMinus1, `#${idPrefix}`)}
         x={x}
         y={y}
         transform={`scale(0.5) rotate(${rotation}, ${rotationCenterX}, ${rotationCenterY})`}
-        key={stageNMinus1}
+        key={quadrantAcronym}
+        id={stageNMinus1 === 0 ? quadrantAcronym : undefined}
       />
     );
   }

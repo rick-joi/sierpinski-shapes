@@ -21,6 +21,7 @@ export default function StageN({ idPrefix, stage, size, rotations }: Props) {
         y={0}
         rotation={rotations.topLeft}
         idPrefix={idPrefix}
+        quadrantAcronym="tl"
         key="tl"
       />
       <StageNMinus1
@@ -30,6 +31,7 @@ export default function StageN({ idPrefix, stage, size, rotations }: Props) {
         y={0}
         rotation={rotations.topRight}
         idPrefix={idPrefix}
+        quadrantAcronym="tr"
         key="tr"
       />
       <StageNMinus1
@@ -39,6 +41,7 @@ export default function StageN({ idPrefix, stage, size, rotations }: Props) {
         y={size}
         rotation={rotations.bottomLeft}
         idPrefix={idPrefix}
+        quadrantAcronym="bl"
         key="bl"
       />
       <StageNMinus1
@@ -48,6 +51,7 @@ export default function StageN({ idPrefix, stage, size, rotations }: Props) {
         y={size}
         rotation={rotations.bottomRight}
         idPrefix={idPrefix}
+        quadrantAcronym="br"
         key="br"
       />
     </g>
