@@ -5,9 +5,10 @@ type Props = Readonly<{
   left: number;
   size: number;
   setRotation: Dispatch<SetStateAction<number>>;
+  setIsOverQuadrant: Dispatch<SetStateAction<boolean>>;
 }>;
 
-export default function TouchableSierpinskiShapeQuadrant({ top, left, size, setRotation }: Props) {
+export default function TouchableQuadrantOverlay({ top, left, size, setRotation, setIsOverQuadrant }: Props) {
   //
   return (
     <button
@@ -19,9 +20,17 @@ export default function TouchableSierpinskiShapeQuadrant({ top, left, size, setR
         left: left,
         height: size,
         width: size,
+        margin: 0,
+        padding: 0,
       }}
       onClick={() => {
-        setRotation((previous) => previous + 15);
+        setRotation((previous) => (previous + 15) % 360);
+      }}
+      onMouseEnter={() => {
+        setIsOverQuadrant(true);
+      }}
+      onMouseLeave={() => {
+        setIsOverQuadrant(false);
       }}
     />
   );

@@ -1,15 +1,17 @@
 import StageNMinus1 from "./stage-n-minus-1";
 import { getStageId } from "./sierpinski-utilities";
 import { Rotations } from "~/model/shared/rotations";
+import { IsHovering } from "./use-quadrant-hovering";
 
 type Props = Readonly<{
   idPrefix: string;
   stage: number;
   size: number;
   rotations: Rotations;
+  isHovering?: IsHovering;
 }>;
 
-export default function StageN({ idPrefix, stage, size, rotations }: Props) {
+export default function StageN({ idPrefix, stage, size, rotations, isHovering }: Props) {
   //
   const previousStage = stage - 1;
   return (
@@ -23,6 +25,7 @@ export default function StageN({ idPrefix, stage, size, rotations }: Props) {
         idPrefix={idPrefix}
         quadrantAcronym="tl"
         key="tl"
+        isHovering={isHovering?.topLeft}
       />
       <StageNMinus1
         size={size}
@@ -33,6 +36,7 @@ export default function StageN({ idPrefix, stage, size, rotations }: Props) {
         idPrefix={idPrefix}
         quadrantAcronym="tr"
         key="tr"
+        isHovering={isHovering?.topRight}
       />
       <StageNMinus1
         size={size}
@@ -43,6 +47,7 @@ export default function StageN({ idPrefix, stage, size, rotations }: Props) {
         idPrefix={idPrefix}
         quadrantAcronym="bl"
         key="bl"
+        isHovering={isHovering?.bottomLeft}
       />
       <StageNMinus1
         size={size}
@@ -53,6 +58,7 @@ export default function StageN({ idPrefix, stage, size, rotations }: Props) {
         idPrefix={idPrefix}
         quadrantAcronym="br"
         key="br"
+        isHovering={isHovering?.bottomRight}
       />
     </g>
   );

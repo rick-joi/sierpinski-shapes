@@ -1,8 +1,9 @@
 import { Dispatch, SetStateAction, useState, Touch, TouchEvent } from "react";
 import SierpinskiShape from "../shared/sierpinski-shape/sierpinski-shape";
-import TouchableSierpinskiShapeQuadrant from "./touchable-sierpinski-shape-quadrant";
+import TouchableQuadrantOverlay from "./touchable-quadrant-overlay";
 import { AllFourQuadrantInputProps, getRotations } from "./quadrant-input";
 import TouchableHelpMessage from "./touchable-help-message";
+import { useQuadrantHovering } from "../shared/sierpinski-shape/use-quadrant-hovering";
 
 type Props = Readonly<{
   idPrefix: string;
@@ -18,12 +19,13 @@ export default function TouchableSierpinskiShape({
   size,
   quadrantsProps,
   iterations,
-  setIterations,
   color,
+  setIterations,
 }: Props) {
   //
   const [hasTapped, setHasTapped] = useState(false);
   const [hasSwiped, setHasSwiped] = useState(false);
+  const [isHovering, setIsHovering] = useQuadrantHovering();
 
   let firstTouch: Touch | undefined = undefined;
 
@@ -64,31 +66,36 @@ export default function TouchableSierpinskiShape({
         iterations={iterations}
         rotations={getRotations(quadrantsProps)}
         color={color}
+        isHovering={isHovering}
       />
       <TouchableHelpMessage size={size / 2} top={0} left={size / 2} hasTapped={hasTapped} hasSwiped={hasSwiped} />
-      <TouchableSierpinskiShapeQuadrant
+      <TouchableQuadrantOverlay
         top={0}
         left={0}
         size={size / 2}
         setRotation={quadrantsProps.topLeft.setRotation}
+        setIsOverQuadrant={setIsHovering.topLeft}
       />
-      <TouchableSierpinskiShapeQuadrant
+      <TouchableQuadrantOverlay
         top={0}
         left={size / 2}
         size={size / 2}
         setRotation={quadrantsProps.topRight.setRotation}
+        setIsOverQuadrant={setIsHovering.topRight}
       />
-      <TouchableSierpinskiShapeQuadrant
+      <TouchableQuadrantOverlay
         top={size / 2}
         left={0}
         size={size / 2}
         setRotation={quadrantsProps.bottomLeft.setRotation}
+        setIsOverQuadrant={setIsHovering.bottomLeft}
       />
-      <TouchableSierpinskiShapeQuadrant
+      <TouchableQuadrantOverlay
         top={size / 2}
         left={size / 2}
         size={size / 2}
         setRotation={quadrantsProps.bottomRight.setRotation}
+        setIsOverQuadrant={setIsHovering.bottomRight}
       />
     </div>
   );
