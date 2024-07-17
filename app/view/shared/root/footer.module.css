@@ -1,8 +1,9 @@
+:root {
+  --footer-height: 4rem;
+}
 footer {
   background-color: var(--dark-neutral-color);
   color: var(--light-neutral-color);
-  position: absolute;
-  /* bottom: 0; */
   width: 100%;
   text-align: center;
   vertical-align: middle;
@@ -11,6 +12,23 @@ footer {
   border-top-color: white;
   border-top-width: 1px;
 }
+
+/* Sticky footer values... */
+footer {
+  position: relative;
+  margin-top: calc(-1 * var(--footer-height));
+  height: var(--footer-height);
+  clear: both;
+}
+html,
+body {
+  height: 100%;
+}
+main {
+  overflow: auto;
+  padding-bottom: calc(2 * var(--footer-height));
+}
+/* ... end sticky footer values */
 
 footer a,
 footer a:visited {

@@ -15,9 +15,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <Header />
-        <MessageBanner />
-        <main>{children}</main>
+        <div style={{ minHeight: "100%" }}>
+          <Header />
+          <MessageBanner />
+          <main>{children}</main>
+        </div>
         <Footer />
         <ScrollRestoration />
         <Scripts />
