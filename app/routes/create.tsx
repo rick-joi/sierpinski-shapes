@@ -5,16 +5,13 @@ import { useLoaderData } from "@remix-run/react";
 import * as RouteUtilities from "~/view/shared/utilities/route-utilities";
 import useWindowSize from "~/view/shared/utilities/use-window-size";
 import SierpinskiShape, { getSizeWithMargins } from "~/view/shared/sierpinski-shape/sierpinski-shape";
-import SierpinskiText from "~/view/shared/sierpinski-shape/sierpinski-text";
 
-import QuadrantInput, { getRotations, useAllFourQuadrantInputProps } from "~/view/create/quadrant-input";
-import ColorInput from "~/view/create/color-input";
-import RangeInput from "~/view/create/range-input";
+import { getRotations, useAllFourQuadrantInputProps } from "~/view/create/quadrant-input";
 import useAnimation from "~/view/create/use-animation";
 import TouchableSierpinskiShape from "~/view/create/touchable-sierpinski-shape";
 import useHistoryReplaceState from "~/view/create/use-history-replace-state";
 import LikeThisShapeToolbar from "~/view/create/like-this-shape-toolbar";
-import IconButton from "~/view/create/icon-button";
+import ControlPanel from "~/view/create/control-panel";
 
 export const meta = RouteUtilities.getMeta("Create", "Create your own Sierpinski Shape!");
 
@@ -26,7 +23,7 @@ export default function Index() {
   const size = Math.min(maxSizeWithMargins, Math.min(windowSize.width, windowSize.height) * 0.9);
   const fullScreenSize = Math.min(windowSize.width, windowSize.height);
 
-  // state...
+  // core control panel state...
   const initialValues = useLoaderData<typeof loader>();
   const maxIterations = Math.min(8, Math.ceil(Math.log2(size)) - 2);
   const [iterations, setIterations] = useState(initialValues.iterations);
@@ -59,46 +56,24 @@ export default function Index() {
         <TouchableSierpinskiShape
           idPrefix={"create"}
           size={size}
-          iterations={iterations}
           quadrantsProps={quadrantProps}
-          color={color}
+          iterations={iterations}
           setIterations={setIterations}
+          color={color}
         />
         <LikeThisShapeToolbar isAnimating={isAnimating} />
       </div>
       <div style={{ width: size }}>
-        <div style={{ maxWidth: size + "px" }}>
-          <fieldset style={{ border: "none" }}>
-            <div style={{ display: "flex", gap: "1rem" }}>
-              <QuadrantInput {...quadrantProps.topLeft} />
-              <QuadrantInput {...quadrantProps.topRight} />
-            </div>
-            <div style={{ display: "flex", gap: "1rem" }}>
-              <QuadrantInput {...quadrantProps.bottomLeft} />
-              <QuadrantInput {...quadrantProps.bottomRight} />
-            </div>
-            <div style={{ display: "flex", gap: "1rem" }}>
-              <div style={{ flexGrow: "1" }}>
-                <RangeInput label="Iterations" max={maxIterations} value={iterations} setValue={setIterations} />
-              </div>
-              <div>
-                <ColorInput label={"Color"} color={color} setColor={setColor} />
-              </div>
-              <div style={{ alignSelf: "flex-end", paddingBottom: "0.75rem" }}>
-                <IconButton
-                  buttonText={isAnimating ? "Pause animation" : "Animate"}
-                  iconImage={isAnimating ? "/pause-icon.png" : "/play-icon.png"}
-                  isDisabled={iterations === 0}
-                  onClick={() => setIsAnimating((previous) => !previous)}
-                  style={{ width: "11em" }}
-                />
-              </div>
-            </div>
-            <div style={{ color: "gray", fontSize: "smaller" }}>
-              <SierpinskiText rotations={getRotations(quadrantProps)} iterations={iterations} color={color} />
-            </div>
-          </fieldset>
-        </div>
+        <ControlPanel
+          quadrantProps={quadrantProps}
+          maxIterations={maxIterations}
+          iterations={iterations}
+          setIterations={setIterations}
+          color={color}
+          setColor={setColor}
+          isAnimating={isAnimating}
+          setIsAnimating={setIsAnimating}
+        />
         <div style={{ position: "relative", top: "25%", width: "100%", textAlign: "center", marginBottom: "12rem" }}>
           <h2>
             Welcome to <em>sierpinski</em>
