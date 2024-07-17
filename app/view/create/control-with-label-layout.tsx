@@ -12,7 +12,7 @@ export default function ControlWithLabelLayout({ label, parenthetical, isDisable
       style={{
         display: "inline-block",
         width: "100%",
-        margin: "0.5rem 0",
+        marginBottom: "1rem",
       }}
     >
       <label

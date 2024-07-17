@@ -120,7 +120,7 @@ button,
 input[type="button"],
 input[type="submit"] {
   padding: 0.3rem 0.5rem;
-  margin: 0.5rem;
+  margin: 0rem;
   border-width: 1px;
   border-radius: 0.4rem;
   border-color: var(--primary-accent-color);
@@ -144,6 +144,9 @@ input[type="submit"]:disabled {
   color: lightgray;
   border-color: lightgray;
   cursor: default;
+}
+button:disabled img {
+  filter: grayscale(1) opacity(0.2);
 }
 button img {
   position: relative;

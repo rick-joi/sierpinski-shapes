@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { MouseEvent, useState } from "react";
 import { LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 
@@ -13,6 +13,7 @@ import SierpinskiShape, { getSizeWithMargins } from "~/view/shared/sierpinski-sh
 import SierpinskiText from "~/view/shared/sierpinski-shape/sierpinski-text";
 import useHistoryReplaceState from "~/view/create/use-history-replace-state";
 import LikeThisShapeToolbar from "~/view/create/like-this-shape-toolbar";
+import IconButton from "~/view/create/icon-button";
 
 export const meta = RouteUtilities.getMeta("Create", "Create your own Sierpinski Shape!");
 
@@ -36,6 +37,9 @@ export default function Index() {
 
   // animation...
   const [isAnimating, setIsAnimating] = useState(false);
+  if (iterations === 0 && isAnimating) {
+    setIsAnimating(false);
+  }
   useAnimation(
     isAnimating,
     quadrantProps.topLeft.setRotation,
@@ -79,13 +83,13 @@ export default function Index() {
               <div>
                 <ColorInput label={"Color"} color={color} setColor={setColor} />
               </div>
-              <div style={{ alignSelf: "flex-end" }}>
-                <input
-                  type="button"
-                  value={isAnimating ? "Stop animation" : "Animate"}
+              <div style={{ alignSelf: "flex-end", paddingBottom: "0.75rem" }}>
+                <IconButton
+                  buttonText={isAnimating ? "Pause animation" : "Animate"}
+                  iconImage={isAnimating ? "/pause-icon.png" : "/play-icon.png"}
+                  isDisabled={iterations === 0}
                   onClick={() => setIsAnimating((previous) => !previous)}
-                  disabled={iterations === 0}
-                  style={{ width: "9em" }}
+                  style={{ width: "11em" }}
                 />
               </div>
             </div>
