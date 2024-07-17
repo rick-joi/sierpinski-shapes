@@ -1,7 +1,7 @@
 :root {
-  --primary-accent-color: #3388ff;
-  --secondary-accent-color: #86238c;
-  --light-accent-color: #80b5ff;
+  --primary-accent-color: #0197b8;
+  --secondary-accent-color: #cf2bd7;
+  --light-accent-color: #00b9e3;
   --dark-neutral-color: #475569;
   --light-neutral-color: #e2e8f0;
 }
@@ -13,6 +13,7 @@
 body,
 html {
   font-family: "Roboto Flex", sans-serif;
+  accent-color: var(--primary-accent-color);
 }
 html {
   box-sizing: border-box;
@@ -21,6 +22,7 @@ html {
 *:before,
 *:after {
   box-sizing: inherit;
+  line-height: 150%;
 }
 
 a,
@@ -91,6 +93,12 @@ main {
 p {
   margin: 1rem 0;
 }
+em {
+  text-emphasis-style: triangle;
+  text-emphasis-color: lightgray;
+  text-emphasis-position: under;
+  font-style: normal;
+}
 ul {
   margin: 1rem 2rem;
 }
@@ -104,6 +112,7 @@ input[type="email"] {
   border-radius: 0.2rem;
   border-color: gray;
 }
+button,
 input[type="button"],
 input[type="submit"] {
   padding: 0.3rem 0.5rem;

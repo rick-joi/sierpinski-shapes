@@ -13,6 +13,7 @@ import SierpinskiShape, { getSizeWithMargins } from "~/view/shared/sierpinski-sh
 import SierpinskiText from "~/view/shared/sierpinski-shape/sierpinski-text";
 import useHistoryReplaceState from "~/view/create/use-history-replace-state";
 import AddToGalleryDialog from "~/view/create/add-to-gallery-dialog";
+import IconButton from "~/view/create/icon-button";
 
 export const meta = RouteUtilities.getMeta("Create", "Create your own Sierpinski Shape!");
 
@@ -60,63 +61,78 @@ export default function Index() {
           color={color}
           setIterations={setIterations}
         />
-        <div style={{ display: "flex", justifyContent: "space-between", gap: "1rem", marginBottom: "2rem" }}>
-          <input
-            type="button"
-            value="Add to gallery"
+        <div style={{ fontSize: "smaller" }}>like this shape?...</div>
+        <div style={{ display: "flex", gap: "1rem" }}>
+          <IconButton
+            buttonText={"Add to gallery"}
+            hoverText={"Add this Sierpinski Shape to our gallery, and name if if you'd like"}
+            iconImage={"/like-icon.png"}
+            isDisabled={isAnimating}
             onClick={() => setIsAddToGalleryDialogOpen(true)}
-            disabled={isAnimating}
-            style={{ flexGrow: 1, margin: 0 }}
           />
-          <input
-            type="button"
-            value="Download"
+          <IconButton
+            buttonText={"Download .png"}
+            hoverText={"Download this Sierpinski Shape as a .png image file"}
+            iconImage={"/download-icon.png"}
+            isDisabled={isAnimating}
             onClick={notImplementedYet}
-            disabled={isAnimating}
-            style={{ flexGrow: 1, margin: 0 }}
           />
-          <input
-            type="button"
-            value="Buy merch"
+          <IconButton
+            buttonText={"Download .svg"}
+            hoverText={"Download this Sierpinski Shape as an .svg image file"}
+            iconImage={"/download-icon.png"}
+            isDisabled={isAnimating}
             onClick={notImplementedYet}
-            disabled={isAnimating}
-            style={{ flexGrow: 1, margin: 0 }}
+          />
+          <IconButton
+            buttonText={"Buy merch"}
+            hoverText={
+              "Shop for t-shirts, wall prints, pillows, and more ... all with Sierpinski Shapes printed on them!"
+            }
+            iconImage={"/t-shirt-icon.png"}
+            isDisabled={isAnimating}
+            onClick={notImplementedYet}
           />
         </div>
       </div>
       <div style={{ width: size }}>
         <div style={{ maxWidth: size + "px" }}>
-          <div style={{ display: "flex", gap: "1rem" }}>
-            <QuadrantInput {...quadrantProps.topLeft} />
-            <QuadrantInput {...quadrantProps.topRight} />
-          </div>
-          <div style={{ display: "flex", gap: "1rem" }}>
-            <QuadrantInput {...quadrantProps.bottomLeft} />
-            <QuadrantInput {...quadrantProps.bottomRight} />
-          </div>
-          <div style={{ display: "flex", gap: "1rem" }}>
-            <div style={{ flexGrow: "1" }}>
-              <RangeInput label="Iterations" max={maxIterations} value={iterations} setValue={setIterations} />
+          <fieldset style={{ border: "none" }}>
+            <div style={{ display: "flex", gap: "1rem" }}>
+              <QuadrantInput {...quadrantProps.topLeft} />
+              <QuadrantInput {...quadrantProps.topRight} />
             </div>
-            <div>
-              <ColorInput label={"Color"} color={color} setColor={setColor} />
+            <div style={{ display: "flex", gap: "1rem" }}>
+              <QuadrantInput {...quadrantProps.bottomLeft} />
+              <QuadrantInput {...quadrantProps.bottomRight} />
             </div>
-            <div style={{ alignSelf: "flex-end" }}>
-              <input
-                type="button"
-                value={isAnimating ? "Stop animation" : "Animate"}
-                onClick={() => setIsAnimating((previous) => !previous)}
-                disabled={iterations === 0}
-                style={{ width: "9em" }}
-              />
+            <div style={{ display: "flex", gap: "1rem" }}>
+              <div style={{ flexGrow: "1" }}>
+                <RangeInput label="Iterations" max={maxIterations} value={iterations} setValue={setIterations} />
+              </div>
+              <div>
+                <ColorInput label={"Color"} color={color} setColor={setColor} />
+              </div>
+              <div style={{ alignSelf: "flex-end" }}>
+                <input
+                  type="button"
+                  value={isAnimating ? "Stop animation" : "Animate"}
+                  onClick={() => setIsAnimating((previous) => !previous)}
+                  disabled={iterations === 0}
+                  style={{ width: "9em" }}
+                />
+              </div>
             </div>
-          </div>
-          <div style={{ color: "gray", fontSize: "smaller" }}>
-            <SierpinskiText rotations={getRotations(quadrantProps)} iterations={iterations} color={color} />
-          </div>
+            <div style={{ color: "gray", fontSize: "smaller" }}>
+              <SierpinskiText rotations={getRotations(quadrantProps)} iterations={iterations} color={color} />
+            </div>
+          </fieldset>
         </div>
         <div style={{ position: "relative", top: "25%", width: "100%", textAlign: "center", marginBottom: "12rem" }}>
-          <h2>Welcome to sierpinski&#8209;shapes.com!</h2>
+          <h2>
+            Welcome to <em>sierpinski</em>
+            &#8209;<em>shapes</em>.<em>com</em>!
+          </h2>
           <p>We&rsquo;re glad you&rsquo;re here to share our love of fractals</p>
         </div>
       </div>
