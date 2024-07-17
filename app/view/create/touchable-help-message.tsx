@@ -14,7 +14,7 @@ export default function TouchableHelpMessage({ top, left, size, hasTapped, hasSw
   const rightMargin = size / 10;
   return (
     <div
-      className={classes["touch-screen-only"]}
+      className="touch-screen-only"
       style={{
         color: "orange",
         fontSize: "smaller",
