@@ -95,7 +95,7 @@ p {
 }
 em {
   text-emphasis-style: triangle;
-  text-emphasis-color: lightgray;
+  text-emphasis-color: #f0f0f0;
   text-emphasis-position: under;
   font-style: normal;
 }

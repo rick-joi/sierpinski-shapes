@@ -6,7 +6,7 @@ type Props = Readonly<{
   iconImage: string;
   isDisabled: boolean;
   onClick: MouseEventHandler<HTMLButtonElement>;
-  style: React.CSSProperties;
+  style?: React.CSSProperties;
 }>;
 
 export default function IconButton({ buttonText, hoverText, iconImage, isDisabled, onClick, style }: Props) {

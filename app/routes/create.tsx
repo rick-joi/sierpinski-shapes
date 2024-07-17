@@ -1,16 +1,17 @@
-import { MouseEvent, useState } from "react";
+import { useState } from "react";
 import { LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 
 import * as RouteUtilities from "~/view/shared/utilities/route-utilities";
 import useWindowSize from "~/view/shared/utilities/use-window-size";
-import ColorInput from "~/view/create/color-input";
+import SierpinskiShape, { getSizeWithMargins } from "~/view/shared/sierpinski-shape/sierpinski-shape";
+import SierpinskiText from "~/view/shared/sierpinski-shape/sierpinski-text";
+
 import QuadrantInput, { getRotations, useAllFourQuadrantInputProps } from "~/view/create/quadrant-input";
+import ColorInput from "~/view/create/color-input";
 import RangeInput from "~/view/create/range-input";
 import useAnimation from "~/view/create/use-animation";
 import TouchableSierpinskiShape from "~/view/create/touchable-sierpinski-shape";
-import SierpinskiShape, { getSizeWithMargins } from "~/view/shared/sierpinski-shape/sierpinski-shape";
-import SierpinskiText from "~/view/shared/sierpinski-shape/sierpinski-text";
 import useHistoryReplaceState from "~/view/create/use-history-replace-state";
 import LikeThisShapeToolbar from "~/view/create/like-this-shape-toolbar";
 import IconButton from "~/view/create/icon-button";
@@ -53,7 +54,7 @@ export default function Index() {
 
   // TSX...
   return (
-    <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", columnGap: "1rem" }}>
+    <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", columnGap: "3rem" }}>
       <div style={{ width: size }}>
         <TouchableSierpinskiShape
           idPrefix={"create"}

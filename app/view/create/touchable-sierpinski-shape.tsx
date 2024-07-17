@@ -1,9 +1,10 @@
 import { Dispatch, SetStateAction, useState, Touch, TouchEvent } from "react";
 import SierpinskiShape from "../shared/sierpinski-shape/sierpinski-shape";
-import TouchableQuadrantOverlay from "./touchable-quadrant-overlay";
+import TouchableRotationOverlay from "./touchable-rotation-overlay";
 import { AllFourQuadrantInputProps, getRotations } from "./quadrant-input";
 import TouchableHelpMessage from "./touchable-help-message";
 import { useQuadrantHovering } from "../shared/sierpinski-shape/use-quadrant-hovering";
+import TouchableIterationOverlay from "./touchable-iteration-overlay";
 
 type Props = Readonly<{
   idPrefix: string;
@@ -69,33 +70,45 @@ export default function TouchableSierpinskiShape({
         isHovering={isHovering}
       />
       <TouchableHelpMessage size={size / 2} top={0} left={size / 2} hasTapped={hasTapped} hasSwiped={hasSwiped} />
-      <TouchableQuadrantOverlay
+      <TouchableRotationOverlay
         top={0}
         left={0}
         size={size / 2}
         setRotation={quadrantsProps.topLeft.setRotation}
         setIsOverQuadrant={setIsHovering.topLeft}
       />
-      <TouchableQuadrantOverlay
+      <TouchableRotationOverlay
         top={0}
         left={size / 2}
         size={size / 2}
         setRotation={quadrantsProps.topRight.setRotation}
         setIsOverQuadrant={setIsHovering.topRight}
       />
-      <TouchableQuadrantOverlay
+      <TouchableRotationOverlay
         top={size / 2}
         left={0}
         size={size / 2}
         setRotation={quadrantsProps.bottomLeft.setRotation}
         setIsOverQuadrant={setIsHovering.bottomLeft}
       />
-      <TouchableQuadrantOverlay
+      <TouchableRotationOverlay
         top={size / 2}
         left={size / 2}
         size={size / 2}
         setRotation={quadrantsProps.bottomRight.setRotation}
         setIsOverQuadrant={setIsHovering.bottomRight}
+      />
+      <TouchableIterationOverlay
+        size={size}
+        iterationIncrement={-1}
+        iterations={iterations}
+        setIterations={setIterations}
+      />
+      <TouchableIterationOverlay
+        size={size}
+        iterationIncrement={1}
+        iterations={iterations}
+        setIterations={setIterations}
       />
     </div>
   );

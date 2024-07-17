@@ -8,7 +8,7 @@ type Props = Readonly<{
   setIsOverQuadrant: Dispatch<SetStateAction<boolean>>;
 }>;
 
-export default function TouchableQuadrantOverlay({ top, left, size, setRotation, setIsOverQuadrant }: Props) {
+export default function TouchableRotationOverlay({ top, left, size, setRotation, setIsOverQuadrant }: Props) {
   //
   return (
     <button
