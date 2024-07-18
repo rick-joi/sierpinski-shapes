@@ -6,9 +6,9 @@ export function Footer() {
     <footer>
       Copyright &copy; {new Date().getFullYear()} <a href="https://www.workiversary.com/rick-joi-media-kit">Rick Joi</a>{" "}
       <span className={styles["link-separator"]}>|</span>
-      <Link to="/about-us">About</Link>
+      <Link to="/about">About</Link>
       <span className={styles["link-separator"]}>|</span>
-      <Link to="/privacy-policy">Privacy policy</Link>
+      <Link to="/privacy">Privacy</Link>
     </footer>
   );
 }

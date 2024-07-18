@@ -1,7 +1,6 @@
 export default function Index() {
   return (
-    <div>
-      <h2>Learn</h2>
+    <article>
       <p>
         Welcome to the <strong>beautiful</strong> <strong>math</strong> of Sierpinski Shapes!
       </p>
@@ -17,7 +16,7 @@ export default function Index() {
         The well known Sierpinski Triangle is just one of over 16 billion Sierpinski Shapes —{" "}
         <strong>intrigued?</strong>
       </p>
-      <h3>Articles</h3>
+      <h2>Planned articles</h2>
       <p>Do you love Sierpinsi Shapes? Have something to say about them? Write a guest article!</p>
       <ul>
         <li>What&rsquo;s a Sierpinski Shape?</li>
@@ -26,7 +25,7 @@ export default function Index() {
         <li>Why is the simple triangle the best simple shape?</li>
         <li>When is Evan Maletsky Day and how do you celebrate it?</li>
       </ul>
-      <h3>Lesson plans for teachers</h3>
+      <h2>Lesson plans for teachers</h2>
       <p>Are you a teacher? Do you love Sierpinski Shapes? Help us write lesson plans...</p>
       <ul>
         <li>Kindergarden</li>
@@ -35,6 +34,6 @@ export default function Index() {
         <li>High school</li>
         <li>College</li>
       </ul>
-    </div>
+    </article>
   );
 }

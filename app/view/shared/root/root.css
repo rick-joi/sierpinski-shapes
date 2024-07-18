@@ -79,19 +79,35 @@ td pre {
   margin: 0;
   font-size: 90%;
 }
+h1,
+h2,
+h3 {
+  color: var(--dark-neutral-color);
+  white-space: balance;
+}
 h1 {
-  background-color: black;
-  color: white;
-  display: inline-block;
+  font-size: 200%;
 }
 h2 {
-  color: var(--dark-neutral-color);
+  margin-top: 4rem;
+}
+h3 {
+  margin-top: 2rem;
 }
 main {
   padding: 1rem;
 }
 p {
-  margin: 1rem 0;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  white-space: balance;
+}
+article {
+  max-width: clamp(320px, 90%, 800px);
+  margin: auto;
+  font-size: 1.25rem;
+  margin-bottom: 8rem;
+  margin-top: 6rem;
 }
 em {
   text-emphasis-style: triangle;
