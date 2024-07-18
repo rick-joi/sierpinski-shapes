@@ -1,20 +1,26 @@
 type Props = Readonly<{
   imageName: string;
   singularName: string;
-  width: string;
-  top: string;
-  left: string;
+  width: number;
+  top: number;
+  left: number;
 }>;
 export default function ProductLineImage({ imageName, singularName, width, top, left }: Props) {
+  //
+  const VW_MULTIPLIER = 2;
+  const vwWidth = width * VW_MULTIPLIER;
+  const vwTop = top * VW_MULTIPLIER;
+  const vwLeft = left * VW_MULTIPLIER;
+
   return (
     <img
       src={`/public/shop/${imageName}`}
       alt={`Example ${singularName}`}
       style={{
-        width: width,
+        width: `min(${vwWidth}vw, ${width}rem)`,
         position: "relative",
-        top: top,
-        left: left,
+        top: `max(${vwTop}vw, ${top}rem)`,
+        left: `max(${vwLeft}vw, ${left}rem)`,
         boxShadow: "4px 4px 5px rgba(0, 0, 0, 0.3)",
       }}
     />

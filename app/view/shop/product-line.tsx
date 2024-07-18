@@ -22,8 +22,8 @@ export default function ProductLine({ pluralName, singularName, text, imageNames
         boxShadow: "4px 4px 5px rgba(0, 0, 0, 0.2)",
       }}
     >
-      <div style={{ width: "20rem", marginRight: "4.5rem" }}>
-        <h1 style={{ marginTop: "5rem" }}>{pluralName}</h1>
+      <div style={{ width: "20rem", marginRight: "2.5rem", marginBottom: "5rem" }}>
+        <h1 style={{ marginTop: "0rem" }}>{pluralName}</h1>
         <div style={{ whiteSpace: "balance" }}>{text}</div>
         <IconButton
           buttonText={`Get your ${singularName}`}
@@ -34,21 +34,16 @@ export default function ProductLine({ pluralName, singularName, text, imageNames
             paddingLeft: "3rem",
             paddingRight: "3rem",
             boxShadow: "4px 4px 5px rgba(0, 0, 0, 0.3)",
+            fontSize: "larger",
           }}
         />
       </div>
-      <div style={{ lineHeight: 0 }}>
-        <ProductLineImage
-          imageName={imageNames[0]}
-          singularName={singularName}
-          width="15rem"
-          top="-2.5rem"
-          left="-2.5rem"
-        />
-        <ProductLineImage imageName={imageNames[1]} singularName={singularName} width="10rem" top="0" left="-2.5rem" />
+      <div style={{ lineHeight: 0, marginLeft: "2.5rem" }}>
+        <ProductLineImage imageName={imageNames[0]} singularName={singularName} width={15} top={-2.5} left={-2.5} />
+        <ProductLineImage imageName={imageNames[1]} singularName={singularName} width={10} top={0} left={-2.5} />
         <br />
-        <ProductLineImage imageName={imageNames[2]} singularName={singularName} width="10rem" top="-2.5rem" left="0" />
-        <ProductLineImage imageName={imageNames[3]} singularName={singularName} width="15rem" top="-5rem" left="0" />
+        <ProductLineImage imageName={imageNames[2]} singularName={singularName} width={10} top={-2.5} left={0} />
+        <ProductLineImage imageName={imageNames[3]} singularName={singularName} width={15} top={-5} left={0} />
       </div>
     </div>
   );
