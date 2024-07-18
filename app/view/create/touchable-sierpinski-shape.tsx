@@ -5,6 +5,7 @@ import { AllFourQuadrantInputProps, getRotations } from "./quadrant-input";
 import TouchableHelpMessage from "./touchable-help-message";
 import { useQuadrantHovering } from "../shared/sierpinski-shape/use-quadrant-hovering";
 import TouchableIterationOverlay from "./touchable-iteration-overlay";
+import rgbToGrayScale from "../shared/utilities/grayscale";
 
 type Props = Readonly<{
   id: string;
@@ -60,7 +61,16 @@ export default function TouchableSierpinskiShape({
   }
 
   return (
-    <div style={{ position: "relative" }} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+    <div
+      style={{
+        position: "relative",
+        backgroundColor: calculateBackgroundColor(color),
+        lineHeight: 0,
+        borderRadius: "0.75rem",
+      }}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       <SierpinskiShape
         id={id}
         size={size}
@@ -112,4 +122,10 @@ export default function TouchableSierpinskiShape({
       />
     </div>
   );
+}
+
+function calculateBackgroundColor(color: string) {
+  //
+  const grayscale = rgbToGrayScale(color);
+  return grayscale && grayscale > 185 ? "var(--dark-neutral-color)" : "#ffffff";
 }
