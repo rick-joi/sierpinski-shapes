@@ -30,7 +30,7 @@ export default function GalleryItemCard({ shape }: Props) {
           {shape.name}
         </h3>
         <SierpinskiShape
-          idPrefix={shape.id.toString()}
+          id={"gallery-shape-" + shape.id.toString()}
           size={313}
           iterations={7}
           rotations={shape.rotations}

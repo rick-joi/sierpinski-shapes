@@ -7,7 +7,7 @@ import { useQuadrantHovering } from "../shared/sierpinski-shape/use-quadrant-hov
 import TouchableIterationOverlay from "./touchable-iteration-overlay";
 
 type Props = Readonly<{
-  idPrefix: string;
+  id: string;
   size: number;
   quadrantsProps: AllFourQuadrantInputProps;
   iterations: number;
@@ -16,7 +16,7 @@ type Props = Readonly<{
 }>;
 
 export default function TouchableSierpinskiShape({
-  idPrefix,
+  id,
   size,
   quadrantsProps,
   iterations,
@@ -62,7 +62,7 @@ export default function TouchableSierpinskiShape({
   return (
     <div style={{ position: "relative" }} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
       <SierpinskiShape
-        idPrefix={idPrefix}
+        id={id}
         size={size}
         iterations={iterations}
         rotations={getRotations(quadrantsProps)}

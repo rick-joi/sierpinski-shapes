@@ -1,11 +1,21 @@
 import { useState } from "react";
 import IconButton from "./icon-button";
 import AddToGalleryDialog from "./add-to-gallery-dialog";
+import DownloadButton from "./download-button";
+import { Rotations } from "~/model/shared/rotations";
 
-type Props = Readonly<{ isAnimating: boolean }>;
+type Props = Readonly<{
+  thisSvgId: string;
+  rotations: Rotations;
+  iterations: number;
+  color: string;
+  isAnimating: boolean;
+}>;
 
-export default function LikeThisShapeToolbar({ isAnimating }: Props) {
+export default function LikeThisShapeToolbar({ thisSvgId, rotations, iterations, color, isAnimating }: Props) {
+  //
   const [isAddToGalleryDialogOpen, setIsAddToGalleryDialogOpen] = useState(false);
+
   return (
     <div style={{ marginBottom: "1rem" }}>
       <div style={{ display: "flex", gap: "0.5rem" }}>
@@ -16,19 +26,21 @@ export default function LikeThisShapeToolbar({ isAnimating }: Props) {
           isDisabled={isAnimating}
           onClick={() => setIsAddToGalleryDialogOpen(true)}
         />
-        <IconButton
-          buttonText={"Download .png"}
-          hoverText={"Download this Sierpinski Shape as a .png image file"}
-          iconImage={"/download-icon.png"}
+        <DownloadButton
+          svgId={thisSvgId}
+          imageFormat="png"
+          rotations={rotations}
+          iterations={iterations}
+          color={color}
           isDisabled={isAnimating}
-          onClick={notImplementedYet}
         />
-        <IconButton
-          buttonText={"Download .svg"}
-          hoverText={"Download this Sierpinski Shape as an .svg image file"}
-          iconImage={"/download-icon.png"}
+        <DownloadButton
+          svgId={thisSvgId}
+          imageFormat="svg"
+          rotations={rotations}
+          iterations={iterations}
+          color={color}
           isDisabled={isAnimating}
-          onClick={notImplementedYet}
         />
         <IconButton
           buttonText={"Buy merch"}

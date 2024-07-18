@@ -17,6 +17,8 @@ export const meta = RouteUtilities.getMeta("Create", "Create your own Sierpinski
 
 export default function Index() {
   //
+  const PRIMARY_SVG_ID = "create";
+
   // screen math...
   const windowSize = useWindowSize();
   const maxSizeWithMargins = getSizeWithMargins(512);
@@ -54,14 +56,20 @@ export default function Index() {
     <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", columnGap: "3rem" }}>
       <div style={{ width: size }}>
         <TouchableSierpinskiShape
-          idPrefix={"create"}
+          id={PRIMARY_SVG_ID}
           size={size}
           quadrantsProps={quadrantProps}
           iterations={iterations}
           setIterations={setIterations}
           color={color}
         />
-        <LikeThisShapeToolbar isAnimating={isAnimating} />
+        <LikeThisShapeToolbar
+          thisSvgId={PRIMARY_SVG_ID}
+          rotations={getRotations(quadrantProps)}
+          iterations={iterations}
+          color={color}
+          isAnimating={isAnimating}
+        />
       </div>
       <div style={{ width: size }}>
         <ControlPanel
@@ -96,7 +104,7 @@ export default function Index() {
         }}
       >
         <SierpinskiShape
-          idPrefix={"full-screen"}
+          id={"full-screen"}
           size={fullScreenSize}
           iterations={iterations}
           rotations={getRotations(quadrantProps)}
