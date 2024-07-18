@@ -16,7 +16,7 @@ import { getRotations, useAllFourQuadrantInputProps } from "~/view/create/quadra
 import useAnimation from "~/view/create/use-animation";
 import TouchableSierpinskiShape from "~/view/create/touchable-sierpinski-shape";
 import useHistoryReplaceState from "~/view/create/use-history-replace-state";
-import LikeThisShapeToolbar from "~/view/create/like-this-shape-toolbar";
+import ShapeToolbar from "~/view/create/shape-toolbar";
 import ControlPanel from "~/view/create/control-panel";
 
 export const meta = RouteUtilities.getMeta("Create", "Create your own Sierpinski Shape!");
@@ -70,7 +70,7 @@ export default function Index() {
           setIterations={setIterations}
           color={color}
         />
-        <LikeThisShapeToolbar
+        <ShapeToolbar
           thisSvgId={PRIMARY_SVG_ID}
           rotations={getRotations(quadrantProps)}
           iterations={iterations}

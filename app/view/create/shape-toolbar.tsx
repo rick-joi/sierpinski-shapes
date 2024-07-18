@@ -12,7 +12,7 @@ type Props = Readonly<{
   isAnimating: boolean;
 }>;
 
-export default function LikeThisShapeToolbar({ thisSvgId, rotations, iterations, color, isAnimating }: Props) {
+export default function ShapeToolbar({ thisSvgId, rotations, iterations, color, isAnimating }: Props) {
   //
   const [isAddToGalleryDialogOpen, setIsAddToGalleryDialogOpen] = useState(false);
 
