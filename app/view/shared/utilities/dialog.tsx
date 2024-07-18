@@ -1,19 +1,22 @@
 import { Dispatch, ReactNode, SetStateAction, useEffect, useRef } from "react";
 import classes from "./dialog.module.css";
 import { Form } from "@remix-run/react";
+import IconButton from "./icon-button";
 
 type Props = {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   width: string;
   actionText: string;
+  actionIcon: string;
   children: React.ReactNode;
   disclaimer: ReactNode;
 };
 
-export default function Dialog({ isOpen, setIsOpen, width, actionText, children, disclaimer }: Props) {
+export default function Dialog({ isOpen, setIsOpen, width, actionText, actionIcon, children, disclaimer }: Props) {
   //
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
     if (dialogRef.current?.open && !isOpen) {
@@ -36,10 +39,18 @@ export default function Dialog({ isOpen, setIsOpen, width, actionText, children,
           X
         </button>
       </div>
-      <Form method="post" action="/gallery">
+      <Form method="post" action="/gallery" ref={formRef}>
         <div className={classes["body"]}>{children}</div>
         <div className={classes["footer"]}>
-          <input type="submit" value={actionText} />
+          <IconButton
+            buttonText={actionText}
+            iconImage={actionIcon}
+            isDisabled={false}
+            onClick={() => {
+              formRef.current?.submit();
+            }}
+            className={"cta " + classes["cta"]}
+          />
           <p className={classes["disclaimer"]}>{disclaimer}</p>
         </div>
       </Form>

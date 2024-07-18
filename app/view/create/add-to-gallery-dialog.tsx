@@ -25,7 +25,14 @@ export default function AddToGalleryDialog({ isOpen, setIsOpen }: Props) {
   const [shapeName, setShapeName] = useState("");
 
   return (
-    <Dialog isOpen={isOpen} setIsOpen={setIsOpen} actionText="Add to gallery" width="30em" disclaimer={disclaimer}>
+    <Dialog
+      isOpen={isOpen}
+      setIsOpen={setIsOpen}
+      actionText="Add to gallery"
+      actionIcon="/like-icon.png"
+      width="30em"
+      disclaimer={disclaimer}
+    >
       <h3 style={{ marginBottom: "1rem" }}>Your shape is beautiful!</h3>
       <TextInput
         type={"text"}

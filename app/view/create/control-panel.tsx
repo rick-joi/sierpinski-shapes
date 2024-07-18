@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction } from "react";
 import SierpinskiText from "../shared/sierpinski-shape/sierpinski-text";
 
 import ColorInput from "./color-input";
-import IconButton from "./icon-button";
+import IconButton from "../shared/utilities/icon-button";
 import QuadrantInput, { AllFourQuadrantInputProps, getRotations } from "./quadrant-input";
 import RangeInput from "./range-input";
 
@@ -53,6 +53,7 @@ export default function ControlPanel({
               isDisabled={iterations === 0}
               onClick={() => setIsAnimating((previous) => !previous)}
               style={{ width: "11em" }}
+              className={isAnimating ? "cta" : ""}
             />
           </div>
         </div>

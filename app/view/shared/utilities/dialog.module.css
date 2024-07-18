@@ -21,6 +21,7 @@
   padding-bottom: 0.25rem;
   font-size: large;
   cursor: pointer;
+  margin: 0.3em;
 }
 .standard-dialog-component .header button:hover {
   color: var(--primary-accent-color);
@@ -36,9 +37,7 @@
 .standard-dialog-component .footer {
   text-align: center;
 }
-.standard-dialog-component input[type="submit"] {
-  background-color: var(--primary-accent-color);
-  color: white;
+.standard-dialog-component button.cta {
   padding-left: 4em;
   padding-right: 4em;
 }

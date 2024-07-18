@@ -1,5 +1,5 @@
 import { useState } from "react";
-import IconButton from "./icon-button";
+import IconButton from "../shared/utilities/icon-button";
 import AddToGalleryDialog from "./add-to-gallery-dialog";
 import DownloadButton from "./download-button";
 import { Rotations } from "~/model/shared/rotations";

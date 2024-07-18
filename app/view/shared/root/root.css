@@ -148,11 +148,20 @@ input[type="submit"] {
   cursor: pointer;
 }
 button:hover,
-input[type="button"]:hover,
-input[type="submit"]:hover {
+input[type="button"]:hover {
   color: white;
   background-color: var(--primary-accent-color);
   border-color: var(--primary-accent-color);
+}
+input[type="submit"],
+button.cta {
+  background-color: var(--primary-accent-color);
+  color: white;
+}
+input[type="submit"]:hover,
+button.cta:hover {
+  background-color: var(--secondary-accent-color);
+  color: white;
 }
 button:disabled,
 input[type="button"]:disabled,
@@ -172,7 +181,9 @@ button img {
   /* calculated using https://codepen.io/sosuke/pen/Pjoqqp */
   filter: invert(42%) sepia(64%) saturate(3505%) hue-rotate(163deg) brightness(94%) contrast(99%);
 }
-button:hover img {
+button:hover img,
+button.cta img,
+input[type="submit"] img {
   filter: brightness(0) invert(1);
 }
 
