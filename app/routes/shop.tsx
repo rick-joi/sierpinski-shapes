@@ -2,7 +2,10 @@ export default function Index() {
   return (
     <article>
       <h2>Shop</h2>
-      <p>Coming soon...</p>
+      <p>
+        Coming soon...
+        <span style={{ animation: "fade-in 5s 2s", animationFillMode: "both" }}>if there&rsquo;s interest</span>
+      </p>
       <p>
         Want to buy art prints, t-shirts, stickers, and other merch with your favorite <em>Sierpinski Shape</em>?
       </p>
