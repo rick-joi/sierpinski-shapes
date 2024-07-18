@@ -3,14 +3,17 @@ import { MouseEventHandler } from "react";
 type Props = Readonly<{
   buttonText: string;
   hoverText?: string;
-  iconImage: string;
-  isDisabled: boolean;
+  iconImage?: string;
   onClick: MouseEventHandler<HTMLButtonElement>;
+  isDisabled?: boolean;
   style?: React.CSSProperties;
   className?: string;
 }>;
 
-export default function IconButton({ buttonText, hoverText, iconImage, isDisabled, onClick, style, className }: Props) {
+export default function IconButton({ buttonText, hoverText, iconImage, onClick, isDisabled, style, className }: Props) {
+  //
+  const image = iconImage ? <img src={iconImage} alt={hoverText} /> : null;
+
   return (
     <button
       onClick={onClick}
@@ -19,7 +22,7 @@ export default function IconButton({ buttonText, hoverText, iconImage, isDisable
       className={className}
       title={hoverText}
     >
-      <img src={iconImage} alt={hoverText} />
+      {image}
       {buttonText}
     </button>
   );

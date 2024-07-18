@@ -109,6 +109,9 @@ article {
   margin-bottom: 8rem;
   margin-top: 6rem;
 }
+article * {
+  text-rendering: optimizeLegibility;
+}
 em {
   text-emphasis-style: triangle;
   text-emphasis-color: #f0f0f0;
