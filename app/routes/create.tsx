@@ -89,7 +89,7 @@ export default function Index() {
           isAnimating={isAnimating}
           setIsAnimating={setIsAnimating}
         />
-        <div style={{ position: "relative", top: "25%", width: "100%", textAlign: "center", marginBottom: "12rem" }}>
+        <div style={{ position: "relative", top: "12%", width: "100%", textAlign: "center", marginBottom: "12rem" }}>
           <h2>
             Welcome to <em>sierpinski</em>
             &#8209;<em>shapes</em>.<em>com</em>!
