@@ -5,6 +5,12 @@ import { useLoaderData } from "@remix-run/react";
 import * as RouteUtilities from "~/view/shared/utilities/route-utilities";
 import useWindowSize from "~/view/shared/utilities/use-window-size";
 import SierpinskiShape, { getSizeWithMargins } from "~/view/shared/sierpinski-shape/sierpinski-shape";
+import {
+  DEFAULT_COLOR,
+  DEFAULT_ITERATIONS,
+  DEFAULT_ROTATIONS,
+  MAX_ITERATIONS,
+} from "~/view/shared/sierpinski-shape/sierpinski-utilities";
 
 import { getRotations, useAllFourQuadrantInputProps } from "~/view/create/quadrant-input";
 import useAnimation from "~/view/create/use-animation";
@@ -27,7 +33,7 @@ export default function Index() {
 
   // core control panel state...
   const initialValues = useLoaderData<typeof loader>();
-  const maxIterations = Math.min(8, Math.ceil(Math.log2(size)) - 2);
+  const maxIterations = Math.min(MAX_ITERATIONS, Math.ceil(Math.log2(size)) - 2);
   const [iterations, setIterations] = useState(initialValues.iterations);
   if (iterations > maxIterations) {
     setIterations(maxIterations);
@@ -59,6 +65,7 @@ export default function Index() {
           id={PRIMARY_SVG_ID}
           size={size}
           quadrantsProps={quadrantProps}
+          maxIterations={maxIterations}
           iterations={iterations}
           setIterations={setIterations}
           color={color}
@@ -119,13 +126,13 @@ export async function loader({ request }: LoaderFunctionArgs) {
   //
   const { searchParams } = new URL(request.url);
   const rotations = {
-    topLeft: RouteUtilities.getParameterIntOrNull(searchParams, "tl", 0),
-    topRight: RouteUtilities.getParameterIntOrNull(searchParams, "tr", null),
-    bottomLeft: RouteUtilities.getParameterIntOrNull(searchParams, "bl", 0),
-    bottomRight: RouteUtilities.getParameterIntOrNull(searchParams, "br", 0),
+    topLeft: RouteUtilities.getParameterIntOrNull(searchParams, "tl", DEFAULT_ROTATIONS.topLeft),
+    topRight: RouteUtilities.getParameterIntOrNull(searchParams, "tr", DEFAULT_ROTATIONS.topRight),
+    bottomLeft: RouteUtilities.getParameterIntOrNull(searchParams, "bl", DEFAULT_ROTATIONS.bottomLeft),
+    bottomRight: RouteUtilities.getParameterIntOrNull(searchParams, "br", DEFAULT_ROTATIONS.bottomRight),
   };
-  const iterations = RouteUtilities.getParameterInt(searchParams, "i", 1);
-  const color = searchParams.get("c") ?? "#000000";
+  const iterations = RouteUtilities.getParameterInt(searchParams, "i", DEFAULT_ITERATIONS);
+  const color = searchParams.get("c") ?? DEFAULT_COLOR;
 
   return { rotations, iterations, color };
 }

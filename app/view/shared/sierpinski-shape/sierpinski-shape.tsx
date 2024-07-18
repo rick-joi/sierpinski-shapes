@@ -27,12 +27,15 @@ export default function SierpinskiShape({ id, size, iterations, rotations, color
   for (let i = 1; i <= iterations; i++) {
     stages.push(<StageN stage={i} size={size} rotations={rotations} idPrefix={id} key={i} isHovering={isHovering} />);
   }
+
   const margin = getMargin(size);
   const sizeWithMargins = getSizeWithMargins(size);
   const viewBox = `${-margin} ${-margin} ${sizeWithMargins} ${sizeWithMargins}`;
   const opacity = id.endsWith("-background") ? "10%" : "100%";
+  const border = id === "logo" ? "none" : "1px solid #f8f8f8";
+
   return (
-    <svg width={size} height={size} viewBox={viewBox} style={{ border: "1px solid #f8f8f8", opacity: opacity }} id={id}>
+    <svg width={size} height={size} viewBox={viewBox} style={{ border: border, opacity: opacity }} id={id}>
       <defs>
         <Stage0 size={size} idPrefix={id} key={0} color={color} />
         {stages}

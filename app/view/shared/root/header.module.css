@@ -14,15 +14,15 @@ header a:active {
   color: var(--light-accent-color);
 }
 
-header img {
+header a#logo-link {
   grid-row-start: 0;
   grid-row-end: span 2;
   grid-column-start: 0;
   grid-column-end: 1;
   align-self: center;
-  height: 4rem;
-  margin-top: 0.25rem;
-  margin-bottom: 0.25rem;
+  height: 4.5rem;
+  width: 4.5rem;
+  margin: 0.25rem;
   margin-left: 0.5rem;
 }
 
@@ -105,14 +105,16 @@ nav button.hamburger {
   header {
     display: flex;
   }
-  header img,
+  header a#logo-link,
   header div,
   header nav {
     align-self: center;
   }
-  header img {
+  header a#logo-link {
     flex: 0 0 auto;
     height: 2rem;
+    width: 2rem;
+    margin: 0.25rem;
   }
   header nav {
     flex: 0 0 auto;

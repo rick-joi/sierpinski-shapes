@@ -11,6 +11,7 @@ type Props = Readonly<{
   id: string;
   size: number;
   quadrantsProps: AllFourQuadrantInputProps;
+  maxIterations: number;
   iterations: number;
   color: string;
   setIterations: Dispatch<SetStateAction<number>>;
@@ -21,6 +22,7 @@ export default function TouchableSierpinskiShape({
   size,
   quadrantsProps,
   iterations,
+  maxIterations,
   color,
   setIterations,
 }: Props) {
@@ -111,12 +113,14 @@ export default function TouchableSierpinskiShape({
       <TouchableIterationOverlay
         size={size}
         iterationIncrement={-1}
+        maxIterations={maxIterations}
         iterations={iterations}
         setIterations={setIterations}
       />
       <TouchableIterationOverlay
         size={size}
         iterationIncrement={1}
+        maxIterations={maxIterations}
         iterations={iterations}
         setIterations={setIterations}
       />

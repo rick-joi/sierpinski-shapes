@@ -1,7 +1,9 @@
 import { Link } from "@remix-run/react";
+
 import SierpinskiShape from "../shared/sierpinski-shape/sierpinski-shape";
+import { getCreateShapeUrl } from "../shared/sierpinski-shape/sierpinski-utilities";
+
 import SierpinskiShapeData from "~/model/shared/sierpinski-shape";
-import { getCreateShapeUrl } from "../create/use-history-replace-state";
 
 type Props = Readonly<{
   shape: SierpinskiShapeData;
@@ -25,6 +27,7 @@ export default function GalleryItemCard({ shape }: Props) {
             backgroundColor: "var(--dark-neutral-color)",
             padding: "0.25rem",
             paddingBottom: "0.5rem",
+            marginTop: 0,
           }}
         >
           {shape.name}

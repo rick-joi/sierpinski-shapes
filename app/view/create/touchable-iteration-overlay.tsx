@@ -3,16 +3,23 @@ import { Dispatch, SetStateAction, useState } from "react";
 type Props = Readonly<{
   size: number;
   iterationIncrement: -1 | 1;
+  maxIterations: number;
   iterations: number;
   setIterations: Dispatch<SetStateAction<number>>;
 }>;
 
-export default function TouchableIterationOverlay({ size, iterationIncrement, iterations, setIterations }: Props) {
+export default function TouchableIterationOverlay({
+  size,
+  iterationIncrement,
+  maxIterations,
+  iterations,
+  setIterations,
+}: Props) {
   //
   const [isHoveredOver, setIsHoveredOver] = useState(false);
 
   const WIDTH = 16;
-  const isDisabled = iterationIncrement === -1 ? iterations < 2 : iterations > 7;
+  const isDisabled = iterationIncrement === -1 ? iterations < 2 : iterations > maxIterations - 1;
   const left = iterationIncrement === -1 ? -WIDTH : size;
   const color = isHoveredOver ? (isDisabled ? "#f8f8f8" : "var(--primary-accent-color)") : "#f8f8f8";
   const tallSideBorder = `${WIDTH}px solid ${color}`;
