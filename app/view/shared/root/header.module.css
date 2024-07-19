@@ -3,6 +3,8 @@ header {
   grid-template-columns: 1fr auto;
   background-color: var(--dark-neutral-color);
   color: var(--light-neutral-color);
+  /* box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.3);
+  position: relative; */
 }
 header a,
 header a:visited {
@@ -92,6 +94,7 @@ nav menu li a[aria-current="page"] {
   font-weight: bold;
   color: var(--dark-neutral-color);
   border-bottom-color: white;
+  /* box-shadow: inset 4px 4px 5px rgba(0, 0, 0, 0.3); */
 }
 nav button.hamburger {
   display: none;

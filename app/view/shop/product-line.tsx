@@ -20,6 +20,7 @@ export default function ProductLine({ pluralName, singularName, text, imageNames
         padding: "2.5rem",
         paddingBottom: "0",
         boxShadow: "4px 4px 5px rgba(0, 0, 0, 0.2)",
+        borderRadius: "0.5rem",
       }}
     >
       <div style={{ width: "20rem", marginRight: "2.5rem", marginBottom: "5rem" }}>

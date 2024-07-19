@@ -22,6 +22,7 @@ export default function ProductLineImage({ imageName, singularName, width, top, 
         top: `max(${vwTop}vw, ${top}rem)`,
         left: `max(${vwLeft}vw, ${left}rem)`,
         boxShadow: "4px 4px 5px rgba(0, 0, 0, 0.3)",
+        borderRadius: "0.25rem",
       }}
     />
   );
