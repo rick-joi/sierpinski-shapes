@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction, useId } from "react";
 import ControlWithLabelLayout from "./control-with-label-layout";
 
 type Props = Readonly<{
-  type: "text" | "color" | "email";
+  type: "text" | "email";
   label: string;
   parenthetical?: string;
   name: string;

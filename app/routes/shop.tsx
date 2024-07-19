@@ -1,4 +1,6 @@
 import { Link } from "@remix-run/react";
+import { useState } from "react";
+import BuyDialog from "~/view/shop/buy-dialog";
 import ProductLine from "~/view/shop/product-line";
 
 export default function Index() {
@@ -34,6 +36,9 @@ export default function Index() {
     "mug-purple.jpg",
   ];
   const more: [string, string, string, string] = ["more-pink.jpg", "more-purple.jpg", "more-blue.jpg", "more-ice.jpg"];
+  //
+  const [isBuyDialogOpen, setIsBuyDialogOpen] = useState(false);
+
   return (
     <div style={{ display: "flex", flexDirection: "column", marginBottom: "5rem" }}>
       <div style={{ display: "inline-block", margin: "auto" }}>
@@ -48,38 +53,45 @@ export default function Index() {
           singularName="art print"
           text="Choose from a wide variety of sizes and frame options"
           imageNames={artPrints}
+          setIsBuyDialogOpen={setIsBuyDialogOpen}
         />
         <ProductLine
           pluralName="T-shirts"
           singularName="t-shirt"
           text="You'll look sharp in a one-of-a-kind Sierpinski Shape t-shirt"
           imageNames={tShirts}
+          setIsBuyDialogOpen={setIsBuyDialogOpen}
         />
         <ProductLine
           pluralName={"Pillows"}
           singularName="pillow"
           text={"Unique designs for your unique home"}
           imageNames={pillows}
+          setIsBuyDialogOpen={setIsBuyDialogOpen}
         />
         <ProductLine
           pluralName={"Sportswear"}
           singularName="sportswear"
           text={"Perform at your best — whatever your sport — in Sierpinski Shapes sports apparel"}
           imageNames={sportswear}
+          setIsBuyDialogOpen={setIsBuyDialogOpen}
         />
         <ProductLine
           pluralName={"Mugs"}
           singularName="mug"
           text={"Hot drinks taste better in a Sierpinski Shapes mug"}
           imageNames={mugs}
+          setIsBuyDialogOpen={setIsBuyDialogOpen}
         />
         <ProductLine
           pluralName={"And more..."}
           singularName="favorite"
           text={"Let everyone know you're a Sierpinski Shapes fanatic"}
           imageNames={more}
+          setIsBuyDialogOpen={setIsBuyDialogOpen}
         />
       </div>
+      <BuyDialog isOpen={isBuyDialogOpen} setIsOpen={setIsBuyDialogOpen} />
     </div>
   );
 }

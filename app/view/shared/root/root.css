@@ -102,6 +102,10 @@ p {
   margin-bottom: 2rem;
   white-space: balance;
 }
+dialog p {
+  white-space: pretty;
+  margin-bottom: 1rem;
+}
 article {
   max-width: clamp(320px, 90%, 800px);
   margin: auto;

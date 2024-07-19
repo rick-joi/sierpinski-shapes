@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useId, useState } from "react";
-import ControlWithLabelLayout from "./control-with-label-layout";
-import RangeInputWithoutLabel from "./range-input-without-label";
+import ControlWithLabelLayout from "../shared/utilities/forms/control-with-label-layout";
+import RangeInputWithoutLabel from "../shared/utilities/forms/range-input-without-label";
 import { Rotations } from "~/model/shared/rotations";
 
 export type QuadrantInputProps = Readonly<{

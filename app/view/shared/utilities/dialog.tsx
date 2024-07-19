@@ -10,7 +10,7 @@ type Props = {
   actionText: string;
   actionIcon: string;
   children: React.ReactNode;
-  disclaimer: ReactNode;
+  disclaimer?: ReactNode;
 };
 
 export default function Dialog({ isOpen, setIsOpen, width, actionText, actionIcon, children, disclaimer }: Props) {

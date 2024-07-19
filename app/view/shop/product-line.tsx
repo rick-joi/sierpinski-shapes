@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from "react";
 import IconButton from "../shared/utilities/icon-button";
 import ProductLineImage from "./product-line-image";
 
@@ -6,10 +7,11 @@ type Props = Readonly<{
   singularName: string;
   text: string;
   imageNames: [string, string, string, string];
+  setIsBuyDialogOpen: Dispatch<SetStateAction<boolean>>;
 }>;
 
-export default function ProductLine({ pluralName, singularName, text, imageNames }: Props) {
-  console.log(imageNames);
+export default function ProductLine({ pluralName, singularName, text, imageNames, setIsBuyDialogOpen }: Props) {
+  //
   return (
     <div
       style={{
@@ -28,7 +30,9 @@ export default function ProductLine({ pluralName, singularName, text, imageNames
         <div style={{ whiteSpace: "balance" }}>{text}</div>
         <IconButton
           buttonText={`Get your ${singularName}`}
-          onClick={() => {}}
+          onClick={() => {
+            setIsBuyDialogOpen(true);
+          }}
           className="cta"
           style={{
             marginTop: "2rem",
