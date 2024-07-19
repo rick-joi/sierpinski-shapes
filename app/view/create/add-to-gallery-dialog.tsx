@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import Dialog from "../shared/utilities/dialog";
 import TextInput from "../shared/utilities/forms/text-input";
+import EmailInput from "../shared/utilities/forms/email-input";
 
 type Props = {
   isOpen: boolean;
@@ -28,37 +29,35 @@ export default function AddToGalleryDialog({ isOpen, setIsOpen }: Props) {
     <Dialog
       isOpen={isOpen}
       setIsOpen={setIsOpen}
-      actionText="Add to gallery"
-      actionIcon="/like-icon.png"
+      buttonText="Add to gallery"
+      buttonIcon="/like-icon.png"
+      formAction="/gallery"
       width="30em"
       disclaimer={disclaimer}
     >
       <h3 style={{ marginBottom: "1rem" }}>Your shape is beautiful!</h3>
       <TextInput
-        type={"text"}
         label={"Shape name"}
         parenthetical={"(it’s more fun if you name it)"}
-        name="shape-name"
         placeholder="untitled"
         value={shapeName}
         setValue={setShapeName}
+        submitName="shape-name"
       />
       <TextInput
-        type={"text"}
         label={"Your name"}
         parenthetical={"(it’s more fun if you claim it)"}
-        name={"your-name"}
         placeholder="anonymous"
         value={name}
         setValue={setName}
+        submitName={"your-name"}
       />
-      <TextInput
-        type={"email"}
+      <EmailInput
         label={"Your email address"}
         parenthetical={"(see below)"}
-        name={"your-email-address"}
         value={email}
         setValue={setEmail}
+        submitName={"your-email-address"}
       />
     </Dialog>
   );

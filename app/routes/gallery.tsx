@@ -2,7 +2,7 @@ import { getMeta } from "~/view/shared/utilities/route-utilities";
 import GalleryItemCard from "~/view/gallery/gallery-item-card";
 import Gallery from "~/model/gallery/gallery";
 import { Link, useLoaderData } from "@remix-run/react";
-import * as RemixUtils from "~/model/shared/remix-utils";
+import * as FormUtils from "~/view/shared/utilities/forms/form-utils";
 import { redirectWithMessage } from "~/view/shared/utilities/message-banner";
 import { ActionFunctionArgs } from "@remix-run/node";
 
@@ -44,9 +44,9 @@ export async function action({ request }: ActionFunctionArgs) {
   //
   try {
     const formData = await request.formData();
-    const shapeName = RemixUtils.getFormString(formData, "shape-name", "“untitled”");
-    const name = RemixUtils.getFormString(formData, "your-name", "“anonymous”");
-    const email = RemixUtils.getFormString(formData, "your-email-address", "");
+    const shapeName = FormUtils.getFormString(formData, "shape-name", "“untitled”");
+    const name = FormUtils.getFormString(formData, "your-name", "“anonymous”");
+    const email = FormUtils.getFormString(formData, "your-email-address", "");
 
     throw Error(
       `${shapeName} curated by ${name} ${

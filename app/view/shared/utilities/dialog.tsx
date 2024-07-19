@@ -7,13 +7,23 @@ type Props = {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   width: string;
-  actionText: string;
-  actionIcon: string;
+  buttonText: string;
+  buttonIcon: string;
+  formAction: string;
   children: React.ReactNode;
   disclaimer?: ReactNode;
 };
 
-export default function Dialog({ isOpen, setIsOpen, width, actionText, actionIcon, children, disclaimer }: Props) {
+export default function Dialog({
+  isOpen,
+  setIsOpen,
+  width,
+  buttonText,
+  buttonIcon,
+  formAction,
+  children,
+  disclaimer,
+}: Props) {
   //
   const dialogRef = useRef<HTMLDialogElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
@@ -32,22 +42,24 @@ export default function Dialog({ isOpen, setIsOpen, width, actionText, actionIco
       ref={dialogRef}
       className={classes["standard-dialog-component"]}
       onClose={() => setIsOpen(false)}
-      style={{ width: width, boxShadow: "4px 4px 5px rgba(0, 0, 0, 0.3)" }}
+      style={{ width: width, boxShadow: "4px 4px 5px rgba(0, 0, 0, 0.3)", position: "relative" }}
     >
       <div className={classes["header"]}>
         <button onClick={() => setIsOpen(false)} title="Cancel">
           X
         </button>
       </div>
-      <Form method="post" action="/gallery" ref={formRef}>
+      <Form method="post" action={formAction} ref={formRef}>
         <div className={classes["body"]}>{children}</div>
         <div className={classes["footer"]}>
           <IconButton
-            buttonText={actionText}
-            iconImage={actionIcon}
+            buttonText={buttonText}
+            iconImage={buttonIcon}
             isDisabled={false}
             onClick={() => {
-              formRef.current?.submit();
+              if (formRef.current?.checkValidity()) {
+                formRef.current?.submit();
+              }
             }}
             className={"cta " + classes["cta"]}
           />

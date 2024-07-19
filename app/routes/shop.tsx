@@ -1,6 +1,10 @@
+import { ActionFunctionArgs } from "@remix-run/node";
 import { Link } from "@remix-run/react";
 import { useState } from "react";
-import BuyDialog from "~/view/shop/buy-dialog";
+
+import * as FormUtils from "~/view/shared/utilities/forms/form-utils";
+import { redirectWithMessage } from "~/view/shared/utilities/message-banner";
+import ExpressInterestDialog from "~/view/shop/express-interest-dialog";
 import ProductLine from "~/view/shop/product-line";
 
 export default function Index() {
@@ -91,7 +95,23 @@ export default function Index() {
           setIsBuyDialogOpen={setIsBuyDialogOpen}
         />
       </div>
-      <BuyDialog isOpen={isBuyDialogOpen} setIsOpen={setIsBuyDialogOpen} />
+      <ExpressInterestDialog isOpen={isBuyDialogOpen} setIsOpen={setIsBuyDialogOpen} />
     </div>
   );
+}
+
+export async function action({ request }: ActionFunctionArgs) {
+  //
+  try {
+    const formData = await request.formData();
+    const emailAddress = FormUtils.getFormString(formData, "email-address", "“untitled”");
+    console.log(`Shop interest expressed by ${emailAddress}`);
+
+    throw Error("If you really want the shop to exist and you know Rick, let him know directly");
+    //
+  } catch (error) {
+    console.error(error);
+    const message = error instanceof Error ? error.message : JSON.stringify(error);
+    return redirectWithMessage(`/shop`, `Expressing interest in shop failed — ${message}`);
+  }
 }
