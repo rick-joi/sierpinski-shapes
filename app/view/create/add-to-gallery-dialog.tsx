@@ -1,7 +1,8 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import Dialog from "../_shared/utilities/dialog";
-import TextInput from "../_shared/utilities/forms/text-input";
-import EmailInput from "../_shared/utilities/forms/email-input";
+
+import Dialog from "../_shared/miscellaneous/dialog";
+import TextInput from "../_shared/forms/text-input";
+import EmailInput from "../_shared/forms/email-input";
 
 type Props = {
   isOpen: boolean;

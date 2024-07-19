@@ -8,8 +8,10 @@ import classes from "./header.module.css";
 import { getCreateShapeUrl } from "../sierpinski-shape/sierpinski-utilities";
 
 // inpsired by: https://dev.to/devggaurav/let-s-build-a-responsive-navbar-and-hamburger-menu-using-html-css-and-javascript-4gci
-export function Header() {
+export default function Header() {
+  //
   const rotations = getRandomRotations();
+
   return (
     <header>
       <a href={getCreateShapeUrl(rotations, 7)} id={classes["logo-link"]}>

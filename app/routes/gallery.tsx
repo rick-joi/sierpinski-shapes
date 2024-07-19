@@ -1,10 +1,13 @@
-import { getMeta } from "~/view/_shared/utilities/route-utilities";
-import GalleryItemCard from "~/view/gallery/gallery-item-card";
-import Gallery from "~/model/gallery/gallery";
 import { Link, useLoaderData } from "@remix-run/react";
-import * as FormUtils from "~/view/_shared/utilities/forms/form-utils";
-import { redirectWithMessage } from "~/view/_shared/utilities/message-banner";
 import { ActionFunctionArgs } from "@remix-run/node";
+
+import { getMeta } from "~/view/_shared/miscellaneous/route-utilities";
+import * as FormUtils from "~/view/_shared/forms/form-utils";
+import { redirectWithMessage } from "~/view/_shared/root/message-banner";
+
+import GalleryItemCard from "~/view/gallery/gallery-item-card";
+
+import Gallery from "~/model/gallery/gallery";
 
 export const meta = getMeta("Gallery", "View Sierpinski Shapes created by others!");
 
