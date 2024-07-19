@@ -14,6 +14,7 @@ export default function TouchableRotationOverlay({ top, left, size, setRotation,
     <button
       style={{
         background: "transparent",
+        boxShadow: "none",
         border: "none",
         position: "absolute",
         top: top,

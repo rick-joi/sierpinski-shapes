@@ -12,7 +12,7 @@ export function Header() {
   const rotations = getRandomRotations();
   return (
     <header>
-      <a href={getCreateShapeUrl(rotations, 5)} id={classes["logo-link"]}>
+      <a href={getCreateShapeUrl(rotations, 7)} id={classes["logo-link"]}>
         <SierpinskiShape id={"logo"} size={64} iterations={5} rotations={rotations} color={"#ffffff"} />
       </a>
       <div>

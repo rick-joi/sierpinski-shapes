@@ -18,6 +18,12 @@ export default class Gallery {
     galleryItems.push(new SierpinskiShape(11, "In my heart is a Christmas tree farm", 0, null, 14, 352, "#218e1f"));
     galleryItems.push(new SierpinskiShape(12, "Let's play jacks", 44, 180, null, 306, "#f490bb"));
     galleryItems.push(new SierpinskiShape(13, "Can you see the hidden face?", 39, null, 209, 122, "#000000"));
+    galleryItems.push(new SierpinskiShape(14, "Deoxyribonucleic acid", 173, 171, 333, null, "#555555"));
+    galleryItems.push(new SierpinskiShape(15, "Who's shell is this?", 254, 343, 27, null, "#e16c2d"));
+    galleryItems.push(new SierpinskiShape(16, "Snow angel", 337, 27, null, 175, "#9b8c8c"));
+    galleryItems.push(new SierpinskiShape(17, "In the crook of the old oak tree", 335, null, 35, 194, "#583f13"));
+    galleryItems.push(new SierpinskiShape(18, "Broccoli", 38, 345, null, 311, "#2a7a33"));
+    galleryItems.push(new SierpinskiShape(19, "Lightning", 320, 176, 354, null, "#f5e105"));
     shuffle(galleryItems);
     return galleryItems.slice(0, 12);
   }

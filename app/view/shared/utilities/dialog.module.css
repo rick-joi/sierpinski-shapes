@@ -1,8 +1,8 @@
 .standard-dialog-component {
   border-radius: 1rem;
-  border-width: 1px;
-  border-color: black;
+  border-width: 0;
   margin: auto;
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.3);
 }
 .standard-dialog-component::backdrop {
   background-color: rgba(0, 0, 0, 0.5);

@@ -31,6 +31,7 @@ export default function TouchableIterationOverlay({
       className="non-touch-screen-only"
       style={{
         background: "transparent",
+        boxShadow: "none",
         borderBottom: `${size / 2}px solid transparent`,
         borderTop: `${size / 2}px solid transparent`,
         borderLeft: borderLeft,
