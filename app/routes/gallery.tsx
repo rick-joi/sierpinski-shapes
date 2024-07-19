@@ -1,4 +1,4 @@
-import { Link, useLoaderData } from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 import { ActionFunctionArgs } from "@remix-run/node";
 
 import { getMeta } from "~/view/_shared/miscellaneous/route-utilities";
@@ -11,31 +11,32 @@ import Gallery from "~/model/gallery/gallery";
 
 export const meta = getMeta("Gallery", "View Sierpinski Shapes created by others!");
 
-export default function Index() {
+export default function GalleryRoute() {
   //
   const galleryShapes = useLoaderData<typeof loader>();
+
   return (
-    <>
+    <div>
       <p style={{ textAlign: "center" }}>
         There are over 16 billion Sierpinski&nbsp;Shapes!&nbsp;🫨 &nbsp; &nbsp; Here&nbsp;are&nbsp;some&nbsp;favorites...
       </p>
-      <p style={{ textAlign: "center" }}>
+      {/* <p style={{ textAlign: "center" }}>
         sort by:
         <span> &nbsp; </span>
-        <Link to=".">yours</Link>
+        <Link to=".">yours</Link> -- add this one after they like or create one, and default to this as the primary search
         <span> &nbsp;|&nbsp; </span>
         <Link to=".">liked</Link>
         <span> &nbsp;|&nbsp; </span>
         <Link to=".">recent</Link>
         <span> &nbsp;|&nbsp; </span>
         <Link to=".">random</Link>
-      </p>
+      </p> */}
       <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", justifyContent: "center" }}>
         {galleryShapes.map((shape) => (
           <GalleryItemCard key={shape.id} shape={shape} />
         ))}
       </div>
-    </>
+    </div>
   );
 }
 

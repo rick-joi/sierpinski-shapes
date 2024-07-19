@@ -1,4 +1,4 @@
-export default function Index() {
+export default function PrivacyRoute() {
   return (
     <article>
       <h2>Privacy</h2>

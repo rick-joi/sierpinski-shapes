@@ -8,7 +8,7 @@ import { redirectWithMessage } from "~/view/_shared/root/message-banner";
 import ExpressInterestDialog from "~/view/shop/express-interest-dialog";
 import ProductLine from "~/view/shop/product-line";
 
-export default function Index() {
+export default function ShopRoute() {
   //
   const artPrints: [string, string, string, string] = [
     "frame-yellow.jpg",

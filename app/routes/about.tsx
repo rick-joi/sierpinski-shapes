@@ -1,4 +1,4 @@
-export default function Index() {
+export default function AboutRoute() {
   return (
     <article>
       <h1 style={{ marginTop: "3rem" }}>

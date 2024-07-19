@@ -21,7 +21,7 @@ import ControlPanel from "~/view/create/control-panel";
 
 export const meta = RouteUtilities.getMeta("Create", "Create your own Sierpinski Shape!");
 
-export default function Index() {
+export default function CreateRoute() {
   //
   const PRIMARY_SVG_ID = "create";
 
@@ -57,7 +57,6 @@ export default function Index() {
   // update URL when created shape changes...
   useHistoryReplaceState(quadrantProps, iterations, color, isAnimating);
 
-  // TSX...
   return (
     <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", columnGap: "3rem" }}>
       <div style={{ width: size }}>

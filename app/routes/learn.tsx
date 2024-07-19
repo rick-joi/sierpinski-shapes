@@ -1,4 +1,4 @@
-export default function Index() {
+export default function LearnRoute() {
   return (
     <article>
       <p>
@@ -25,7 +25,7 @@ export default function Index() {
         <li>Why is the simple triangle the best simple shape?</li>
         <li>When is Evan Maletsky Day and how do you celebrate it?</li>
       </ul>
-      <h2>Lesson plans for teachers</h2>
+      <h2>Planned lesson plans for teachers</h2>
       <p>Are you a teacher? Do you love Sierpinski Shapes? Help us write lesson plans...</p>
       <ul>
         <li>Kindergarden</li>

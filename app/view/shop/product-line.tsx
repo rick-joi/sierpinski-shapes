@@ -17,9 +17,9 @@ export default function ProductLine({ pluralName, singularName, text, imageNames
       style={{
         display: "flex",
         flexWrap: "wrap",
-        margin: "2.5rem",
+        margin: "2rem",
+        padding: "2rem",
         backgroundColor: "#f5f5f5",
-        padding: "2.5rem",
         paddingBottom: "0",
         boxShadow: "4px 4px 5px rgba(0, 0, 0, 0.2)",
         borderRadius: "0.5rem",

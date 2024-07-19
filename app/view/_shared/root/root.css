@@ -37,7 +37,7 @@ a:active {
 }
 
 main {
-  padding: 0;
+  padding: 1rem;
   height: max-content;
   background-color: white;
 }
@@ -93,9 +93,6 @@ h2 {
 }
 h3 {
   margin-top: 2rem;
-}
-main {
-  padding: 1rem;
 }
 p {
   margin-top: 1rem;

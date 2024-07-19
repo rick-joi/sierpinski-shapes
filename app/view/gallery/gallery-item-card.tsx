@@ -4,49 +4,60 @@ import SierpinskiShape from "../_shared/sierpinski-shape/sierpinski-shape";
 import { getCreateShapeUrl } from "../_shared/sierpinski-shape/sierpinski-utilities";
 
 import SierpinskiShapeData from "~/model/_shared/sierpinski-shape";
+import rgbToGrayScale from "../_shared/miscellaneous/grayscale";
 
 type Props = Readonly<{
   shape: SierpinskiShapeData;
 }>;
 
 export default function GalleryItemCard({ shape }: Props) {
+  //
   const url = getCreateShapeUrl(shape.rotations, 7, shape.color);
+  const backgroundColor = (rgbToGrayScale(shape.color) ?? 0) > 192 ? "black" : "white";
+
   return (
     <div
       style={{
-        border: "4px solid var(--dark-neutral-color)",
-        borderRadius: "0.5rem",
         textAlign: "center",
-        boxShadow: "4px 4px 6px rgba(0, 0, 0, 0.3)",
         width: "313px",
+        padding: "0.5rem",
+        backgroundColor: "#f5f5f5",
+        paddingBottom: "0",
+        boxShadow: "4px 4px 5px rgba(0, 0, 0, 0.2)",
+        borderRadius: "0.5rem",
       }}
+      key={shape.id.toString()}
     >
-      <Link to={url}>
-        <h3
-          style={{
-            fontSize: "1.1rem",
-            color: "white",
-            backgroundColor: "var(--dark-neutral-color)",
-            padding: "0.25rem",
-            paddingBottom: "0.5rem",
-            marginTop: 0,
-          }}
-        >
-          {shape.name}
-        </h3>
-        <SierpinskiShape
-          id={"gallery-shape-" + shape.id.toString()}
-          size={313}
-          iterations={7}
-          rotations={shape.rotations}
-          color={shape.color}
-        />
-      </Link>
-      <div style={{ padding: "1rem 0", borderTop: "4px solid var(--dark-neutral-color)" }}>
-        <Link to="." onClick={() => alert("not implemented yet")}>
-          ♡ like <span style={{ fontSize: "smaller" }}>(1)</span>
-        </Link>{" "}
-        &nbsp; | &nbsp; <Link to="/shop">$ buy</Link>
+      <div
+        style={{
+          backgroundColor: backgroundColor,
+          borderRadius: "0.25rem",
+          boxShadow: "2px 2px 3px rgba(0, 0, 0, 0.1)",
+        }}
+      >
+        <Link to={url}>
+          <SierpinskiShape
+            id={"gallery-shape-" + shape.id.toString()}
+            size={313}
+            iterations={7}
+            rotations={shape.rotations}
+            color={shape.color}
+          />
+        </Link>
+      </div>
+      <div
+        style={{
+          textAlign: "right",
+          paddingTop: "1rem",
+          paddingBottom: "2rem",
+          color: "#333333",
+          textRendering: "optimizeLegibility",
+        }}
+      >
+        <div style={{ fontSize: "small" }}>
+          <span style={{ fontWeight: "bold", fontStyle: "italic" }}>{shape.name}</span>, 2024
+        </div>
+        <div style={{ fontSize: "x-small" }}>curated by Rick Joi</div>
       </div>
     </div>
   );
