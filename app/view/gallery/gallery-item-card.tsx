@@ -18,6 +18,7 @@ export default function GalleryItemCard({ shape }: Props) {
         borderRadius: "0.5rem",
         textAlign: "center",
         boxShadow: "4px 4px 6px rgba(0, 0, 0, 0.3)",
+        width: "313px",
       }}
     >
       <Link to={url}>

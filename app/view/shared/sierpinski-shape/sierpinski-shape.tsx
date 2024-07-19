@@ -35,7 +35,7 @@ export default function SierpinskiShape({ id, size, iterations, rotations, color
   const border = id === "logo" ? "none" : "1px solid #f8f8f8";
 
   return (
-    <svg width={size} height={size} viewBox={viewBox} style={{ border: border, opacity: opacity }} id={id}>
+    <svg viewBox={viewBox} style={{ border: border, opacity: opacity }} id={id}>
       <defs>
         <Stage0 size={size} idPrefix={id} key={0} color={color} />
         {stages}

@@ -107,6 +107,7 @@ nav button.hamburger {
 @media only screen and (max-width: 790px) {
   header {
     display: flex;
+    z-index: 1000;
   }
   header a#logo-link,
   header div,
@@ -119,36 +120,42 @@ nav button.hamburger {
     width: 2rem;
     margin: 0.25rem;
   }
+  svg#logo {
+    height: 1.5rem !important;
+    width: 1.5rem !important;
+  }
   header nav {
     flex: 0 0 auto;
   }
   header div {
     text-align: center;
     flex: 1 1 auto;
+    z-index: 1001;
   }
 
   nav menu {
     position: fixed;
     top: -100%;
-    left: 50%;
-    width: 50%;
+    left: 67%;
+    width: 33%;
     flex-direction: column;
     background-color: var(--dark-neutral-color);
     border-radius: 10px;
     text-align: center;
-    transition: 0.3s;
+    transition: 0.5s;
     box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
     margin-left: 1rem;
     margin-right: 1rem;
+    z-index: 999;
   }
 
   nav menu.active {
-    top: 0;
-    padding-top: 3.5rem;
+    top: 2rem;
+    padding-top: 0.5rem;
   }
 
   nav menu li {
-    margin: 1.5rem 0;
+    margin: 1rem 0;
   }
   nav menu li a {
     font-size: 3vw;
@@ -174,6 +181,7 @@ nav button.hamburger {
     border-width: 0;
     align-self: end;
     padding: 0.5rem;
+    z-index: 1001;
   }
   nav button.hamburger .bar {
     display: block;

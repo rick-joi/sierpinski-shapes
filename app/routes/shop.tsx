@@ -58,7 +58,7 @@ export default function Index() {
         <ProductLine
           pluralName={"Pillows"}
           singularName="pillow"
-          text={"You won't find these at Home Goods"}
+          text={"Unique designs for your unique home"}
           imageNames={pillows}
         />
         <ProductLine

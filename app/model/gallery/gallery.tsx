@@ -24,6 +24,7 @@ export default class Gallery {
     galleryItems.push(new SierpinskiShape(17, "In the crook of the old oak tree", 335, null, 35, 194, "#583f13"));
     galleryItems.push(new SierpinskiShape(18, "Broccoli", 38, 345, null, 311, "#2a7a33"));
     galleryItems.push(new SierpinskiShape(19, "Lightning", 320, 176, 354, null, "#f5e105"));
+    galleryItems.push(new SierpinskiShape(19, "The eternal flame", 15, null, 15, 195, "#ac2020"));
     shuffle(galleryItems);
     return galleryItems.slice(0, 12);
   }
