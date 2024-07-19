@@ -74,7 +74,7 @@ nav menu li {
 nav menu li a {
   font-size: 1.5rem;
   padding: 0.2rem 1.5rem;
-  padding-bottom: 0.025;
+  padding-bottom: 0;
   display: inline-block;
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
@@ -93,7 +93,10 @@ nav menu li a[aria-current="page"] {
   background-color: white;
   font-weight: bold;
   color: var(--dark-neutral-color);
+  border-color: var(--dark-neutral-color);
   border-bottom-color: white;
+  text-decoration: none;
+  cursor: default;
   /* box-shadow: inset 4px 4px 5px rgba(0, 0, 0, 0.3); */
 }
 nav button.hamburger {
@@ -167,9 +170,7 @@ nav button.hamburger {
     border-bottom-color: var(--dark-neutral-color);
   }
   nav menu li a:hover,
-  nav menu li a:active,
-  nav menu li a[aria-current="page"]:hover,
-  nav menu li a[aria-current="page"]:active {
+  nav menu li a:active {
     border-color: var(--primary-accent-color);
   }
 

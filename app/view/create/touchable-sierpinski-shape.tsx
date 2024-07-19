@@ -131,5 +131,5 @@ export default function TouchableSierpinskiShape({
 function calculateBackgroundColor(color: string) {
   //
   const grayscale = rgbToGrayScale(color);
-  return grayscale && grayscale > 185 ? "var(--dark-neutral-color)" : "#ffffff";
+  return grayscale && grayscale > 192 ? "black" : "white";
 }
