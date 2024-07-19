@@ -2,8 +2,8 @@ import { ActionFunctionArgs } from "@remix-run/node";
 import { Link } from "@remix-run/react";
 import { useState } from "react";
 
-import * as FormUtils from "~/view/shared/utilities/forms/form-utils";
-import { redirectWithMessage } from "~/view/shared/utilities/message-banner";
+import * as FormUtils from "~/view/_shared/utilities/forms/form-utils";
+import { redirectWithMessage } from "~/view/_shared/utilities/message-banner";
 import ExpressInterestDialog from "~/view/shop/express-interest-dialog";
 import ProductLine from "~/view/shop/product-line";
 

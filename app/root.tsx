@@ -1,9 +1,10 @@
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
 
-import "~/view/shared/root/root.css";
-import { Footer } from "./view/shared/root/footer";
-import { Header } from "./view/shared/root/header";
-import MessageBanner from "./view/shared/utilities/message-banner";
+import { Footer } from "~/view/_shared/root/footer";
+import { Header } from "~/view/_shared/root/header";
+import MessageBanner from "~/view/_shared/utilities/message-banner";
+
+import "~/view/_shared/root/root.css";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (

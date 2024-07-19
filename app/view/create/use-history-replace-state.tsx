@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { AllFourQuadrantInputProps, getRotations } from "./quadrant-input";
-import { getCreateShapeUrl } from "../shared/sierpinski-shape/sierpinski-utilities";
+import { getCreateShapeUrl } from "../_shared/sierpinski-shape/sierpinski-utilities";
 
 export default function useHistoryReplaceState(
   quadrantProps: AllFourQuadrantInputProps,

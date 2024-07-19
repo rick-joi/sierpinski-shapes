@@ -1,4 +1,4 @@
-import { Rotations } from "~/model/shared/rotations";
+import { Rotations } from "~/model/_shared/rotations";
 
 export const DEFAULT_ROTATIONS: Rotations = {
   topLeft: 0,

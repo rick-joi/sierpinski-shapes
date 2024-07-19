@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
-import Dialog from "../shared/utilities/dialog";
-import ClickVsTapText from "../shared/utilities/click-vs-tap-text";
-import ControlWithLabelLayout from "../shared/utilities/forms/control-with-label-layout";
+import Dialog from "../_shared/utilities/dialog";
+import ClickVsTapText from "../_shared/utilities/click-vs-tap-text";
+import ControlWithLabelLayout from "../_shared/utilities/forms/control-with-label-layout";
 
 type Props = {
   isOpen: boolean;

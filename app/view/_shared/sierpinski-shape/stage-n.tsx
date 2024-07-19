@@ -1,6 +1,6 @@
 import StageNMinus1 from "./stage-n-minus-1";
 import { getStageId } from "./sierpinski-utilities";
-import { Rotations } from "~/model/shared/rotations";
+import { Rotations } from "~/model/_shared/rotations";
 import { IsHovering } from "./use-quadrant-hovering";
 
 type Props = Readonly<{

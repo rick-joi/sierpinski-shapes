@@ -1,11 +1,11 @@
 import { Dispatch, SetStateAction } from "react";
 
-import SierpinskiText from "../shared/sierpinski-shape/sierpinski-text";
+import SierpinskiText from "../_shared/sierpinski-shape/sierpinski-text";
 
-import ColorInput from "../shared/utilities/forms/color-input";
-import IconButton from "../shared/utilities/icon-button";
+import ColorInput from "../_shared/utilities/forms/color-input";
+import IconButton from "../_shared/utilities/icon-button";
 import QuadrantInput, { AllFourQuadrantInputProps, getRotations } from "./quadrant-input";
-import RangeInput from "../shared/utilities/forms/range-input";
+import RangeInput from "../_shared/utilities/forms/range-input";
 
 type Props = Readonly<{
   quadrantProps: AllFourQuadrantInputProps;

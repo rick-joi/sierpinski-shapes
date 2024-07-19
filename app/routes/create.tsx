@@ -2,15 +2,15 @@ import { useState } from "react";
 import { LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 
-import * as RouteUtilities from "~/view/shared/utilities/route-utilities";
-import useWindowSize from "~/view/shared/utilities/use-window-size";
-import SierpinskiShape, { getSizeWithMargins } from "~/view/shared/sierpinski-shape/sierpinski-shape";
+import * as RouteUtilities from "~/view/_shared/utilities/route-utilities";
+import useWindowSize from "~/view/_shared/utilities/use-window-size";
+import SierpinskiShape, { getSizeWithMargins } from "~/view/_shared/sierpinski-shape/sierpinski-shape";
 import {
   DEFAULT_COLOR,
   DEFAULT_ITERATIONS,
   DEFAULT_ROTATIONS,
   MAX_ITERATIONS,
-} from "~/view/shared/sierpinski-shape/sierpinski-utilities";
+} from "~/view/_shared/sierpinski-shape/sierpinski-utilities";
 
 import { getRotations, useAllFourQuadrantInputProps } from "~/view/create/quadrant-input";
 import useAnimation from "~/view/create/use-animation";

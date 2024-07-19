@@ -1,5 +1,5 @@
-import { Rotations } from "~/model/shared/rotations";
-import IconButton from "../shared/utilities/icon-button";
+import { Rotations } from "~/model/_shared/rotations";
+import IconButton from "../_shared/utilities/icon-button";
 
 type ImageFormat = "png" | "svg";
 

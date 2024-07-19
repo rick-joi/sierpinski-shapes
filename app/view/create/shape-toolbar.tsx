@@ -1,8 +1,8 @@
 import { useState } from "react";
-import IconButton from "../shared/utilities/icon-button";
+import IconButton from "../_shared/utilities/icon-button";
 import AddToGalleryDialog from "./add-to-gallery-dialog";
 import DownloadButton from "./download-button";
-import { Rotations } from "~/model/shared/rotations";
+import { Rotations } from "~/model/_shared/rotations";
 import { useNavigate } from "@remix-run/react";
 
 type Props = Readonly<{

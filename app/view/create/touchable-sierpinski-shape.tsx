@@ -1,11 +1,11 @@
 import { Dispatch, SetStateAction, useState, Touch, TouchEvent } from "react";
-import SierpinskiShape from "../shared/sierpinski-shape/sierpinski-shape";
+import SierpinskiShape from "../_shared/sierpinski-shape/sierpinski-shape";
 import TouchableRotationOverlay from "./touchable-rotation-overlay";
 import { AllFourQuadrantInputProps, getRotations } from "./quadrant-input";
 import TouchableHelpMessage from "./touchable-help-message";
-import { useQuadrantHovering } from "../shared/sierpinski-shape/use-quadrant-hovering";
+import { useQuadrantHovering } from "../_shared/sierpinski-shape/use-quadrant-hovering";
 import TouchableIterationOverlay from "./touchable-iteration-overlay";
-import rgbToGrayScale from "../shared/utilities/grayscale";
+import rgbToGrayScale from "../_shared/utilities/grayscale";
 
 type Props = Readonly<{
   id: string;

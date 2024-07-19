@@ -1,9 +1,9 @@
 import { Link } from "@remix-run/react";
 
-import SierpinskiShape from "../shared/sierpinski-shape/sierpinski-shape";
-import { getCreateShapeUrl } from "../shared/sierpinski-shape/sierpinski-utilities";
+import SierpinskiShape from "../_shared/sierpinski-shape/sierpinski-shape";
+import { getCreateShapeUrl } from "../_shared/sierpinski-shape/sierpinski-utilities";
 
-import SierpinskiShapeData from "~/model/shared/sierpinski-shape";
+import SierpinskiShapeData from "~/model/_shared/sierpinski-shape";
 
 type Props = Readonly<{
   shape: SierpinskiShapeData;

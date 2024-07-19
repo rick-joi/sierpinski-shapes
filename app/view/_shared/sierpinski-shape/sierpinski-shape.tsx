@@ -2,7 +2,7 @@ import StageN from "./stage-n";
 import Stage0 from "./stage-0";
 import { IsHovering } from "./use-quadrant-hovering";
 import { getStageId } from "./sierpinski-utilities";
-import { Rotations } from "~/model/shared/rotations";
+import { Rotations } from "~/model/_shared/rotations";
 
 type Props = Readonly<{
   id: string;
