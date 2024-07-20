@@ -6,12 +6,25 @@ type Props = Readonly<{
   size: number;
   hasTapped: boolean;
   hasSwiped: boolean;
+  maxIterations: number;
+  iterations: number;
 }>;
 
-export default function TouchableHelpMessage({ top, left, size, hasTapped, hasSwiped }: Props) {
+export default function TouchableHelpMessage({
+  top,
+  left,
+  size,
+  hasTapped,
+  hasSwiped,
+  maxIterations,
+  iterations,
+}: Props) {
   //
   const topMargin = size / 5;
   const rightMargin = size / 10;
+
+  const swipeMessage = iterations < 5 ? "swipe left" : iterations === maxIterations ? "swipe right" : "swipe";
+
   return (
     <div
       className="touch-screen-only"
@@ -26,7 +39,7 @@ export default function TouchableHelpMessage({ top, left, size, hasTapped, hasSw
       }}
     >
       <div className={hasTapped ? classes["fade-out"] : ""}>☞ tap to rotate triangles</div> <br />
-      <div className={hasSwiped ? classes["fade-out"] : ""}>☞ swipe right to&nbsp;iterate</div>
+      <div className={hasSwiped ? classes["fade-out"] : ""}>☞ {swipeMessage} to&nbsp;iterate</div>
     </div>
   );
 }

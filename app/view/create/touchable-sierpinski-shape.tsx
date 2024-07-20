@@ -52,10 +52,23 @@ export default function TouchableSierpinskiShape({
       // We only want horizontal swipes...
       if (Math.abs(xDiff) > Math.abs(yDiff)) {
         if (xDiff > 0) {
-          setIterations((previous) => Math.max(1, previous - 1));
+          setIterations((previous) => {
+            if (previous > 1) {
+              setHasSwiped(true);
+              return previous - 1;
+            } else {
+              return 1;
+            }
+          });
         } else {
-          setIterations((previous) => previous + 1);
-          setHasSwiped(true);
+          setIterations((previous) => {
+            if (previous < maxIterations) {
+              setHasSwiped(true);
+              return previous + 1;
+            } else {
+              return maxIterations;
+            }
+          });
         }
       }
       firstTouch = undefined;
@@ -81,7 +94,15 @@ export default function TouchableSierpinskiShape({
         color={color}
         isHovering={isHovering}
       />
-      <TouchableHelpMessage size={size / 2} top={0} left={size / 2} hasTapped={hasTapped} hasSwiped={hasSwiped} />
+      <TouchableHelpMessage
+        size={size / 2}
+        top={0}
+        left={size / 2}
+        hasTapped={hasTapped}
+        hasSwiped={hasSwiped}
+        maxIterations={maxIterations}
+        iterations={iterations}
+      />
       <TouchableRotationOverlay
         top={0}
         left={0}
