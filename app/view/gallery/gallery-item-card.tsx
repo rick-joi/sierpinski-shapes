@@ -32,7 +32,7 @@ export default function GalleryItemCard({ shape }: Props) {
       <div
         style={{
           backgroundColor: backgroundColor,
-          borderRadius: "0.25rem",
+          borderRadius: "0.33rem",
           boxShadow: "2px 2px 3px rgba(0, 0, 0, 0.1)",
         }}
       >
