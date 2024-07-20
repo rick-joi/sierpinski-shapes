@@ -1,3 +1,7 @@
+import { getMeta } from "~/view/_shared/miscellaneous/route-utilities";
+
+export const meta = getMeta("About", "Find out the who and why behind sierpinski-shapes.com");
+
 export default function AboutRoute() {
   return (
     <article>

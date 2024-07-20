@@ -5,6 +5,7 @@ import { getCreateShapeUrl } from "../_shared/sierpinski-shape/sierpinski-utilit
 
 import SierpinskiShapeData from "~/model/_shared/sierpinski-shape";
 import rgbToGrayScale from "../_shared/miscellaneous/grayscale";
+import SierpinskiText from "../_shared/sierpinski-shape/sierpinski-text";
 
 type Props = Readonly<{
   shape: SierpinskiShapeData;
@@ -54,8 +55,11 @@ export default function GalleryItemCard({ shape }: Props) {
           textRendering: "optimizeLegibility",
         }}
       >
-        <div style={{ fontSize: "small" }}>
+        <div style={{ fontSize: "small", paddingBottom: "0.25rem" }}>
           <span style={{ fontWeight: "bold", fontStyle: "italic" }}>{shape.name}</span>, 2024
+        </div>
+        <div style={{ fontSize: "x-small" }}>
+          <SierpinskiText rotations={shape.rotations} />
         </div>
         <div style={{ fontSize: "x-small" }}>curated by Rick Joi</div>
       </div>

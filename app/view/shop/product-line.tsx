@@ -6,11 +6,19 @@ type Props = Readonly<{
   pluralName: string;
   singularName: string;
   text: string;
+  startingPrice: number;
   imageNames: [string, string, string, string];
   setIsBuyDialogOpen: Dispatch<SetStateAction<boolean>>;
 }>;
 
-export default function ProductLine({ pluralName, singularName, text, imageNames, setIsBuyDialogOpen }: Props) {
+export default function ProductLine({
+  pluralName,
+  singularName,
+  text,
+  startingPrice,
+  imageNames,
+  setIsBuyDialogOpen,
+}: Props) {
   //
   return (
     <div
@@ -28,6 +36,7 @@ export default function ProductLine({ pluralName, singularName, text, imageNames
       <div style={{ width: "20rem", marginRight: "2.5rem", marginBottom: "5rem" }}>
         <h1 style={{ marginTop: "0rem" }}>{pluralName}</h1>
         <div style={{ whiteSpace: "balance" }}>{text}</div>
+        <div style={{ marginTop: "1rem", fontSize: "smaller" }}>Starting at ${startingPrice.toFixed(2)} + shipping</div>
         <IconButton
           buttonText={`Get your ${singularName}`}
           onClick={() => {

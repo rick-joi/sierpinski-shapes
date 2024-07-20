@@ -2,8 +2,8 @@ import { useLoaderData } from "@remix-run/react";
 import { ActionFunctionArgs } from "@remix-run/node";
 
 import { getMeta } from "~/view/_shared/miscellaneous/route-utilities";
+import { redirectWithMessage } from "~/view/_shared/miscellaneous/redirect-utilities";
 import * as FormUtils from "~/view/_shared/forms/form-utils";
-import { redirectWithMessage } from "~/view/_shared/root/message-banner";
 
 import GalleryItemCard from "~/view/gallery/gallery-item-card";
 

@@ -14,7 +14,7 @@ export default class Gallery {
     galleryItems.push(new SierpinskiShape(7, "Ô Canada", 224, 0, null, 162, "#ff0000"));
     galleryItems.push(new SierpinskiShape(8, "I can’t read your handwriting", 133, null, 171, 326, "#000000"));
     galleryItems.push(new SierpinskiShape(9, "here come the bats again", 0, null, 171, 326, "#000000"));
-    galleryItems.push(new SierpinskiShape(10, "Sierpinski’s starry night", 214, null, 72, 0, "#eac234"));
+    galleryItems.push(new SierpinskiShape(10, "Sierpinski’s starry night", 214, null, 72, 0, "#ebc53d"));
     galleryItems.push(new SierpinskiShape(11, "in my heart is a Christmas tree farm", 0, null, 14, 352, "#218e1f"));
     galleryItems.push(new SierpinskiShape(12, "let’s play jacks", 44, 180, null, 306, "#f490bb"));
     galleryItems.push(new SierpinskiShape(13, "can you see the hidden face?", 39, null, 209, 122, "#000000"));
@@ -23,7 +23,7 @@ export default class Gallery {
     galleryItems.push(new SierpinskiShape(16, "snow angel", 337, 27, null, 175, "#9b8c8c"));
     galleryItems.push(new SierpinskiShape(17, "in the crook of the old oak tree", 335, null, 35, 194, "#583f13"));
     galleryItems.push(new SierpinskiShape(18, "broccoli", 38, 345, null, 311, "#2a7a33"));
-    galleryItems.push(new SierpinskiShape(19, "lightning", 320, 176, 354, null, "#f5e105"));
+    galleryItems.push(new SierpinskiShape(19, "lightning strikes twice", 320, 176, 354, null, "#fffff0"));
     galleryItems.push(new SierpinskiShape(20, "the eternal flame", 15, null, 15, 195, "#ac2020"));
     shuffle(galleryItems);
     return galleryItems.slice(0, 12);

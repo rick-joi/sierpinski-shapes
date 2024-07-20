@@ -2,15 +2,21 @@ import { Rotations } from "~/model/_shared/rotations";
 
 type Props = {
   rotations: Rotations;
-  iterations: number;
-  color: string;
+  iterations?: number;
+  color?: string;
 };
 
 export default function SierpinskiText({ rotations, iterations, color }: Props) {
+  //
+  const iterationPrefix = iterations ? `${iterations} × (` : "";
+  const iterationSuffix = iterations ? ")" : "";
+
   return (
     <span style={{ color: color, cursor: "default" }} title={`color: ${color}`}>
-      {iterations} × (<Rotation rotation={rotations.topLeft} />, <Rotation rotation={rotations.topRight} />,{" "}
-      <Rotation rotation={rotations.bottomLeft} />, <Rotation rotation={rotations.bottomRight} />)
+      {iterationPrefix}
+      <Rotation rotation={rotations.topLeft} />, <Rotation rotation={rotations.topRight} />,{" "}
+      <Rotation rotation={rotations.bottomLeft} />, <Rotation rotation={rotations.bottomRight} />
+      {iterationSuffix}
     </span>
   );
 }

@@ -1,4 +1,4 @@
-import { redirect, useLocation } from "@remix-run/react";
+import { useLocation } from "@remix-run/react";
 import { useEffect, useRef } from "react";
 
 const MESSAGE_BANNER_COOKIE_NAME = "messageBanner";
@@ -11,7 +11,6 @@ export default function MessageBanner() {
   //
   const location = useLocation();
   const messageDiv = useRef<HTMLDivElement>(null);
-  let ignore = false;
 
   useEffect(() => {
     const element = messageDiv.current;
@@ -22,19 +21,17 @@ export default function MessageBanner() {
     if (message) {
       element.innerHTML = message;
       element.style.display = "inline-block";
-      if (!ignore) {
+      setTimeout(() => {
         document.cookie = MESSAGE_BANNER_COOKIE_NAME + "= ; expires = Thu, 01 Jan 1970 00:00:00 GMT; path=/;";
-      }
-    } else if (!ignore) {
+        if (location.pathname !== window.location.pathname) {
+          element.style.opacity = "0";
+        }
+      }, 5000);
+    } else {
       element.innerHTML = "";
       element.style.display = "none";
     }
-    return () => {
-      // This hack is because useEffect() runs twice in development mode
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      ignore = true;
-    };
-  }, [location]);
+  }, [location.pathname]);
   return (
     <div style={{ textAlign: "center" }}>
       <div
@@ -46,6 +43,7 @@ export default function MessageBanner() {
           padding: "0.5rem 1rem",
           marginTop: "0.5rem",
           borderRadius: "0.5rem",
+          transition: "opacity 2s",
         }}
       ></div>
     </div>
@@ -65,14 +63,10 @@ function getCookie(name: string): string | null {
   }
 }
 
-function getCookieHeader(message: string) {
+export function getCookieHeader(message: string) {
   //
   const encodedMessage = encodeURIComponent(message);
   return {
     "Set-Cookie": `${MESSAGE_BANNER_COOKIE_NAME}=${encodedMessage}; Path=/;`,
   };
-}
-
-export function redirectWithMessage(url: string, message: string) {
-  return redirect(url, { headers: getCookieHeader(message) });
 }

@@ -3,7 +3,7 @@ import { Link } from "@remix-run/react";
 import { useState } from "react";
 
 import * as FormUtils from "~/view/_shared/forms/form-utils";
-import { redirectWithMessage } from "~/view/_shared/root/message-banner";
+import { redirectWithMessage } from "~/view/_shared/miscellaneous/redirect-utilities";
 
 import ExpressInterestDialog from "~/view/shop/express-interest-dialog";
 import ProductLine from "~/view/shop/product-line";
@@ -57,6 +57,7 @@ export default function ShopRoute() {
           pluralName="Art prints"
           singularName="art print"
           text="Choose from a wide variety of sizes and frame options"
+          startingPrice={19.95}
           imageNames={artPrints}
           setIsBuyDialogOpen={setIsBuyDialogOpen}
         />
@@ -64,6 +65,7 @@ export default function ShopRoute() {
           pluralName="T-shirts"
           singularName="t-shirt"
           text="You'll look sharp in a one-of-a-kind Sierpinski Shape t-shirt"
+          startingPrice={29.95}
           imageNames={tShirts}
           setIsBuyDialogOpen={setIsBuyDialogOpen}
         />
@@ -71,6 +73,7 @@ export default function ShopRoute() {
           pluralName={"Pillows"}
           singularName="pillow"
           text={"Unique designs for your unique home"}
+          startingPrice={34.95}
           imageNames={pillows}
           setIsBuyDialogOpen={setIsBuyDialogOpen}
         />
@@ -78,6 +81,7 @@ export default function ShopRoute() {
           pluralName={"Sportswear"}
           singularName="sportswear"
           text={"Perform at your best — whatever your sport — in Sierpinski Shapes sports apparel"}
+          startingPrice={29.95}
           imageNames={sportswear}
           setIsBuyDialogOpen={setIsBuyDialogOpen}
         />
@@ -85,6 +89,7 @@ export default function ShopRoute() {
           pluralName={"Mugs"}
           singularName="mug"
           text={"Hot drinks taste better in a Sierpinski Shapes mug"}
+          startingPrice={19.95}
           imageNames={mugs}
           setIsBuyDialogOpen={setIsBuyDialogOpen}
         />
@@ -92,6 +97,7 @@ export default function ShopRoute() {
           pluralName={"And more..."}
           singularName="favorite"
           text={"Let everyone know you're a Sierpinski Shapes fanatic"}
+          startingPrice={9.95}
           imageNames={more}
           setIsBuyDialogOpen={setIsBuyDialogOpen}
         />
@@ -108,11 +114,11 @@ export async function action({ request }: ActionFunctionArgs) {
     const emailAddress = FormUtils.getFormString(formData, "email-address", "“untitled”");
     console.log(`Shop interest expressed by ${emailAddress}`);
 
-    throw Error("If you really want the shop to exist and you know Rick, let him know directly");
+    throw Error("you'll need to let Rick know about your interest directly");
     //
   } catch (error) {
     console.error(error);
     const message = error instanceof Error ? error.message : JSON.stringify(error);
-    return redirectWithMessage(`/shop`, `Expressing interest in shop failed — ${message}`);
+    return redirectWithMessage(`/shop`, `Unable to record email address — ${message}`);
   }
 }

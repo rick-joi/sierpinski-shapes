@@ -1,4 +1,9 @@
+import { getMeta } from "~/view/_shared/miscellaneous/route-utilities";
+
+export const meta = getMeta("Learn", "Learn the math, beauty, and history of Sierpinski Shapes!");
+
 export default function LearnRoute() {
+  //
   return (
     <article>
       <p>

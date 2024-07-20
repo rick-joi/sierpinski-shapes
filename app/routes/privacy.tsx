@@ -1,3 +1,7 @@
+import { getMeta } from "~/view/_shared/miscellaneous/route-utilities";
+
+export const meta = getMeta("Privacy", "The sierpinski-shapes.com privacy policy");
+
 export default function PrivacyRoute() {
   return (
     <article>
