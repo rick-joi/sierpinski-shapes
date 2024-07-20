@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 
-import Dialog from "../_shared/miscellaneous/dialog";
-import ClickVsTapText from "../_shared/miscellaneous/click-vs-tap-text";
+import Dialog from "../_shared/miscellaneous/components/dialog";
+import ClickVsTapText from "../_shared/miscellaneous/components/click-vs-tap-text";
 import ControlWithLabelLayout from "../_shared/forms/control-with-label-layout";
 
 type Props = {

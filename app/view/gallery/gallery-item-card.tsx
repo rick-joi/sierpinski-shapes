@@ -4,7 +4,7 @@ import SierpinskiShape from "../_shared/sierpinski-shape/sierpinski-shape";
 import { getCreateShapeUrl } from "../_shared/sierpinski-shape/sierpinski-utilities";
 
 import SierpinskiShapeData from "~/model/_shared/sierpinski-shape";
-import rgbToGrayScale from "../_shared/miscellaneous/grayscale";
+import rgbToGrayScale from "../_shared/miscellaneous/utilities/grayscale";
 import SierpinskiText from "../_shared/sierpinski-shape/sierpinski-text";
 
 type Props = Readonly<{

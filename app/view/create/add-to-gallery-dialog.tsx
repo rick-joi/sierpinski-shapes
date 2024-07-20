@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useState } from "react";
 
-import Dialog from "../_shared/miscellaneous/dialog";
+import Dialog from "../_shared/miscellaneous/components/dialog";
 import TextInput from "../_shared/forms/text-input";
 import EmailInput from "../_shared/forms/email-input";
 

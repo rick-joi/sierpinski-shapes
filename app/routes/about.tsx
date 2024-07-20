@@ -1,4 +1,4 @@
-import { getMeta } from "~/view/_shared/miscellaneous/route-utilities";
+import { getMeta } from "~/view/_shared/miscellaneous/utilities/route-utilities";
 
 export const meta = getMeta("About", "Find out the who and why behind sierpinski-shapes.com");
 

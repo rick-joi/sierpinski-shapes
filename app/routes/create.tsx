@@ -2,8 +2,8 @@ import { useState } from "react";
 import { LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 
-import * as RouteUtilities from "~/view/_shared/miscellaneous/route-utilities";
-import useWindowSize from "~/view/_shared/miscellaneous/use-window-size";
+import * as RouteUtilities from "~/view/_shared/miscellaneous/utilities/route-utilities";
+import useWindowSize from "~/view/_shared/miscellaneous/hooks/use-window-size";
 import SierpinskiShape, { getSizeWithMargins } from "~/view/_shared/sierpinski-shape/sierpinski-shape";
 import {
   DEFAULT_COLOR,

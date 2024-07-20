@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useId } from "react";
 import ControlWithLabelLayout from "./control-with-label-layout";
-import rgbToGrayScale from "../miscellaneous/grayscale";
+import rgbToGrayScale from "../miscellaneous/utilities/grayscale";
 
 type Props = Readonly<{
   label: string;

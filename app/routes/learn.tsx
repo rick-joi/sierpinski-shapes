@@ -1,4 +1,4 @@
-import { getMeta } from "~/view/_shared/miscellaneous/route-utilities";
+import { getMeta } from "~/view/_shared/miscellaneous/utilities/route-utilities";
 
 export const meta = getMeta("Learn", "Learn the math, beauty, and history of Sierpinski Shapes!");
 

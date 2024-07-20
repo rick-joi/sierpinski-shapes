@@ -3,7 +3,7 @@ import { Link } from "@remix-run/react";
 import { useState } from "react";
 
 import * as FormUtils from "~/view/_shared/forms/form-utils";
-import { redirectWithMessage } from "~/view/_shared/miscellaneous/redirect-utilities";
+import { redirectWithMessage } from "~/view/_shared/miscellaneous/utilities/redirect-utilities";
 
 import ExpressInterestDialog from "~/view/shop/express-interest-dialog";
 import ProductLine from "~/view/shop/product-line";

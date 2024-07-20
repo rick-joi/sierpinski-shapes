@@ -5,7 +5,7 @@ import { AllFourQuadrantInputProps, getRotations } from "./quadrant-input";
 import TouchableHelpMessage from "./touchable-help-message";
 import { useQuadrantHovering } from "../_shared/sierpinski-shape/use-quadrant-hovering";
 import TouchableIterationOverlay from "./touchable-iteration-overlay";
-import rgbToGrayScale from "../_shared/miscellaneous/grayscale";
+import rgbToGrayScale from "../_shared/miscellaneous/utilities/grayscale";
 
 type Props = Readonly<{
   id: string;

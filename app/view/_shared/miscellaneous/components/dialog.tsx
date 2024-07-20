@@ -1,7 +1,7 @@
 import { Dispatch, ReactNode, SetStateAction, useEffect, useRef } from "react";
 import classes from "./dialog.module.css";
 import { Form } from "@remix-run/react";
-import IconButton from "../forms/icon-button";
+import IconButton from "../../forms/icon-button";
 
 type Props = {
   isOpen: boolean;
