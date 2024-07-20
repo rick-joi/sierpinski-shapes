@@ -1,6 +1,8 @@
 import { Rotations } from "~/model/_shared/rotations";
 import IconButton from "../_shared/forms/icon-button";
 
+import classes from "./download-button.module.css";
+
 type ImageFormat = "png" | "svg";
 
 type Props = Readonly<{
@@ -25,6 +27,7 @@ export default function DownloadButton({ svgId, imageFormat, rotations, iteratio
         hoverText={`Download this Sierpinski Shape as an .${imageFormat} image file`}
         isDisabled={isDisabled}
         onClick={buttonOnClick}
+        className={classes["download-button"]}
       />
       {hiddenCanvas}
     </>

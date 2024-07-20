@@ -1,0 +1,6 @@
+@media (max-width: 675px) {
+  /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+  .download-button {
+    display: none;
+  }
+}
