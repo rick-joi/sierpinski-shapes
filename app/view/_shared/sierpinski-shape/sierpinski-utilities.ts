@@ -9,6 +9,7 @@ export const DEFAULT_ROTATIONS: Rotations = {
 export const DEFAULT_ITERATIONS = 1;
 export const MAX_ITERATIONS = 8;
 export const DEFAULT_COLOR = "#000000";
+const DEFAULT_COLOR_SYNONYM = "black";
 
 export function getStageId(stage: number, prefix: string) {
   return `${prefix}Stage${stage}`;
@@ -22,7 +23,7 @@ export function getCreateShapeUrl(rotations: Rotations, iterations: number, colo
   variables.push(formatRotation("tr", rotations.topRight, DEFAULT_ROTATIONS.topRight));
   variables.push(formatRotation("bl", rotations.bottomLeft, DEFAULT_ROTATIONS.bottomLeft));
   variables.push(formatRotation("br", rotations.bottomRight, DEFAULT_ROTATIONS.bottomRight));
-  variables.push(DEFAULT_COLOR === color || undefined === color ? "" : "c=" + encodeURIComponent(color));
+  variables.push(formatColor(color));
   variables = variables.filter((v) => v.length > 0);
 
   return "/create" + (variables.length === 0 ? "" : "?" + variables.join("&"));
@@ -36,5 +37,14 @@ function formatRotation(key: string, rotation: number | null, defaultValue: numb
     return key + "=-";
   } else {
     return key + "=" + Math.round(rotation).toString();
+  }
+}
+
+function formatColor(color: string | undefined) {
+  //
+  if (color === undefined || color === DEFAULT_COLOR || color.toLowerCase() === DEFAULT_COLOR_SYNONYM) {
+    return "";
+  } else {
+    return "c=" + (color.startsWith("#") ? color.slice(1) : color);
   }
 }

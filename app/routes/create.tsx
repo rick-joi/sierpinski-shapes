@@ -131,7 +131,8 @@ export async function loader({ request }: LoaderFunctionArgs) {
     bottomRight: RouteUtilities.getParameterIntOrNull(searchParams, "br", DEFAULT_ROTATIONS.bottomRight),
   };
   const iterations = RouteUtilities.getParameterInt(searchParams, "i", DEFAULT_ITERATIONS);
-  const color = searchParams.get("c") ?? DEFAULT_COLOR;
+  const unhashedColor = searchParams.get("c") ?? DEFAULT_COLOR;
+  const color = unhashedColor.match(/^[0-9a-fA-F]{6}$/) ? "#" + unhashedColor : unhashedColor;
 
   return { rotations, iterations, color };
 }
