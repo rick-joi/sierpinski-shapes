@@ -14,7 +14,7 @@ export default function ProductLineImage({ imageName, singularName, width, top, 
 
   return (
     <img
-      src={`/public/shop/low-res/${imageName}`}
+      src={`/shop/low-res/${imageName}`}
       alt={`Example ${singularName}`}
       style={{
         width: `min(${vwWidth}vw, ${width}rem)`,
