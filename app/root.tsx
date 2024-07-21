@@ -1,4 +1,5 @@
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
+import { useEffect } from "react";
 
 import Footer from "~/view/_shared/root/footer";
 import Header from "~/view/_shared/root/header";
@@ -7,6 +8,7 @@ import MessageBanner from "~/view/_shared/root/message-banner";
 import "~/view/_shared/root/root.css";
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  //
   return (
     <html lang="en">
       <head>
@@ -30,5 +32,17 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  //
+  useEffect(() => {
+    preventOverScroll();
+  }, []);
+
   return <Outlet />;
+}
+
+function preventOverScroll() {
+  //
+  document.addEventListener("touchmove", function (e) {
+    e.preventDefault();
+  });
 }
