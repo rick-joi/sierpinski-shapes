@@ -8,16 +8,28 @@ type Props = {
 
 export default function SierpinskiText({ rotations, iterations, color }: Props) {
   //
+  return (
+    <span style={{ color: color, cursor: "default" }} title={`color: ${color}`}>
+      {getContent(rotations, iterations)}
+    </span>
+  );
+}
+
+function getContent(rotations: Rotations, iterations: number | undefined) {
+  //
+  if (iterations === 0) {
+    return "(base triangle)";
+  }
   const iterationPrefix = iterations ? `${iterations} × (` : "";
   const iterationSuffix = iterations ? ")" : "";
 
   return (
-    <span style={{ color: color, cursor: "default" }} title={`color: ${color}`}>
+    <>
       {iterationPrefix}
       <Rotation rotation={rotations.topLeft} />, <Rotation rotation={rotations.topRight} />,{" "}
       <Rotation rotation={rotations.bottomLeft} />, <Rotation rotation={rotations.bottomRight} />
       {iterationSuffix}
-    </span>
+    </>
   );
 }
 
