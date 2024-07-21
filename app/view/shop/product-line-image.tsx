@@ -7,7 +7,7 @@ type Props = Readonly<{
 }>;
 export default function ProductLineImage({ imageName, singularName, width, top, left }: Props) {
   //
-  const VW_MULTIPLIER = 2;
+  const VW_MULTIPLIER = 2.4;
   const vwWidth = width * VW_MULTIPLIER;
   const vwTop = top * VW_MULTIPLIER;
   const vwLeft = left * VW_MULTIPLIER;
