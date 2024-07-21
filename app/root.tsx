@@ -40,6 +40,7 @@ export default function App() {
   return <Outlet />;
 }
 
+//todo: if this doesn't work, try this: https://github.com/pinadesign/overscroll/blob/master/overscroll.js
 function preventOverScroll() {
   //
   document.addEventListener("touchmove", function (e) {
