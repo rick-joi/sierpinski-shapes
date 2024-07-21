@@ -139,16 +139,16 @@ nav button.hamburger {
   nav menu {
     position: fixed;
     top: -100%;
-    left: 67%;
-    width: 33%;
+    left: 60%;
+    width: 40%;
     flex-direction: column;
     background-color: var(--dark-neutral-color);
     border-radius: 10px;
     text-align: center;
     transition: 0.5s;
     box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin-left: 0rem;
+    margin-right: 0rem;
     z-index: 999;
   }
 
@@ -161,8 +161,8 @@ nav button.hamburger {
     margin: 1rem 0;
   }
   nav menu li a {
-    font-size: 3vw;
-    padding: 0.5rem;
+    font-size: 6w;
+    padding: 0.5rem 2rem;
     display: inline-block;
     border-radius: 0.5rem;
   }
