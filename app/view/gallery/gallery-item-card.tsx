@@ -20,7 +20,7 @@ export default function GalleryItemCard({ shape }: Props) {
     <div
       style={{
         textAlign: "center",
-        width: "313px",
+        width: "336px",
         padding: "var(--space-xs)",
         backgroundColor: "var(--color-gray-lightest)",
         paddingBottom: "0",
