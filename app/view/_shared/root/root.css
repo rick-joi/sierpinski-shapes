@@ -226,6 +226,20 @@ button.cta img,
 input[type="submit"] img {
   filter: brightness(0) invert(1);
 }
+button.transparent {
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+  padding: 0;
+  line-height: 0;
+}
+button.transparent img {
+  position: static;
+  top: auto;
+  height: auto;
+  padding-right: 0;
+  filter: none;
+}
 
 input[type="color"] {
   border-radius: var(--radius-sm);

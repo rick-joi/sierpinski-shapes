@@ -21,17 +21,6 @@ export default function ProductLine({
 }: Props) {
   //
   return (
-    // <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", border: "1px solid green" }}>
-    //   <div style={{ width: "30rem", height: "20rem", backgroundColor: "red" }}>&nbsp;</div>
-    //   <div
-    //     style={{
-    //       width: "30rem",
-    //       height: "20rem",
-    //       backgroundColor: "blue",
-    //       justifySelf: "flex-end",
-    //     }}
-    //   ></div>
-    // </div>
     <div
       style={{
         display: "flex",
@@ -76,11 +65,39 @@ export default function ProductLine({
           marginRight: "var(--space-xs)",
         }}
       >
-        <ProductLineImage imageName={imageNames[0]} singularName={singularName} width={15} top={-2.5} left={-2} />
-        <ProductLineImage imageName={imageNames[1]} singularName={singularName} width={10} top={0} left={-2} />
+        <ProductLineImage
+          imageName={imageNames[0]}
+          singularName={singularName}
+          height={10}
+          width={15}
+          top={-2.5}
+          left={-2}
+        />
+        <ProductLineImage
+          imageName={imageNames[1]}
+          singularName={singularName}
+          height={15}
+          width={10}
+          top={0}
+          left={-2}
+        />
         <br />
-        <ProductLineImage imageName={imageNames[2]} singularName={singularName} width={10} top={-2.5} left={0.25} />
-        <ProductLineImage imageName={imageNames[3]} singularName={singularName} width={15} top={-5} left={0.25} />
+        <ProductLineImage
+          imageName={imageNames[2]}
+          singularName={singularName}
+          height={15}
+          width={10}
+          top={-2.5}
+          left={0.25}
+        />
+        <ProductLineImage
+          imageName={imageNames[3]}
+          singularName={singularName}
+          height={10}
+          width={15}
+          top={-5}
+          left={0.25}
+        />
       </div>
     </div>
   );

@@ -2,3 +2,11 @@
   background-color: rgba(0, 0, 0, 0.5);
   animation: fade 5s ease normal;
 }
+.lightbox {
+  border: none;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  height: 100%;
+  background-color: transparent;
+}
