@@ -45,14 +45,22 @@ export default function ShopRoute() {
   const [isBuyDialogOpen, setIsBuyDialogOpen] = useState(false);
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", marginBottom: "5rem" }}>
+    <div style={{ display: "flex", flexDirection: "column", marginBottom: "var(--space-2xl)" }}>
       <div style={{ display: "inline-block", margin: "auto" }}>
         <p>
           Design your own unique <em>Sierpinski Shape</em> using the <Link to="/create">create page</Link>, and then
           choose any of the products below
         </p>
       </div>
-      <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          columnGap: "var(--space-lg)",
+          rowGap: "var(--space-lg)",
+        }}
+      >
         <ProductLine
           pluralName="Art prints"
           singularName="art print"

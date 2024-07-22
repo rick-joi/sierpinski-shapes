@@ -42,7 +42,7 @@ export default function Dialog({
       ref={dialogRef}
       className={classes["standard-dialog-component"]}
       onClose={() => setIsOpen(false)}
-      style={{ width: width, boxShadow: "4px 4px 5px rgba(0, 0, 0, 0.3)", position: "relative" }}
+      style={{ width: width, boxShadow: "var(--shadow-deep)", position: "relative" }}
     >
       <div className={classes["header"]}>
         <button onClick={() => setIsOpen(false)} title="Cancel">

@@ -31,22 +31,22 @@ export default function ControlPanel({
   return (
     <div>
       <fieldset style={{ border: "none" }}>
-        <div style={{ display: "flex", gap: "1rem" }}>
+        <div style={{ display: "flex", gap: "var(--space-md)" }}>
           <QuadrantInput {...quadrantProps.topLeft} />
           <QuadrantInput {...quadrantProps.topRight} />
         </div>
-        <div style={{ display: "flex", gap: "1rem" }}>
+        <div style={{ display: "flex", gap: "var(--space-md)" }}>
           <QuadrantInput {...quadrantProps.bottomLeft} />
           <QuadrantInput {...quadrantProps.bottomRight} />
         </div>
-        <div style={{ display: "flex", gap: "1rem" }}>
+        <div style={{ display: "flex", gap: "var(--space-md)" }}>
           <div style={{ flexGrow: "1" }}>
             <RangeInput label="Iterations" max={maxIterations} value={iterations} setValue={setIterations} />
           </div>
           <div>
             <ColorInput label={"Color"} color={color} setColor={setColor} />
           </div>
-          <div style={{ alignSelf: "flex-end", paddingBottom: "0.75rem" }}>
+          <div style={{ alignSelf: "flex-end", paddingBottom: "var(--space-sm)" }}>
             <IconButton
               buttonText={isAnimating ? "Pause animation" : "Animate"}
               iconImage={isAnimating ? "/pause-icon.png" : "/play-icon.png"}
@@ -57,7 +57,7 @@ export default function ControlPanel({
             />
           </div>
         </div>
-        <div style={{ color: "gray", fontSize: "smaller" }}>
+        <div style={{ fontSize: "smaller" }}>
           <SierpinskiText rotations={getRotations(quadrantProps)} iterations={iterations} color={color} />
         </div>
       </fieldset>

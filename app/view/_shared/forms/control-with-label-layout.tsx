@@ -12,24 +12,26 @@ export default function ControlWithLabelLayout({ label, parenthetical, isDisable
       style={{
         display: "inline-block",
         width: "100%",
-        marginBottom: "1rem",
+        marginBottom: "var(--space-md)",
       }}
     >
       <label
         htmlFor={id}
         style={{
           fontSize: "small",
-          color: isDisabled ? "lightgray" : undefined,
+          color: isDisabled ? "var(--color-gray-light)" : undefined,
           display: "inline-block",
-          paddingBottom: "0.25rem",
+          paddingBottom: "var(--space-2xs)",
         }}
       >
         {label}
         <span>&nbsp; </span>
-        <span style={{ color: "#999999", whiteSpace: "nowrap" }}>{parenthetical}</span>
+        <span style={{ color: "var(--color-gray)", whiteSpace: "nowrap" }}>{parenthetical}</span>
       </label>
       <br />
-      <div style={{ display: "flex", alignItems: "stretch", alignContent: "stretch", gap: "0.25rem" }}>{children}</div>
+      <div style={{ display: "flex", alignItems: "stretch", alignContent: "stretch", gap: "var(--space-2xs)" }}>
+        {children}
+      </div>
     </div>
   );
 }

@@ -21,22 +21,38 @@ export default function ProductLine({
 }: Props) {
   //
   return (
+    // <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", border: "1px solid green" }}>
+    //   <div style={{ width: "30rem", height: "20rem", backgroundColor: "red" }}>&nbsp;</div>
+    //   <div
+    //     style={{
+    //       width: "30rem",
+    //       height: "20rem",
+    //       backgroundColor: "blue",
+    //       justifySelf: "flex-end",
+    //     }}
+    //   ></div>
+    // </div>
     <div
       style={{
         display: "flex",
         flexWrap: "wrap",
-        margin: "2rem",
-        padding: "2rem",
-        backgroundColor: "#f5f5f5",
+        paddingTop: "min(var(--space-lg), 5vw)",
+        paddingLeft: "min(var(--space-lg), 5vw)",
+        paddingRight: "min(var(--space-lg), 5vw)",
         paddingBottom: "0",
-        boxShadow: "4px 4px 5px rgba(0, 0, 0, 0.2)",
-        borderRadius: "0.5rem",
+        backgroundColor: "var(--color-gray-lightest)",
+        boxShadow: "var(--shadow)",
+        borderRadius: "var(--radius-md)",
+        maxWidth: "70rem",
+        justifyContent: "center",
       }}
     >
-      <div style={{ width: "20rem", marginRight: "2.5rem", marginBottom: "5rem" }}>
+      <div style={{ width: "min(50vw, 20rem)", marginRight: "var(--space-lg)", marginBottom: "var(--space-xl)" }}>
         <h1 style={{ marginTop: "0rem" }}>{pluralName}</h1>
         <div style={{ whiteSpace: "balance" }}>{text}</div>
-        <div style={{ marginTop: "1rem", fontSize: "smaller" }}>Starting at ${startingPrice.toFixed(2)} + shipping</div>
+        <div style={{ marginTop: "var(--space-md)", fontSize: "smaller" }}>
+          Starting at ${startingPrice.toFixed(2)} + shipping
+        </div>
         <IconButton
           buttonText={`Get your ${singularName}`}
           onClick={() => {
@@ -44,20 +60,27 @@ export default function ProductLine({
           }}
           className="cta"
           style={{
-            marginTop: "2rem",
-            paddingLeft: "3rem",
-            paddingRight: "3rem",
-            boxShadow: "4px 4px 5px rgba(0, 0, 0, 0.3)",
+            marginTop: "var(--space-lg)",
+            paddingLeft: "var(--space-lg)",
+            paddingRight: "var(--space-lg)",
+            boxShadow: "var(--shadow)",
             fontSize: "larger",
+            whiteSpace: "nowrap",
           }}
         />
       </div>
-      <div style={{ lineHeight: 0, marginLeft: "2.5rem" }}>
-        <ProductLineImage imageName={imageNames[0]} singularName={singularName} width={15} top={-2.5} left={-2.5} />
-        <ProductLineImage imageName={imageNames[1]} singularName={singularName} width={10} top={0} left={-2.5} />
+      <div
+        style={{
+          lineHeight: 0,
+          marginLeft: "var(--space-lg)",
+          marginRight: "var(--space-xs)",
+        }}
+      >
+        <ProductLineImage imageName={imageNames[0]} singularName={singularName} width={15} top={-2.5} left={-2} />
+        <ProductLineImage imageName={imageNames[1]} singularName={singularName} width={10} top={0} left={-2} />
         <br />
-        <ProductLineImage imageName={imageNames[2]} singularName={singularName} width={10} top={-2.5} left={0} />
-        <ProductLineImage imageName={imageNames[3]} singularName={singularName} width={15} top={-5} left={0} />
+        <ProductLineImage imageName={imageNames[2]} singularName={singularName} width={10} top={-2.5} left={0.25} />
+        <ProductLineImage imageName={imageNames[3]} singularName={singularName} width={15} top={-5} left={0.25} />
       </div>
     </div>
   );

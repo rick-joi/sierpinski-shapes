@@ -8,8 +8,7 @@ export const DEFAULT_ROTATIONS: Rotations = {
 };
 export const DEFAULT_ITERATIONS = 1;
 export const MAX_ITERATIONS = 8;
-export const DEFAULT_COLOR = "#000000";
-const DEFAULT_COLOR_SYNONYM = "black";
+export const DEFAULT_COLOR = "--var(color-black-light)";
 
 export function getStageId(stage: number, prefix: string) {
   return `${prefix}Stage${stage}`;
@@ -42,7 +41,7 @@ function formatRotation(key: string, rotation: number | null, defaultValue: numb
 
 function formatColor(color: string | undefined) {
   //
-  if (color === undefined || color === DEFAULT_COLOR || color.toLowerCase() === DEFAULT_COLOR_SYNONYM) {
+  if (color === undefined || color === DEFAULT_COLOR) {
     return "";
   } else {
     return "c=" + (color.startsWith("#") ? color.slice(1) : color);

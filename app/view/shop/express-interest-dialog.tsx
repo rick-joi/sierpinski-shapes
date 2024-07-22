@@ -21,7 +21,7 @@ export default function ExpressInterestDialog({ isOpen, setIsOpen }: Props) {
       width="30em"
       disclaimer="If enough people express interest, we&rsquo;ll build the shop!"
     >
-      <h1 style={{ marginBottom: "1rem" }}>
+      <h1 style={{ marginBottom: "var(--space-md)" }}>
         Thanks for <ClickVsTapText clickText={"clicking"} tapText={"tapping"} />
       </h1>
       <p>We didn&rsquo;t know whether anyone would 🤔 — so we haven&rsquo;t built the shop yet</p>

@@ -15,7 +15,7 @@ export default function Header() {
   return (
     <header>
       <a href={getCreateShapeUrl(rotations, 7)} id={classes["logo-link"]}>
-        <SierpinskiShape id={"logo"} size={64} iterations={5} rotations={rotations} color={"#ffffff"} />
+        <SierpinskiShape id={"logo"} size={64} iterations={5} rotations={rotations} color={"var(--color-white)"} />
       </a>
       <div>
         welcome, <a href="/my-profile">Friend #243</a> &nbsp;

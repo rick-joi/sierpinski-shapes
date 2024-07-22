@@ -11,7 +11,9 @@ type Props = Readonly<{
 export default function RangeInputWithoutLabel({ max, value, setValue, rangeLabelSuffix, isDisabled, id }: Props) {
   return (
     <>
-      <span style={{ fontSize: "x-small", verticalAlign: "top", color: isDisabled ? "lightgray" : undefined }}>
+      <span
+        style={{ fontSize: "x-small", verticalAlign: "top", color: isDisabled ? "var(--color-gray-light)" : undefined }}
+      >
         0{rangeLabelSuffix}
       </span>
       <input
@@ -25,11 +27,17 @@ export default function RangeInputWithoutLabel({ max, value, setValue, rangeLabe
           verticalAlign: "middle",
           flexGrow: 1,
           width: "100%",
-          minWidth: "2rem",
+          minWidth: "var(--space-lg)",
         }}
         id={id}
       />
-      <span style={{ fontSize: "x-small", verticalAlign: "bottom", color: isDisabled ? "lightgray" : undefined }}>
+      <span
+        style={{
+          fontSize: "x-small",
+          verticalAlign: "bottom",
+          color: isDisabled ? "var(--color-gray-light)" : undefined,
+        }}
+      >
         {max}
         {rangeLabelSuffix}
       </span>

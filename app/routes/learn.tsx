@@ -22,7 +22,7 @@ export default function LearnRoute() {
         <strong>intrigued?</strong>
       </p>
       <h2>Planned articles</h2>
-      <p>Do you love Sierpinsi Shapes? Have something to say about them? Write a guest article!</p>
+      <p>Do you love Sierpinski Shapes? Have something to say about them? Write a guest article!</p>
       <ul>
         <li>What&rsquo;s a Sierpinski Shape?</li>
         <li>Who was Wacław Sierpiński?</li>

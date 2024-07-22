@@ -58,7 +58,7 @@ export default function CreateRoute() {
   useHistoryReplaceState(quadrantProps, iterations, color, isAnimating);
 
   return (
-    <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", columnGap: "3rem" }}>
+    <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", columnGap: "var(--space-xl)" }}>
       <div style={{ width: size }}>
         <TouchableSierpinskiShape
           id={PRIMARY_SVG_ID}
@@ -88,7 +88,15 @@ export default function CreateRoute() {
           isAnimating={isAnimating}
           setIsAnimating={setIsAnimating}
         />
-        <div style={{ position: "relative", top: "12%", width: "100%", textAlign: "center", marginBottom: "12rem" }}>
+        <div
+          style={{
+            position: "relative",
+            top: "12%",
+            width: "100%",
+            textAlign: "center",
+            marginBottom: "var(--space-3xl)",
+          }}
+        >
           <h2>
             Welcome to <em>sierpinski</em>
             &#8209;<em>shapes</em>.<em>com</em>!
@@ -103,7 +111,7 @@ export default function CreateRoute() {
           left: 0,
           width: "100%",
           height: "100%",
-          backgroundColor: "white",
+          backgroundColor: "var(--color-white)",
           zIndex: 500,
           textAlign: "center",
           display: "none",

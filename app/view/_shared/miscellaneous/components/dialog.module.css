@@ -1,8 +1,8 @@
 .standard-dialog-component {
-  border-radius: 1rem;
+  border-radius: var(--radius-xl);
   border-width: 0;
   margin: auto;
-  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-deep);
 }
 .standard-dialog-component::backdrop {
   background-color: rgba(0, 0, 0, 0.5);
@@ -13,26 +13,25 @@
 }
 .standard-dialog-component .header button {
   background: none;
-  border: 1px solid lightgray;
-  color: #777777;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
+  border: 1px solid var(--color-gray-lighter);
+  border-radius: var(--radius-sm);
+  color: var(--color-gray-dark);
+  padding: var(--space-2xs) var(--space-sm);
+  padding-right: 0.65rem;
   font-size: large;
   cursor: pointer;
   margin: 0.3em;
 }
 .standard-dialog-component .header button:hover {
-  color: var(--primary-accent-color);
-  border-color: var(--primary-accent-color);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
 }
 .standard-dialog-component form {
-  padding: 1rem;
+  padding: var(--space-md);
   padding-top: 0;
 }
 .standard-dialog-component .body {
-  padding-bottom: 1rem;
+  padding-bottom: var(--space-md);
 }
 .standard-dialog-component .footer {
   text-align: center;

@@ -14,26 +14,26 @@ type Props = Readonly<{
 export default function GalleryItemCard({ shape }: Props) {
   //
   const url = getCreateShapeUrl(shape.rotations, 7, shape.color);
-  const backgroundColor = (rgbToGrayScale(shape.color) ?? 0) > 192 ? "black" : "white";
+  const backgroundColor = (rgbToGrayScale(shape.color) ?? 0) > 192 ? "var(--color-black)" : "var(--color-white)";
 
   return (
     <div
       style={{
         textAlign: "center",
         width: "313px",
-        padding: "0.5rem",
-        backgroundColor: "#f5f5f5",
+        padding: "var(--space-xs)",
+        backgroundColor: "var(--color-gray-lightest)",
         paddingBottom: "0",
-        boxShadow: "4px 4px 5px rgba(0, 0, 0, 0.2)",
-        borderRadius: "0.5rem",
+        boxShadow: "var(--shadow)",
+        borderRadius: "var(--radius-md)",
       }}
       key={shape.id.toString()}
     >
       <div
         style={{
           backgroundColor: backgroundColor,
-          borderRadius: "0.33rem",
-          boxShadow: "2px 2px 3px rgba(0, 0, 0, 0.1)",
+          borderRadius: "var(--radius-sm)",
+          boxShadow: "var(--shadow-shallow)",
         }}
       >
         <Link to={url}>
@@ -49,13 +49,13 @@ export default function GalleryItemCard({ shape }: Props) {
       <div
         style={{
           textAlign: "right",
-          paddingTop: "1rem",
-          paddingBottom: "2rem",
-          color: "#333333",
+          paddingTop: "var(--space-md)",
+          paddingBottom: "var(--space-lg)",
+          color: "var(--color-gray-dark)",
           textRendering: "optimizeLegibility",
         }}
       >
-        <div style={{ fontSize: "small", paddingBottom: "0.25rem" }}>
+        <div style={{ fontSize: "small", paddingBottom: "var(--space-2xs)" }}>
           <span style={{ fontWeight: "bold", fontStyle: "italic" }}>{shape.name}</span>, 2024
         </div>
         <div style={{ fontSize: "x-small" }}>

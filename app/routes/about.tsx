@@ -5,7 +5,7 @@ export const meta = getMeta("About", "Find out the who and why behind sierpinski
 export default function AboutRoute() {
   return (
     <article>
-      <h1 style={{ marginTop: "3rem" }}>
+      <h1>
         About <em>sierpinski-shapes.com</em>
       </h1>
       <p>

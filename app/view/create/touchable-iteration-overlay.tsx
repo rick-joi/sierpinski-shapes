@@ -21,7 +21,11 @@ export default function TouchableIterationOverlay({
   const WIDTH = 16;
   const isDisabled = iterationIncrement === -1 ? iterations < 2 : iterations > maxIterations - 1;
   const left = iterationIncrement === -1 ? -WIDTH - 1 : size + 1;
-  const color = isHoveredOver ? (isDisabled ? "#f8f8f8" : "var(--primary-accent-color)") : "#f8f8f8";
+  const color = isHoveredOver
+    ? isDisabled
+      ? "var(--color-gray-lightest)"
+      : "var(--color-primary)"
+    : "var(--color-gray-lightest)";
   const tallSideBorder = `${WIDTH}px solid ${color}`;
   const borderLeft = iterationIncrement === -1 ? "none" : tallSideBorder;
   const borderRight = iterationIncrement === -1 ? tallSideBorder : "none";

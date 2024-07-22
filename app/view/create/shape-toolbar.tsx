@@ -19,8 +19,8 @@ export default function ShapeToolbar({ thisSvgId, rotations, iterations, color, 
   const navigate = useNavigate();
 
   return (
-    <div style={{ marginBottom: "1.5rem", marginTop: "0.5rem" }}>
-      <div style={{ display: "flex", gap: "0.5rem" }}>
+    <div style={{ marginBottom: "var(--space-ml)", marginTop: "var(--space-xs)" }}>
+      <div style={{ display: "flex", gap: "var(--space-xs)" }}>
         <IconButton
           buttonText={"Add to gallery"}
           hoverText={"Add this Sierpinski Shape to our gallery, and name if if you'd like"}

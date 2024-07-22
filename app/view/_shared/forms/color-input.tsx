@@ -24,5 +24,5 @@ export default function ColorInput({ label, color, setColor }: Props) {
 
 function calculateBorder(color: string) {
   const grayscale = rgbToGrayScale(color);
-  return grayscale && grayscale > 239 ? "1px solid lightgray" : "none";
+  return grayscale && grayscale > 239 ? "1px solid var(--color-gray-light" : "none";
 }

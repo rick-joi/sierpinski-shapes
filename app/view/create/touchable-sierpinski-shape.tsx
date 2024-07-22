@@ -81,7 +81,7 @@ export default function TouchableSierpinskiShape({
         position: "relative",
         backgroundColor: calculateBackgroundColor(color),
         lineHeight: 0,
-        borderRadius: "0.75rem",
+        borderRadius: "var(--radius-lg)",
       }}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
@@ -152,5 +152,5 @@ export default function TouchableSierpinskiShape({
 function calculateBackgroundColor(color: string) {
   //
   const grayscale = rgbToGrayScale(color);
-  return grayscale && grayscale > 192 ? "black" : "white";
+  return grayscale && grayscale > 192 ? "var(--color-black)" : "var(--color-white)";
 }

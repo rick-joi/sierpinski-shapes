@@ -31,7 +31,7 @@ export default function GalleryRoute() {
         <span> &nbsp;|&nbsp; </span>
         <Link to=".">random</Link>
       </p> */}
-      <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", justifyContent: "center" }}>
+      <div style={{ display: "flex", gap: "var(--space-md)", flexWrap: "wrap", justifyContent: "center" }}>
         {galleryShapes.map((shape) => (
           <GalleryItemCard key={shape.id} shape={shape} />
         ))}

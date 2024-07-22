@@ -36,7 +36,7 @@ export default function AddToGalleryDialog({ isOpen, setIsOpen }: Props) {
       width="30em"
       disclaimer={disclaimer}
     >
-      <h3 style={{ marginBottom: "1rem" }}>Your shape is beautiful!</h3>
+      <h3 style={{ marginBottom: "var(--space-md)" }}>Your shape is beautiful!</h3>
       <TextInput
         label={"Shape name"}
         parenthetical={"(it’s more fun if you name it)"}

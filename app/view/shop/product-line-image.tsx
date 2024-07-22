@@ -7,7 +7,7 @@ type Props = Readonly<{
 }>;
 export default function ProductLineImage({ imageName, singularName, width, top, left }: Props) {
   //
-  const VW_MULTIPLIER = 2.4;
+  const VW_MULTIPLIER = 2;
   const vwWidth = width * VW_MULTIPLIER;
   const vwTop = top * VW_MULTIPLIER;
   const vwLeft = left * VW_MULTIPLIER;
@@ -21,8 +21,8 @@ export default function ProductLineImage({ imageName, singularName, width, top, 
         position: "relative",
         top: `max(${vwTop}vw, ${top}rem)`,
         left: `max(${vwLeft}vw, ${left}rem)`,
-        boxShadow: "4px 4px 5px rgba(0, 0, 0, 0.3)",
-        borderRadius: "0.25rem",
+        boxShadow: "var(--shadow)",
+        borderRadius: "var(--radius-sm)",
       }}
     />
   );

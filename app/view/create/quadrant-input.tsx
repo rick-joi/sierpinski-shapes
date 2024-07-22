@@ -33,7 +33,7 @@ export default function QuadrantInput({ label, setIsDisabled, rotation, isDisabl
             verticalAlign: "middle",
             height: "1rem",
             width: "1rem",
-            marginRight: "0.25rem",
+            marginRight: "var(--space-2xs)",
           }}
         />
         <RangeInputWithoutLabel

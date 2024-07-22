@@ -40,9 +40,9 @@ export default function MessageBanner() {
           display: "none",
           backgroundColor: "orange",
           fontSize: "125%",
-          padding: "0.5rem 1rem",
-          marginTop: "0.5rem",
-          borderRadius: "0.5rem",
+          padding: "var(--space-xs) var(--space-md)",
+          marginTop: "var(--space-xs)",
+          borderRadius: "var(--radius-md)",
           transition: "opacity 2s",
         }}
       ></div>
