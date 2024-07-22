@@ -6,6 +6,9 @@ header {
   grid-template-columns: 1fr auto;
   background-color: var(--color-primary-dark);
   color: var(--color-white);
+  position: sticky;
+  z-index: 1000;
+  top: 0;
   /* box-shadow: var(--shadow-deep);
   position: relative; */
 }
@@ -117,7 +120,8 @@ nav button.hamburger {
   }
   header {
     display: flex;
-    z-index: 1000;
+    box-shadow: var(--shadow-deep);
+    z-index: 100;
   }
   header a#logo-link,
   header div,
@@ -136,7 +140,7 @@ nav button.hamburger {
   header div {
     text-align: center;
     flex: 1 1 auto;
-    z-index: 1001;
+    z-index: 101;
   }
 
   nav menu {
@@ -152,7 +156,7 @@ nav button.hamburger {
     box-shadow: var(--shadow-deep);
     margin-left: 0;
     margin-right: 0;
-    z-index: 999;
+    z-index: 99;
   }
 
   nav menu.active {
@@ -185,7 +189,7 @@ nav button.hamburger {
     border-width: 0;
     align-self: end;
     padding: var(--space-xs);
-    z-index: 1001;
+    z-index: 101;
   }
   nav button.hamburger .bar {
     display: block;

@@ -28,7 +28,7 @@ export default function CreateRoute() {
   // screen math...
   const windowSize = useWindowSize();
   const maxSizeWithMargins = getSizeWithMargins(512);
-  const size = Math.min(maxSizeWithMargins, Math.min(windowSize.width, windowSize.height)); // * 0.9);
+  const size = Math.min(maxSizeWithMargins, Math.min(windowSize.width, windowSize.height) * 0.9);
   const fullScreenSize = Math.min(windowSize.width, windowSize.height);
 
   // core control panel state...
