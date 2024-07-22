@@ -12,7 +12,7 @@ function preventOverScroll() {
   //
   let touch_x: number,
     touch_y: number,
-    obj_x: EventTarget | Element | null, //todo: fix this type mess and all the as's
+    obj_x: EventTarget | Element | null, //todo: fix this type mess and all the as's (getComputedStyle doesn't work)
     obj_y: EventTarget | Element | null, //todo: fix this type mess and all the as's
     speed_x = 0,
     speed_y = 0,
@@ -20,7 +20,7 @@ function preventOverScroll() {
 
   document.addEventListener(
     "touchstart",
-    function (e: TouchEvent) {
+    function (e) {
       clearInterval(scrollanim);
       // Get Touch target
       obj_x = e.target;
@@ -58,13 +58,18 @@ function preventOverScroll() {
       // Clear animation
       clearInterval(scrollanim);
 
-      // Prevent window scrolling
-      e.preventDefault();
-
       // Scroll according to movement
       const touch = e.touches[0];
-      (obj_x as Element).scrollLeft = (obj_x as Element).scrollLeft - (touch.pageX - touch_x);
-      (obj_y as Element).scrollTop = (obj_y as Element).scrollTop - (touch.pageY - touch_y);
+      const xScrollDistance = (obj_x as Element).scrollLeft - (touch.pageX - touch_x);
+      const yScrollDistance = (obj_y as Element).scrollTop - (touch.pageY - touch_y);
+
+      // Prevent window scrolling
+      if (xScrollDistance > yScrollDistance) {
+        e.preventDefault();
+      }
+
+      (obj_x as Element).scrollLeft = xScrollDistance;
+      (obj_y as Element).scrollTop = yScrollDistance;
 
       // Set speed speed
       speed_x = touch.pageX - touch_x;

@@ -5,7 +5,6 @@ import Header from "~/view/_shared/root/header";
 import MessageBanner from "~/view/_shared/root/message-banner";
 
 import "~/view/_shared/root/root.css";
-import usePreventOverscroll from "./view/_shared/miscellaneous/hooks/use-prevent-overscroll";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   //
@@ -39,7 +38,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   //
-  usePreventOverscroll();
+  //usePreventOverscroll();
 
   return <Outlet />;
 }
