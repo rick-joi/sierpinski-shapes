@@ -1,11 +1,11 @@
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
-import { useEffect } from "react";
 
 import Footer from "~/view/_shared/root/footer";
 import Header from "~/view/_shared/root/header";
 import MessageBanner from "~/view/_shared/root/message-banner";
 
 import "~/view/_shared/root/root.css";
+import usePreventOverscroll from "./view/_shared/miscellaneous/hooks/use-prevent-overscroll";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   //
@@ -39,17 +39,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   //
-  useEffect(() => {
-    preventOverScroll();
-  }, []);
+  usePreventOverscroll();
 
   return <Outlet />;
-}
-
-//todo: if this doesn't work, try this: https://github.com/pinadesign/overscroll/blob/master/overscroll.js
-function preventOverScroll() {
-  //
-  document.addEventListener("touchmove", function (e) {
-    e.preventDefault();
-  });
 }

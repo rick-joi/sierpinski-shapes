@@ -8,7 +8,7 @@ export const DEFAULT_ROTATIONS: Rotations = {
 };
 export const DEFAULT_ITERATIONS = 1;
 export const MAX_ITERATIONS = 8;
-export const DEFAULT_COLOR = "--var(color-black-light)";
+export const DEFAULT_COLOR = "#282838";
 
 export function getStageId(stage: number, prefix: string) {
   return `${prefix}Stage${stage}`;
