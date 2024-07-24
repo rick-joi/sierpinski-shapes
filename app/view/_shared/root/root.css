@@ -14,7 +14,7 @@
   --color-gray-lightest: #f8f8f8;
   --color-white: rgba(255, 255, 255, 0.9);
 
-  --shadow-shallow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+  --shadow-shallow: 2px 2px 3px rgba(0, 0, 0, 0.2);
   --shadow: 3px 3px 4px rgba(0, 0, 0, 0.2);
   --shadow-deep: 4px 4px 5px rgba(0, 0, 0, 0.3);
 
