@@ -107,6 +107,7 @@ export default function TouchableSierpinskiShape({
         top={0}
         left={0}
         size={size / 2}
+        isDisabled={quadrantsProps.topLeft.isDisabled}
         setRotation={quadrantsProps.topLeft.setRotation}
         setIsOverQuadrant={setIsHovering.topLeft}
       />
@@ -114,6 +115,7 @@ export default function TouchableSierpinskiShape({
         top={0}
         left={size / 2}
         size={size / 2}
+        isDisabled={quadrantsProps.topRight.isDisabled}
         setRotation={quadrantsProps.topRight.setRotation}
         setIsOverQuadrant={setIsHovering.topRight}
       />
@@ -121,6 +123,7 @@ export default function TouchableSierpinskiShape({
         top={size / 2}
         left={0}
         size={size / 2}
+        isDisabled={quadrantsProps.bottomLeft.isDisabled}
         setRotation={quadrantsProps.bottomLeft.setRotation}
         setIsOverQuadrant={setIsHovering.bottomLeft}
       />
@@ -128,6 +131,7 @@ export default function TouchableSierpinskiShape({
         top={size / 2}
         left={size / 2}
         size={size / 2}
+        isDisabled={quadrantsProps.bottomRight.isDisabled}
         setRotation={quadrantsProps.bottomRight.setRotation}
         setIsOverQuadrant={setIsHovering.bottomRight}
       />

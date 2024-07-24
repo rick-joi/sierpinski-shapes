@@ -4,15 +4,24 @@ type Props = Readonly<{
   top: number;
   left: number;
   size: number;
+  isDisabled: boolean;
   setRotation: Dispatch<SetStateAction<number>>;
   setIsOverQuadrant: Dispatch<SetStateAction<boolean>>;
 }>;
 
-export default function TouchableRotationOverlay({ top, left, size, setRotation, setIsOverQuadrant }: Props) {
+export default function TouchableRotationOverlay({
+  top,
+  left,
+  size,
+  isDisabled,
+  setRotation,
+  setIsOverQuadrant,
+}: Props) {
   //
   return (
     <button
       style={{
+        display: isDisabled ? "none" : "block",
         background: "transparent",
         boxShadow: "none",
         border: "none",
