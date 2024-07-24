@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 
+//todo: figure out why horizontal overscroll is fixed even though this isn't being used any more (because it stopped all scrolling)
 export default function usePreventOverscroll() {
   //
   useEffect(() => {

@@ -13,7 +13,8 @@ export default function useAnimation(
   setTopLeftRotation: React.Dispatch<React.SetStateAction<number>>,
   setTopRightRotation: React.Dispatch<React.SetStateAction<number>>,
   setBottomLeftRotation: React.Dispatch<React.SetStateAction<number>>,
-  setBottomRightRotation: React.Dispatch<React.SetStateAction<number>>
+  setBottomRightRotation: React.Dispatch<React.SetStateAction<number>>,
+  setColor: React.Dispatch<React.SetStateAction<string>>
 ) {
   const [animationValues, setAnimationValues] = useState<AnimationValues>({
     hasLastAnimationCompleted: true,
@@ -21,6 +22,9 @@ export default function useAnimation(
     rotations: [0, 0, 0, 0],
     increments: [-1, 1, 1, -1],
   });
+  const [redDirection, setRedDirection] = useState<1 | -1>(1);
+  const [greenDirection, setGreenDirection] = useState<1 | -1>(1);
+  const [blueDirection, setBlueDirection] = useState<1 | -1>(1);
 
   useEffect(() => {
     if (isAnimating && animationValues.hasLastAnimationCompleted) {
@@ -39,6 +43,17 @@ export default function useAnimation(
       setTopRightRotation((previous) => (360 + previous + animationValues.increments[1]) % 360);
       setBottomLeftRotation((previous) => (360 + previous + animationValues.increments[2]) % 360);
       setBottomRightRotation((previous) => (360 + previous + animationValues.increments[3]) % 360);
+      setColor((previous) =>
+        getNextColor(
+          previous,
+          redDirection,
+          setRedDirection,
+          greenDirection,
+          setGreenDirection,
+          blueDirection,
+          setBlueDirection
+        )
+      );
       setTimeout(() => {
         setAnimationValues((previous) => ({
           hasLastAnimationCompleted: true,
@@ -61,6 +76,13 @@ export default function useAnimation(
     setTopRightRotation,
     setBottomLeftRotation,
     setBottomRightRotation,
+    setColor,
+    redDirection,
+    setRedDirection,
+    greenDirection,
+    setGreenDirection,
+    blueDirection,
+    setBlueDirection,
   ]);
 }
 
@@ -73,4 +95,45 @@ function getNextIncrement(counter: number, previousIncrement: number) {
   } else {
     return previousIncrement;
   }
+}
+
+function getNextColor(
+  previous: string,
+  redDirection: 1 | -1,
+  setRedDirection: React.Dispatch<React.SetStateAction<1 | -1>>,
+  greenDirection: 1 | -1,
+  setGreenDirection: React.Dispatch<React.SetStateAction<1 | -1>>,
+  blueDirection: 1 | -1,
+  setBlueDirection: React.Dispatch<React.SetStateAction<1 | -1>>
+) {
+  //
+  const red = getNextColorComponent(previous, 1, 3, redDirection, setRedDirection);
+  const green = getNextColorComponent(previous, 3, 5, greenDirection, setGreenDirection);
+  const blue = getNextColorComponent(previous, 5, 7, blueDirection, setBlueDirection);
+
+  return "#" + red + green + blue;
+}
+
+function getNextColorComponent(
+  previousFullColor: string,
+  startIndex: number,
+  endIndex: number,
+  colorDirection: 1 | -1,
+  setColorDirection: React.Dispatch<React.SetStateAction<1 | -1>>
+): string {
+  //
+  const INCREMENT = 1;
+  const previousInt = parseInt(previousFullColor.substring(startIndex, endIndex), 16);
+  let nextInt = previousInt + Math.round(Math.random() * INCREMENT * colorDirection);
+
+  // 192 prevents background going to black
+  if (nextInt >= 128 - INCREMENT) {
+    setColorDirection(-1);
+    nextInt = 128 - INCREMENT;
+  } else if (nextInt <= INCREMENT) {
+    setColorDirection(1);
+    nextInt = INCREMENT;
+  }
+
+  return nextInt.toString(16).padStart(2, "0");
 }

@@ -51,7 +51,8 @@ export default function CreateRoute() {
     quadrantProps.topLeft.setRotation,
     quadrantProps.topRight.setRotation,
     quadrantProps.bottomLeft.setRotation,
-    quadrantProps.bottomRight.setRotation
+    quadrantProps.bottomRight.setRotation,
+    setColor
   );
 
   // update URL when created shape changes...
