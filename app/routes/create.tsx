@@ -102,7 +102,9 @@ export default function CreateRoute() {
             Welcome to <em>sierpinski</em>
             &#8209;<em>shapes</em>.<em>com</em>!
           </h2>
-          <p>We&rsquo;re glad you&rsquo;re here to share our love of fractals</p>
+          <p>
+            We&rsquo;re glad you&rsquo;re here to share our love of <em>fractals</em>
+          </p>
         </div>
       </div>
       <div
