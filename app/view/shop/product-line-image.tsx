@@ -18,16 +18,14 @@ export default function ProductLineImage({ imageName, singularName, width, heigh
   const vwLeft = (left * VW_MULTIPLIER) / 6;
 
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const lightboxImageWidth = width > height ? "80vw" : "auto";
-  const lightboxImageHeight = width > height ? "auto" : "80vw";
 
   return (
     <>
       <button
         style={{
+          position: "relative",
           width: `min(${vwWidth}vw, ${width}rem)`,
           height: `min(${vwHeight}vw, ${height}rem)`,
-          position: "relative",
           top: `min(${vwTop}vw, ${top}rem)`,
           left: `min(${vwLeft}vw, ${left}rem)`,
           boxShadow: "var(--shadow)",
@@ -53,9 +51,9 @@ export default function ProductLineImage({ imageName, singularName, width, heigh
           src={`/shop/high-res/${imageName}`}
           alt={`Example ${singularName}`}
           style={{
-            width: lightboxImageWidth,
-            height: lightboxImageHeight,
-            margin: "0 auto",
+            maxWidth: "90vw",
+            maxHeight: "90vh",
+            objectFit: "cover",
             borderRadius: "var(--radius-xl)",
           }}
         />

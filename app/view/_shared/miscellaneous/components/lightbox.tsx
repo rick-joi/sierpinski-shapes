@@ -30,8 +30,7 @@ export default function Lightbox({ isOpen, setIsOpen, children }: Props) {
         className="transparent"
         style={{
           position: "relative",
-          display: isOpen ? "inline-block" : "none",
-          verticalAlign: "middle",
+          display: isOpen ? "block" : "none",
         }}
         onClick={() => setIsOpen(false)}
       >
