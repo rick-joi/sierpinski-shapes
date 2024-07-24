@@ -1,3 +1,4 @@
+import { Link } from "@remix-run/react";
 import BlogPost from "../blog-post";
 import BlogPostModel from "~/model/learn/blog-post";
 
@@ -7,6 +8,7 @@ type Props = Readonly<{
 
 export default function Welcome({ blogPost }: Props) {
   //
+  //todo: rewrite this to mention in passing (and link to) all of the other blog posts
   return (
     <BlogPost blogPost={blogPost}>
       <p>
@@ -14,16 +16,29 @@ export default function Welcome({ blogPost }: Props) {
       </p>
       <p>
         The <strong>math</strong> is so simple, it&rsquo;s not really even math — you can create Sierpinski Shapes with
-        squares of paper and a pair of scissors.
+        squares of paper and a pair of scissors
       </p>
       <p>
         The <strong>beauty</strong> comes from from the infinite variations and the way in which they mimic how the
-        patterns in nature form — like plants and shorelines and clouds.
+        patterns in nature form — like plants and shorelines and clouds
       </p>
       <p>
         The well known Sierpinski Triangle is just one of over 16 billion Sierpinski Shapes —{" "}
         <strong>intrigued?</strong>
       </p>
+      <p>What&rsquo;s next?</p>
+      <ul>
+        <li>
+          <Link to="/gallery">Check out Sierpinski Shapes others have discovered</Link>
+        </li>
+        <li>
+          <Link to="/create">Create your own favorite Sierpinski Shapes</Link>
+        </li>
+        <li>
+          <Link to="/shop">Buy a print or t-shirt with one of the designs you created!</Link>
+        </li>
+      </ul>
+      <p>And if you like this site, consider spreading the word to your friends</p>
     </BlogPost>
   );
 }

@@ -11,6 +11,7 @@ type Props = Readonly<{
 export default function BlogPost({ blogPost, children }: Props) {
   //
   //todo: get a local profile image
+
   return (
     <article>
       <div
@@ -30,7 +31,7 @@ export default function BlogPost({ blogPost, children }: Props) {
           }}
         >
           <img
-            src="https://images.squarespace-cdn.com/content/v1/616e0c0757e9bc2d5ed6f225/13703345-72cb-4a37-9464-72515547801b/sweater-512.jpg"
+            src="/learn/rick-joi.jpg"
             style={{
               borderRadius: "50%",
               width: "48px",
@@ -42,8 +43,8 @@ export default function BlogPost({ blogPost, children }: Props) {
           />
           <div>Rick Joi</div>
           <div style={{ fontSize: "small", color: "var(--color-gray)" }}>
-            Published under <Link to="\learn">Learn</Link> &nbsp; &bull; &nbsp; 3 min read &nbsp; &bull; &nbsp; July 24,
-            2024
+            Published under <Link to="\learn">Learn</Link> &nbsp; &bull; &nbsp; {blogPost.readtime ?? "tbd"} min read
+            &nbsp; &bull; &nbsp; {blogPost.publishDate ?? "publish date tbd"}
           </div>
         </div>
       </div>
@@ -65,8 +66,16 @@ export default function BlogPost({ blogPost, children }: Props) {
             boxShadow: "var(--shadow-shallow)",
           }}
         />
-        <figcaption style={{ color: "var(--color-gray)", fontSize: "x-small", textAlign: "right" }}>
-          photo by unknown
+        <figcaption
+          style={{
+            color: "var(--color-gray)",
+            fontSize: "x-small",
+            textAlign: "right",
+            width: "min(244px, 36.5vw)",
+            whiteSpace: "pretty",
+          }}
+        >
+          image by {getImageCredit(blogPost)}
         </figcaption>
       </figure>
       {children}
@@ -82,4 +91,19 @@ export default function BlogPost({ blogPost, children }: Props) {
       </div>
     </article>
   );
+}
+
+function getImageCredit(blogPost: BlogPostModel): ReactNode {
+  //
+  if (!blogPost.imageCreditName) {
+    return "unknown";
+  } else if (!blogPost.imageCreditUrl) {
+    return blogPost.imageCreditName;
+  } else {
+    return (
+      <Link to={blogPost.imageCreditUrl} target="_blank" rel="noreferrer">
+        {blogPost.imageCreditName}
+      </Link>
+    );
+  }
 }

@@ -173,7 +173,10 @@ em {
   font-style: normal;
 }
 ul {
-  margin: var(--space-md) var(--space-lg);
+  margin-top: calc(var(--space-ml) * -1);
+  margin-left: var(--space-xl);
+  margin-bottom: var(--space-lg);
+  white-space: pretty;
 }
 ul li {
   margin: var(--space-xs) 0;
