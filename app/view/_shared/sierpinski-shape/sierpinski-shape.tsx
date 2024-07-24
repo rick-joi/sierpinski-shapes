@@ -33,12 +33,13 @@ export default function SierpinskiShape({ id, size, iterations, rotations, color
   const margin = getMargin(size);
   const sizeWithMargins = getSizeWithMargins(size);
   const viewBox = `${-margin} ${-margin} ${sizeWithMargins} ${sizeWithMargins}`;
+  const opacity = iterations < 2 ? 0.75 : iterations === 2 ? 0.875 : iterations === 3 ? 0.9375 : 1;
 
   return (
     <svg viewBox={viewBox} id={id}>
       <Delayed delay={delay}>
         <defs>
-          <Stage0 size={size} idPrefix={id} key={0} color={color} />
+          <Stage0 size={size} idPrefix={id} key={0} color={color} opacity={opacity} />
           {stages}
         </defs>
         <use href={getStageId(iterations, `#${id}`)} />
