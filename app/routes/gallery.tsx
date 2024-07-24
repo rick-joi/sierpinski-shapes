@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { useLoaderData } from "@remix-run/react";
 import { ActionFunctionArgs } from "@remix-run/node";
 
@@ -15,27 +16,17 @@ export default function GalleryRoute() {
   //
   const galleryShapes = useLoaderData<typeof loader>();
 
+  const cards: ReactNode[] = [];
+  for (let i = 0; i < galleryShapes.length; i++) {
+    cards.push(<GalleryItemCard shape={galleryShapes[i]} key={i} delay={i * 50} />);
+  }
+
   return (
     <div>
       <p style={{ textAlign: "center" }}>
         There are over 16 billion Sierpinski&nbsp;Shapes!&nbsp;🫨 &nbsp; &nbsp; Here&nbsp;are&nbsp;some&nbsp;favorites...
       </p>
-      {/* <p style={{ textAlign: "center" }}>
-        sort by:
-        <span> &nbsp; </span>
-        <Link to=".">yours</Link> -- add this one after they like or create one, and default to this as the primary search
-        <span> &nbsp;|&nbsp; </span>
-        <Link to=".">liked</Link>
-        <span> &nbsp;|&nbsp; </span>
-        <Link to=".">recent</Link>
-        <span> &nbsp;|&nbsp; </span>
-        <Link to=".">random</Link>
-      </p> */}
-      <div style={{ display: "flex", gap: "var(--space-md)", flexWrap: "wrap", justifyContent: "center" }}>
-        {galleryShapes.map((shape) => (
-          <GalleryItemCard key={shape.id} shape={shape} />
-        ))}
-      </div>
+      <div style={{ display: "flex", gap: "var(--space-md)", flexWrap: "wrap", justifyContent: "center" }}>{cards}</div>
     </div>
   );
 }

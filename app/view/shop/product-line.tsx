@@ -47,7 +47,7 @@ export default function ProductLine({
           onClick={() => {
             setIsBuyDialogOpen(true);
           }}
-          className="cta"
+          isCallToAction={true}
           style={{
             marginTop: "var(--space-lg)",
             paddingLeft: "var(--space-lg)",

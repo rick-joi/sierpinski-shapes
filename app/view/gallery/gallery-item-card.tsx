@@ -9,9 +9,10 @@ import SierpinskiText from "../_shared/sierpinski-shape/sierpinski-text";
 
 type Props = Readonly<{
   shape: SierpinskiShapeData;
+  delay: number;
 }>;
 
-export default function GalleryItemCard({ shape }: Props) {
+export default function GalleryItemCard({ shape, delay }: Props) {
   //
   const url = getCreateShapeUrl(shape.rotations, 7, shape.color);
   const backgroundColor = (rgbToGrayScale(shape.color) ?? 0) > 192 ? "var(--color-black)" : "var(--color-white)";
@@ -43,6 +44,7 @@ export default function GalleryItemCard({ shape }: Props) {
             iterations={7}
             rotations={shape.rotations}
             color={shape.color}
+            delay={delay}
           />
         </Link>
       </div>
@@ -51,7 +53,7 @@ export default function GalleryItemCard({ shape }: Props) {
           textAlign: "right",
           paddingTop: "var(--space-md)",
           paddingBottom: "var(--space-lg)",
-          color: "var(--color-gray-dark)",
+          color: "var(--color-gray-darker)",
           textRendering: "optimizeLegibility",
         }}
       >

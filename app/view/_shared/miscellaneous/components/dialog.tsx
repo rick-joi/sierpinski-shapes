@@ -36,7 +36,6 @@ export default function Dialog({
     }
   }, [isOpen]);
 
-  //todo: add standard footer with cancel button and action button, and take action function prop
   return (
     <dialog
       ref={dialogRef}
@@ -61,7 +60,7 @@ export default function Dialog({
                 formRef.current?.submit();
               }
             }}
-            className={"cta " + classes["cta"]}
+            isCallToAction={true}
           />
           <p className={classes["disclaimer"]}>{disclaimer}</p>
         </div>

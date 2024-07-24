@@ -3,6 +3,7 @@ import Stage0 from "./stage-0";
 import { IsHovering } from "./use-quadrant-hovering";
 import { getStageId } from "./sierpinski-utilities";
 import { Rotations } from "~/model/_shared/rotations";
+import Delayed from "../miscellaneous/components/delayed";
 
 type Props = Readonly<{
   id: string;
@@ -10,6 +11,7 @@ type Props = Readonly<{
   iterations: number;
   rotations: Rotations;
   color: string;
+  delay?: number;
   isHovering?: IsHovering;
 }>;
 
@@ -21,7 +23,7 @@ function getMargin(size: number) {
   return size / 9;
 }
 
-export default function SierpinskiShape({ id, size, iterations, rotations, color, isHovering }: Props) {
+export default function SierpinskiShape({ id, size, iterations, rotations, color, isHovering, delay = 0 }: Props) {
   //
   const stages = [];
   for (let i = 1; i <= iterations; i++) {
@@ -34,11 +36,13 @@ export default function SierpinskiShape({ id, size, iterations, rotations, color
 
   return (
     <svg viewBox={viewBox} id={id}>
-      <defs>
-        <Stage0 size={size} idPrefix={id} key={0} color={color} />
-        {stages}
-      </defs>
-      <use href={getStageId(iterations, `#${id}`)} />
+      <Delayed delay={delay}>
+        <defs>
+          <Stage0 size={size} idPrefix={id} key={0} color={color} />
+          {stages}
+        </defs>
+        <use href={getStageId(iterations, `#${id}`)} />
+      </Delayed>
     </svg>
   );
 }

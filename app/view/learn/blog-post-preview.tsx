@@ -1,13 +1,14 @@
+import { Link } from "@remix-run/react";
+import BlogPost from "~/model/learn/blog-post";
+
 type Props = Readonly<{
-  title: string;
-  description: string;
-  imageName: string;
+  blogPost: BlogPost;
 }>;
 
-export default function BlogPostPreview({ title, description, imageName }: Props) {
+export default function BlogPostPreview({ blogPost }: Props) {
   //
   return (
-    <div
+    <Link
       style={{
         display: "flex",
         flexWrap: "wrap",
@@ -20,12 +21,15 @@ export default function BlogPostPreview({ title, description, imageName }: Props
         borderRadius: "var(--radius-md)",
         maxWidth: "432px",
         justifyContent: "center",
+        alignContent: "start",
       }}
+      className="transparent"
+      to={`/learn/${blogPost.hyphenatedName}`}
     >
       <div style={{ width: "365", height: "300" }}>
         <img
-          src={`/learn/blog/preview/low-res/${imageName}`}
-          alt={title}
+          src={`/learn/blog/preview/low-res/${blogPost.splashImageFileName}`}
+          alt={blogPost.title}
           width={"365"}
           height={"300"}
           style={{
@@ -37,9 +41,9 @@ export default function BlogPostPreview({ title, description, imageName }: Props
       </div>
 
       <div style={{ margin: "var(--space-lg) 0" }}>
-        <h2 style={{ marginTop: 0 }}>{title}</h2>
-        <p style={{ whiteSpace: "pretty" }}>{description}</p>
+        <h2 style={{ marginTop: 0 }}>{blogPost.title}</h2>
+        <p style={{ whiteSpace: "pretty" }}>{blogPost.description}</p>
       </div>
-    </div>
+    </Link>
   );
 }

@@ -2,7 +2,7 @@ import { MetaFunction } from "@remix-run/react";
 
 export function getMeta(pageName: string, description: string): MetaFunction {
   return () => {
-    return [{ title: `${pageName} — Sierpinski Shapes` }, { name: "description", content: description }];
+    return [{ title: `${pageName} | sierpinski-shapes.com` }, { name: "description", content: description }];
   };
 }
 

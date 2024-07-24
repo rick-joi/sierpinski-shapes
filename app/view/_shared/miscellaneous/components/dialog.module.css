@@ -16,7 +16,7 @@
   background: none;
   border: 1px solid var(--color-gray-lighter);
   border-radius: var(--radius-sm);
-  color: var(--color-gray-dark);
+  color: var(--color-gray-darker);
   padding: var(--space-2xs) var(--space-sm);
   padding-right: 0.65rem;
   font-size: large;
@@ -37,7 +37,7 @@
 .standard-dialog-component .footer {
   text-align: center;
 }
-.standard-dialog-component button.cta {
+.standard-dialog-component form button {
   padding-left: 4em;
   padding-right: 4em;
 }

@@ -52,8 +52,8 @@ export default function ControlPanel({
               iconImage={isAnimating ? "/pause-icon.png" : "/play-icon.png"}
               isDisabled={iterations === 0}
               onClick={() => setIsAnimating((previous) => !previous)}
-              style={{ width: "11em" }}
-              className={isAnimating ? "cta" : ""}
+              style={{ width: "13em" }}
+              isCallToAction={isAnimating}
             />
           </div>
         </div>

@@ -18,7 +18,7 @@ export default function DownloadButton({ svgId, imageFormat, rotations, iteratio
   const hiddenCanvasId = `svg-to-png-canvas-${svgId}`;
   const hiddenCanvas =
     "svg" === imageFormat ? <canvas id={hiddenCanvasId} style={{ display: "none" }}></canvas> : undefined;
-  const className = "svg" === imageFormat ? "hide-on-narrow-screens" : undefined;
+  const isHiddenOnNarrowScreens = "svg" === imageFormat;
   return (
     <>
       <IconButton
@@ -27,7 +27,7 @@ export default function DownloadButton({ svgId, imageFormat, rotations, iteratio
         hoverText={`Download this Sierpinski Shape as an .${imageFormat} image file`}
         isDisabled={isDisabled}
         onClick={buttonOnClick}
-        className={className}
+        isHiddenOnNarrowScreens={isHiddenOnNarrowScreens}
       />
       {hiddenCanvas}
     </>

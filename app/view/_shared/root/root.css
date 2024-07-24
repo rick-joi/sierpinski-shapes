@@ -6,11 +6,12 @@
 
   --color-black: #1a1a1a;
   --color-black-light: #282838;
-  --color-gray-dark: #343d46;
+  --color-gray-darker: #343d46;
+  --color-gray-darker: #4b5864;
   --color-gray: #65737e;
   --color-gray-lightish: #a7b6c2;
   --color-gray-light: #c0c5ce;
-  --color-gray-lighter: #d3d3d3;
+  --color-gray-lighter: #e0e0ea;
   --color-gray-lightest: #f8f8f8;
   --color-white: rgba(255, 255, 255, 0.9);
 
@@ -44,8 +45,10 @@
   box-sizing: border-box;
 }
 body,
-html {
+html,
+button {
   font-family: var(--font-sans-serif);
+  letter-spacing: 0.07rem;
   color: var(--color-black);
   accent-color: var(--color-primary);
 }
@@ -68,6 +71,18 @@ a:hover,
 a:active {
   color: var(--color-secondary);
   text-decoration: underline;
+}
+a.transparent,
+a.transparent:visited,
+a.transparent:hover,
+a.transparent:active {
+  color: var(--color-black);
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+a.transparent:hover,
+a.transparent:active {
+  border: 1px solid var(--color-primary);
 }
 
 main {
@@ -131,7 +146,7 @@ h3 {
 p {
   margin-top: var(--space-md);
   margin-bottom: var(--space-lg);
-  white-space: balance;
+  white-space: pretty;
 }
 dialog p {
   white-space: pretty;
@@ -141,7 +156,7 @@ dialog h3 {
   margin-top: 0;
 }
 article {
-  color: var(--color-gray-dark);
+  color: var(--color-gray-darker);
   max-width: clamp(320px, 90%, 800px);
   margin: auto;
   font-size: larger;
@@ -189,13 +204,21 @@ input[type="submit"] {
   background: none;
   cursor: pointer;
 }
-button:hover,
-input[type="button"]:hover {
+button:hover:enabled,
+input[type="button"]:hover:enabled,
+input[type="submit"]:enabled {
   color: var(--color-white);
   background-color: var(--color-primary);
   border-color: var(--color-primary);
 }
-input[type="submit"],
+button:disabled,
+input[type="button"]:disabled,
+input[type="submit"]:disabled {
+  color: var(--color-gray-light);
+  border-color: var(--color-gray-light);
+  cursor: default;
+}
+/* input[type="submit"],
 button.cta {
   background-color: var(--color-primary);
   color: var(--color-white);
@@ -205,43 +228,23 @@ input[type="submit"]:hover,
 button.cta:hover {
   background-color: var(--color-secondary);
   color: var(--color-white);
-}
-button:disabled,
-input[type="button"]:disabled,
-input[type="submit"]:disabled {
-  color: var(--color-gray-light);
-  border-color: var(--color-gray-light);
-  cursor: default;
-}
-button:disabled img {
-  filter: grayscale(1) opacity(0.2);
-}
-button img {
-  position: relative;
-  top: 0.1em;
-  height: 1em;
-  padding-right: 0.5em;
-  /* calculated using https://codepen.io/sosuke/pen/Pjoqqp */
-  filter: invert(42%) sepia(64%) saturate(3505%) hue-rotate(163deg) brightness(94%) contrast(99%);
-}
-button:hover img,
+} */
+/* button.icon-button:hover img,
 button.cta img,
 input[type="submit"] img {
   filter: brightness(0) invert(1);
-}
-button.transparent {
+} */
+button.transparent,
+button.transparent:hover {
   background-color: transparent;
   box-shadow: none;
   border: none;
+  color: var(--color-black);
+  font-size: initial;
   padding: 0;
   line-height: 0;
-}
-button.transparent img {
-  position: static;
-  top: auto;
-  height: auto;
-  padding-right: 0;
-  filter: none;
+  border-radius: 0;
+  text-align: initial;
 }
 
 input[type="color"] {
