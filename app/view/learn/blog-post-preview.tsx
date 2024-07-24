@@ -31,15 +31,15 @@ export default function BlogPostPreview({ title, description, imageName }: Props
           style={{
             objectFit: "cover",
             borderRadius: "var(--radius-md)",
-            border: "1px solid var(--color-gray-light)",
-            backgroundColor: "var(--color-gray-lighter)",
             boxShadow: "var(--shadow-shallow)",
           }}
         />
       </div>
 
-      <h2>{title}</h2>
-      <p>{description}</p>
+      <div style={{ margin: "var(--space-lg) 0" }}>
+        <h2 style={{ marginTop: 0 }}>{title}</h2>
+        <p style={{ whiteSpace: "pretty" }}>{description}</p>
+      </div>
     </div>
   );
 }
