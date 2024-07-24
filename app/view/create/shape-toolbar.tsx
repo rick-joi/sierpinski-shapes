@@ -54,6 +54,7 @@ export default function ShapeToolbar({ thisSvgId, rotations, iterations, color, 
           onClick={() => {
             navigate("/shop");
           }}
+          className="hide-on-narrow-screens"
         />
       </div>
       <AddToGalleryDialog isOpen={isAddToGalleryDialogOpen} setIsOpen={setIsAddToGalleryDialogOpen} />

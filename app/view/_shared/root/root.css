@@ -291,3 +291,10 @@ input[type="range"] {
     display: none;
   }
 }
+
+@media (max-width: 675px) {
+  /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+  .hide-on-narrow-screens {
+    display: none;
+  }
+}

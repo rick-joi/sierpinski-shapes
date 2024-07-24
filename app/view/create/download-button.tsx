@@ -1,8 +1,6 @@
 import { Rotations } from "~/model/_shared/rotations";
 import IconButton from "../_shared/forms/icon-button";
 
-import classes from "./download-button.module.css";
-
 type ImageFormat = "png" | "svg";
 
 type Props = Readonly<{
@@ -14,11 +12,13 @@ type Props = Readonly<{
   isDisabled: boolean;
 }>;
 
+//todo: explore using navigator.share() to save to camera roll on iPhones
 export default function DownloadButton({ svgId, imageFormat, rotations, iterations, color, isDisabled }: Props) {
   //
   const hiddenCanvasId = `svg-to-png-canvas-${svgId}`;
   const hiddenCanvas =
     "svg" === imageFormat ? <canvas id={hiddenCanvasId} style={{ display: "none" }}></canvas> : undefined;
+  const className = "svg" === imageFormat ? "hide-on-narrow-screens" : undefined;
   return (
     <>
       <IconButton
@@ -27,7 +27,7 @@ export default function DownloadButton({ svgId, imageFormat, rotations, iteratio
         hoverText={`Download this Sierpinski Shape as an .${imageFormat} image file`}
         isDisabled={isDisabled}
         onClick={buttonOnClick}
-        className={classes["download-button"]}
+        className={className}
       />
       {hiddenCanvas}
     </>
@@ -39,7 +39,8 @@ export default function DownloadButton({ svgId, imageFormat, rotations, iteratio
     svgImage.onload = function () {
       const imageUrl = "svg" === imageFormat ? svgUrl : getPngImageUrl(hiddenCanvasId, svgImage, svgUrl);
       const downloadFileName = getFileName(imageFormat, rotations, iterations, color);
-      triggerDownload(imageUrl, downloadFileName);
+      //triggerDownload(imageUrl, downloadFileName);
+      downloadImage(imageUrl, downloadFileName);
     };
   }
 }
@@ -101,21 +102,22 @@ function getCanvasContext(canvas: HTMLCanvasElement): CanvasRenderingContext2D {
   return context;
 }
 
-function triggerDownload(imageUrl: string, downloadFileName: string) {
-  //
-  const a = document.createElement("a");
-  a.download = downloadFileName;
-  a.target = "_blank";
-  a.href = imageUrl;
+//todo: remove this if new version successfully downloads to iPhone cameraroll...
+// function triggerDownload(imageUrl: string, downloadFileName: string) {
+//   //
+//   const a = document.createElement("a");
+//   a.download = downloadFileName;
+//   a.target = "_blank";
+//   a.href = imageUrl;
 
-  a.dispatchEvent(
-    new MouseEvent("click", {
-      view: window,
-      bubbles: false,
-      cancelable: true,
-    })
-  );
-}
+//   a.dispatchEvent(
+//     new MouseEvent("click", {
+//       view: window,
+//       bubbles: false,
+//       cancelable: true,
+//     })
+//   );
+// }
 
 function getFileName(imageFormat: ImageFormat, rotations: Rotations, iterations: number, color: string) {
   //
@@ -140,4 +142,37 @@ function getFileName(imageFormat: ImageFormat, rotations: Rotations, iterations:
 
 function formatRotationForFileName(rotation: number | null): string {
   return rotation === null ? "off" : Math.round(rotation).toString();
+}
+
+async function downloadImage(imageUrl: string, fileName: string) {
+  try {
+    const response = await fetch(imageUrl);
+    const blob = await response.blob();
+    const file = new File([blob], fileName, {
+      type: blob.type,
+    });
+
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      await navigator.share({
+        files: [file],
+        title: "Download Image",
+        text: "Here is the image you wanted to download.",
+      });
+      console.log("Image shared successfully");
+    } else {
+      // Fallback method for devices that do not support Web Share API
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.style.display = "none";
+      a.href = url;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+      console.log("Image downloaded using fallback method");
+    }
+  } catch (error) {
+    console.error("Download failed:", error);
+  }
 }
