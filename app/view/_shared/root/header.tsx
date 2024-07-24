@@ -25,6 +25,7 @@ export default function Header() {
       </div>
       <nav>
         <menu>
+          <li className={classes["nav-spacer"]}>&nbsp;</li>
           <li>
             <NavLink to="/create" onClick={closeMenu}>
               Create
@@ -45,6 +46,7 @@ export default function Header() {
               Shop
             </NavLink>
           </li>
+          <li className={classes["nav-spacer"]}>&nbsp;</li>
         </menu>
         <button className={classes.hamburger} onClick={hamburgerOnClick}>
           <span className={classes.bar}></span>
