@@ -28,7 +28,7 @@
   border-color: var(--color-primary);
 }
 .standard-dialog-component form {
-  padding: var(--space-md);
+  padding: var(--space-lg);
   padding-top: 0;
 }
 .standard-dialog-component .body {
@@ -46,4 +46,11 @@
   text-align: center;
   white-space: pretty;
   color: gray;
+}
+
+@media (max-width: 675px) {
+  /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+  .standard-dialog-component form {
+    padding: var(--space-sm);
+  }
 }

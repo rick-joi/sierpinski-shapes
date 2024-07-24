@@ -137,6 +137,9 @@ dialog p {
   white-space: pretty;
   margin-bottom: var(--space-md);
 }
+dialog h3 {
+  margin-top: 0;
+}
 article {
   color: var(--color-gray-dark);
   max-width: clamp(320px, 90%, 800px);
