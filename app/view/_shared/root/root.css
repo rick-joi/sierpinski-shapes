@@ -306,4 +306,7 @@ input[type="range"] {
   .hide-on-narrow-screens {
     display: none;
   }
+  em {
+    text-emphasis-style: none;
+  }
 }

@@ -44,10 +44,11 @@ export default function ShopRoute() {
   //
   const [isBuyDialogOpen, setIsBuyDialogOpen] = useState(false);
 
+  //todo: simplify the text at the top of the screen across gallery, learn, and shop pages
   return (
     <div style={{ display: "flex", flexDirection: "column", marginBottom: "var(--space-2xl)" }}>
-      <div style={{ display: "inline-block", margin: "auto" }}>
-        <p>
+      <div>
+        <p style={{ textAlign: "center" }}>
           Design your own unique <em>Sierpinski Shape</em> using the <Link to="/create">create page</Link>, and then
           choose any of the products below
         </p>
