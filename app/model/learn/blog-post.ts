@@ -49,7 +49,7 @@ export default class BlogPost {
 const blogPosts: readonly BlogPost[] = [
   new BlogPost(
     1,
-    "Welcome to sierpinski‑shapes.com!",
+    "Welcome to sierpinski-shapes.com!",
     "We’re glad you here — this post shares an overview of what this site is about",
     "welcome",
     "jpg",

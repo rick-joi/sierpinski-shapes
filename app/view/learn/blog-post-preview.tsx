@@ -26,13 +26,15 @@ export default function BlogPostPreview({ blogPost }: Props) {
       className="transparent"
       to={`/learn/${blogPost.hyphenatedName}`}
     >
-      <div style={{ width: "365", height: "300" }}>
+      <div style={{ minWidth: "182.5px", maxWidth: "375px" }}>
         <img
           src={`/learn/blog/preview/low-res/${blogPost.splashImageFileName}`}
           alt={blogPost.title}
-          width={"365"}
-          height={"300"}
           style={{
+            aspectRatio: "365 / 300",
+            display: "block",
+            width: "100%",
+            height: "auto",
             objectFit: "cover",
             borderRadius: "var(--radius-md)",
             boxShadow: "var(--shadow-shallow)",
