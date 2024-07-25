@@ -19,6 +19,7 @@ export default function ProductLineImage({ imageName, singularName, width, heigh
 
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
+  //todo: make these regular images with transparent Links?
   return (
     <>
       <button
