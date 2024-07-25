@@ -19,11 +19,13 @@ export default function Welcome({ blogPost }: Props) {
         squares of paper and a pair of scissors
       </p>
       <p>
-        The <strong>beauty</strong> comes from from the infinite variations and the way in which they mimic how the
-        patterns in nature form — like plants and shorelines and clouds
+        The <strong>beauty</strong> comes from from the infinite variations and the way in which they mimic how the{" "}
+        <Link to="/learn/why-are-fractals-important">patterns in nature</Link> form — like plants and shorelines and
+        clouds
       </p>
       <p>
-        The well known Sierpinski Triangle is just one of over 16 billion Sierpinski Shapes —{" "}
+        The well known Sierpinski Triangle is just one of over{" "}
+        <Link to="/learn/how-many-sierpinski-shapes-are-there">16 billion</Link> Sierpinski Shapes —{" "}
         <strong>intrigued?</strong>
       </p>
       <p>What&rsquo;s next?</p>

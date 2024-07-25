@@ -87,7 +87,10 @@ export default function BlogPost({ blogPost, children }: Props) {
           borderTop: "1px solid var(--color-gray-lighter)",
         }}
       >
-        &gt; <Link to={"/learn"}>Return to all Learn articles</Link>
+        &gt;{" "}
+        <Link to={"/learn"}>
+          Return to the list of <i>Learn</i> posts
+        </Link>
       </div>
     </article>
   );

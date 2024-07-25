@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { useLoaderData } from "@remix-run/react";
+import { Link, useLoaderData } from "@remix-run/react";
 import { ActionFunctionArgs } from "@remix-run/node";
 
 import { getMeta } from "~/view/_shared/miscellaneous/utilities/route-utilities";
@@ -24,7 +24,8 @@ export default function GalleryRoute() {
   return (
     <div>
       <p style={{ textAlign: "center" }}>
-        There are over 16 billion Sierpinski&nbsp;Shapes!&nbsp;🫨 &nbsp; &nbsp; Here&nbsp;are&nbsp;some&nbsp;favorites...
+        There are over <Link to="/learn/how-many-sierpinski-shapes-are-there">16 billion</Link>{" "}
+        <em>Sierpinski&nbsp;Shapes</em>!&nbsp;🫨 &nbsp; &nbsp; Here&nbsp;are&nbsp;some&nbsp;favorites...
       </p>
       <div style={{ display: "flex", gap: "var(--space-md)", flexWrap: "wrap", justifyContent: "center" }}>{cards}</div>
     </div>

@@ -6,11 +6,16 @@ import { Rotations } from "~/model/_shared/rotations";
 
 import classes from "./header.module.css";
 import { getCreateShapeUrl } from "../sierpinski-shape/sierpinski-utilities";
+import { useEffect, useState } from "react";
 
-// inpsired by: https://dev.to/devggaurav/let-s-build-a-responsive-navbar-and-hamburger-menu-using-html-css-and-javascript-4gci
+// inspired by: https://dev.to/devggaurav/let-s-build-a-responsive-navbar-and-hamburger-menu-using-html-css-and-javascript-4gci
 export default function Header() {
   //
-  const rotations = getRandomRotations();
+  const [rotations, setRotations] = useState<Rotations>({ topLeft: 0, topRight: null, bottomLeft: 0, bottomRight: 0 });
+
+  useEffect(() => {
+    setRotations(getRandomRotations());
+  }, []);
 
   return (
     <header>
