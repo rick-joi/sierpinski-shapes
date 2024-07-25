@@ -170,9 +170,11 @@ nav button.hamburger {
     padding: var(--space-xs) var(--space-lg);
     display: inline-block;
     border-radius: var(--radius-md);
+    box-shadow: none;
   }
   nav menu li a[aria-current="page"] {
     border-bottom-color: var(--color-primary-dark);
+    box-shadow: none;
   }
   nav menu li a:hover,
   nav menu li a:active {
