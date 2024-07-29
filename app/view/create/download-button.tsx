@@ -12,7 +12,6 @@ type Props = Readonly<{
   isDisabled: boolean;
 }>;
 
-//todo: explore using navigator.share() to save to camera roll on iPhones
 export default function DownloadButton({ svgId, imageFormat, rotations, iterations, color, isDisabled }: Props) {
   //
   const hiddenCanvasId = `svg-to-png-canvas-${svgId}`;
@@ -39,7 +38,6 @@ export default function DownloadButton({ svgId, imageFormat, rotations, iteratio
     svgImage.onload = function () {
       const imageUrl = "svg" === imageFormat ? svgUrl : getPngImageUrl(hiddenCanvasId, svgImage, svgUrl);
       const downloadFileName = getFileName(imageFormat, rotations, iterations, color);
-      //triggerDownload(imageUrl, downloadFileName);
       downloadImage(imageUrl, downloadFileName);
     };
   }
@@ -101,23 +99,6 @@ function getCanvasContext(canvas: HTMLCanvasElement): CanvasRenderingContext2D {
   }
   return context;
 }
-
-//todo: remove this if new version successfully downloads to iPhone cameraroll...
-// function triggerDownload(imageUrl: string, downloadFileName: string) {
-//   //
-//   const a = document.createElement("a");
-//   a.download = downloadFileName;
-//   a.target = "_blank";
-//   a.href = imageUrl;
-
-//   a.dispatchEvent(
-//     new MouseEvent("click", {
-//       view: window,
-//       bubbles: false,
-//       cancelable: true,
-//     })
-//   );
-// }
 
 function getFileName(imageFormat: ImageFormat, rotations: Rotations, iterations: number, color: string) {
   //
