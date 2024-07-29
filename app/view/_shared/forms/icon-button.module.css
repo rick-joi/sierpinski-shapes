@@ -1,14 +1,12 @@
 .icon-button:disabled img {
-  filter: grayscale(1) opacity(0.2);
+  filter: var(--color-filter-disabled-from-black);
 }
 .icon-button img {
   position: relative;
   top: 0.1em;
   height: 1em;
   padding-right: 0.5em;
-  /* calculated using https://codepen.io/sosuke/pen/Pjoqqp */
-  /*todo: make this a variable */
-  filter: invert(42%) sepia(64%) saturate(3505%) hue-rotate(163deg) brightness(94%) contrast(99%);
+  filter: var(--color-filter-primary-from-black);
 }
 
 .cta {

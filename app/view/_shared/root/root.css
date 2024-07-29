@@ -4,6 +4,11 @@
   --color-primary-dark: hsl(191, 100%, 15%);
   --color-secondary: hsl(297, 78%, 45%);
 
+  /* calculated using https://codepen.io/sosuke/pen/Pjoqqp */
+  --color-filter-primary-from-black: invert(42%) sepia(64%) saturate(3505%) hue-rotate(163deg) brightness(94%)
+    contrast(99%);
+  --color-filter-disabled-from-black: grayscale(1) opacity(0.2);
+
   --color-black: #1a1a1a;
   --color-black-light: #282838;
   --color-gray-darker: #343d46;
