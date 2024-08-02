@@ -18,10 +18,11 @@ export default function DownloadButton({ svgId, imageFormat, rotations, iteratio
   const hiddenCanvas =
     "svg" === imageFormat ? <canvas id={hiddenCanvasId} style={{ display: "none" }}></canvas> : undefined;
   const isHiddenOnNarrowScreens = "svg" === imageFormat;
+  const buttonText = isSharePreferredOverDownload() ? "Share" : `Download .${imageFormat}`;
   return (
     <>
       <IconButton
-        buttonText={`Download .${imageFormat}`}
+        buttonText={buttonText}
         iconImage={"/download-icon.png"}
         hoverText={`Download this Sierpinski Shape as an .${imageFormat} image file`}
         isDisabled={isDisabled}
@@ -125,6 +126,10 @@ function formatRotationForFileName(rotation: number | null): string {
   return rotation === null ? "off" : Math.round(rotation).toString();
 }
 
+export function isSharePreferredOverDownload(): boolean {
+  return /iPad|iPhone|iPod/.test(navigator.userAgent) && !!navigator.canShare;
+}
+
 async function downloadImage(imageUrl: string, fileName: string) {
   try {
     const response = await fetch(imageUrl);
@@ -133,7 +138,7 @@ async function downloadImage(imageUrl: string, fileName: string) {
       type: blob.type,
     });
 
-    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+    if (isSharePreferredOverDownload() && navigator.canShare({ files: [file] })) {
       await navigator.share({
         files: [file],
         title: "Download Image",
