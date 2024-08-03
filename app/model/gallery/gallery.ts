@@ -25,7 +25,6 @@ export default class Gallery {
     galleryItems.push(new SierpinskiShape(18, "broccoli", 38, 345, null, 311, "#2a7a33"));
     galleryItems.push(new SierpinskiShape(19, "lightning strikes twice", 320, 176, 354, null, "#fffff0"));
     galleryItems.push(new SierpinskiShape(20, "the eternal flame", 15, null, 15, 195, "#ac2020"));
-    galleryItems.push(new SierpinskiShape(21, "sycamore", 15, null, 15, 195, "#645f59"));
     galleryItems.push(new SierpinskiShape(22, "Picaso’s triangle", 7, null, 359, 127, "#3a96f8"));
     shuffle(galleryItems);
     return galleryItems.slice(0, 12);
