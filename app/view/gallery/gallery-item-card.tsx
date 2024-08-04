@@ -94,8 +94,7 @@ export default function GalleryItemCard({ shape, delay }: Props) {
           paddingBottom: "var(--space-lg)",
           color: "var(--color-gray-darker)",
           textRendering: "optimizeLegibility",
-          cursor: iterationDirection === 1 ? "e-resize" : "w-resize",
-          //cursor: iterationDirection === 1 ? "zoom-out" : "zoom-in",
+          cursor: iterationDirection === 1 ? "zoom-out" : "zoom-in",
         }}
         onMouseEnter={() => {
           setIsOverFooter(true);

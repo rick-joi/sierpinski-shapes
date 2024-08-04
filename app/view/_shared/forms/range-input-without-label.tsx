@@ -24,7 +24,9 @@ export default function RangeInputWithoutLabel({ max, value, setValue, rangeLabe
         value={isDisabled ? 0 : value}
         onChange={(e) => setValue(Number(e.target.value))}
         style={{
-          verticalAlign: "middle",
+          position: "relative",
+          top: "0.2rem",
+          verticalAlign: "bottom",
           flexGrow: 1,
           width: "100%",
           minWidth: "var(--space-lg)",
