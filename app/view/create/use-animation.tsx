@@ -124,12 +124,12 @@ function getNextColorComponent(
   //
   const INCREMENT = 1;
   const previousInt = parseInt(previousFullColor.substring(startIndex, endIndex), 16);
-  let nextInt = previousInt + Math.round(Math.random() * INCREMENT * colorDirection);
+  const adjustedColorDirection = previousInt >= 128 - INCREMENT ? -1 : colorDirection;
+  let nextInt = previousInt + Math.round(Math.random() * INCREMENT * adjustedColorDirection);
 
   // 192 prevents background going to black
   if (nextInt >= 128 - INCREMENT) {
     setColorDirection(-1);
-    nextInt = 128 - INCREMENT;
   } else if (nextInt <= INCREMENT) {
     setColorDirection(1);
     nextInt = INCREMENT;
