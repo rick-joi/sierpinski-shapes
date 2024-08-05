@@ -18,9 +18,7 @@ export default function StageNMinus1({ idPrefix, size, stageNMinus1, x, y, rotat
     const rotationCenterX = x + size / 2;
     const rotationCenterY = y + size / 2;
     const style = //todo: pull this out into a class that uses a variable set in root.css maybe?
-      isHovering
-        ? { filter: "invert(42%) sepia(64%) saturate(3505%) hue-rotate(163deg) brightness(94%) contrast(99%)" }
-        : undefined;
+      isHovering ? { filter: "var(--color-filter-primary-from-black)" } : undefined;
     return (
       <use
         href={getStageId(stageNMinus1, `#${idPrefix}`)}
