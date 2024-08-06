@@ -10,10 +10,11 @@ type Props = Readonly<{
   rotations: Rotations;
   iterations: number;
   color: string;
+  createUrl: string;
   isAnimating: boolean;
 }>;
 
-export default function ShapeToolbar({ thisSvgId, rotations, iterations, color, isAnimating }: Props) {
+export default function ShapeToolbar({ thisSvgId, rotations, iterations, color, createUrl, isAnimating }: Props) {
   //
   const [isAddToGalleryDialogOpen, setIsAddToGalleryDialogOpen] = useState(false);
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ export default function ShapeToolbar({ thisSvgId, rotations, iterations, color, 
           rotations={rotations}
           iterations={iterations}
           color={color}
+          shareText={createUrl}
           isDisabled={isAnimating}
         />
         <DownloadButton
@@ -42,6 +44,7 @@ export default function ShapeToolbar({ thisSvgId, rotations, iterations, color, 
           rotations={rotations}
           iterations={iterations}
           color={color}
+          shareText={createUrl}
           isDisabled={isAnimating}
         />
         <IconButton

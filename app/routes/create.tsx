@@ -56,7 +56,7 @@ export default function CreateRoute() {
   );
 
   // update URL when created shape changes...
-  useHistoryReplaceState(quadrantProps, iterations, color, isAnimating);
+  const currentUrl = useHistoryReplaceState(quadrantProps, iterations, color, isAnimating);
 
   return (
     <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", columnGap: "var(--space-xl)" }}>
@@ -75,6 +75,7 @@ export default function CreateRoute() {
           rotations={getRotations(quadrantProps)}
           iterations={iterations}
           color={color}
+          createUrl={currentUrl}
           isAnimating={isAnimating}
         />
       </div>

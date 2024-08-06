@@ -8,17 +8,17 @@ export default function useHistoryReplaceState(
   color: string,
   isAnimating: boolean
 ) {
+  const rotations = getRotations(quadrantProps);
+  const url = getCreateShapeUrl(rotations, iterations, color);
+
   useEffect(() => {
     if (!isAnimating) {
       const id = setTimeout(() => {
-        const rotations = getRotations(quadrantProps);
-        let url = getCreateShapeUrl(rotations, iterations, color);
-        if ("/create?tl=0&tr=-&bl=0&br=0&i=1&c=%23000000" === url) {
-          url = "/create";
-        }
         history.replaceState(null, "", url);
       }, 250);
       return () => clearTimeout(id);
     }
-  }, [quadrantProps, iterations, color, isAnimating]);
+  }, [url, isAnimating]);
+
+  return url;
 }

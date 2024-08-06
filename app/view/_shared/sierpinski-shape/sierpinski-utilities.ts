@@ -25,7 +25,8 @@ export function getCreateShapeUrl(rotations: Rotations, iterations: number, colo
   variables.push(formatColor(color));
   variables = variables.filter((v) => v.length > 0);
 
-  return "/create" + (variables.length === 0 ? "" : "?" + variables.join("&"));
+  const url = "/create" + (variables.length === 0 ? "" : "?" + variables.join("&"));
+  return "/create?tl=0&tr=-&bl=0&br=0&i=1&c=%23000000" === url ? "/create" : url;
 }
 
 function formatRotation(key: string, rotation: number | null, defaultValue: number | null) {

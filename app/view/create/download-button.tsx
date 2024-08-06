@@ -9,10 +9,19 @@ type Props = Readonly<{
   rotations: Rotations;
   iterations: number;
   color: string;
+  shareText: string;
   isDisabled: boolean;
 }>;
 
-export default function DownloadButton({ svgId, imageFormat, rotations, iterations, color, isDisabled }: Props) {
+export default function DownloadButton({
+  svgId,
+  imageFormat,
+  rotations,
+  iterations,
+  color,
+  shareText,
+  isDisabled,
+}: Props) {
   //
   const hiddenCanvasId = `svg-to-png-canvas-${svgId}`;
   const hiddenCanvas =
@@ -39,7 +48,7 @@ export default function DownloadButton({ svgId, imageFormat, rotations, iteratio
     svgImage.onload = function () {
       const imageUrl = "svg" === imageFormat ? svgUrl : getPngImageUrl(hiddenCanvasId, svgImage, svgUrl);
       const downloadFileName = getFileName(imageFormat, rotations, iterations, color);
-      downloadImage(imageUrl, downloadFileName);
+      downloadImage(imageUrl, downloadFileName, shareText);
     };
   }
 }
@@ -130,7 +139,7 @@ export function isSharePreferredOverDownload(): boolean {
   return /iPad|iPhone|iPod/.test(navigator.userAgent) && !!navigator.canShare;
 }
 
-async function downloadImage(imageUrl: string, fileName: string) {
+async function downloadImage(imageUrl: string, fileName: string, shareText: string) {
   try {
     const response = await fetch(imageUrl);
     const blob = await response.blob();
@@ -141,10 +150,9 @@ async function downloadImage(imageUrl: string, fileName: string) {
     if (isSharePreferredOverDownload() && navigator.canShare({ files: [file] })) {
       await navigator.share({
         files: [file],
-        title: "Download Image",
-        text: "Here is the image you wanted to download.",
+        title: "Share Sierpinski Shape",
+        text: shareText,
       });
-      console.log("Image shared successfully");
     } else {
       // Fallback method for devices that do not support Web Share API
       const url = window.URL.createObjectURL(blob);
@@ -156,7 +164,6 @@ async function downloadImage(imageUrl: string, fileName: string) {
       a.click();
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
-      console.log("Image downloaded using fallback method");
     }
   } catch (error) {
     console.error("Download failed:", error);
