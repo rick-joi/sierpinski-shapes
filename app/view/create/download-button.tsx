@@ -26,7 +26,7 @@ export default function DownloadButton({
   const hiddenCanvasId = `svg-to-png-canvas-${svgId}`;
   const hiddenCanvas =
     "svg" === imageFormat ? <canvas id={hiddenCanvasId} style={{ display: "none" }}></canvas> : undefined;
-  const isHiddenOnNarrowScreens = "svg" === imageFormat;
+  const isHiddenOnNarrowScreens = "png" === imageFormat;
   const buttonText = isSharePreferredOverDownload() ? "Share" : `Download .${imageFormat}`;
   return (
     <>
