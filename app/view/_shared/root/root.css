@@ -282,6 +282,16 @@ input[type="range"] {
   border-radius: var(--radius-sm);
 }
 
+select,
+select option {
+  accent-color: var(--color-primary); /* this doesn't actually work, but hopefully someday it will */
+}
+select:focus {
+  border-color: white;
+  outline: 1px solid var(--color-primary);
+  border-radius: 0;
+}
+
 /* Animations */
 @keyframes fade-in {
   from {

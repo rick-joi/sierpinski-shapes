@@ -16,7 +16,7 @@ export default function ColorInputNoLabel({ color, setColor, disabled }: Props) 
       value={color}
       onChange={(e) => setColor(e.target.value)}
       id={id}
-      style={{ flexGrow: 1, border: calculateBorder(color) }}
+      style={{ flexGrow: 0, border: calculateBorder(color) }}
       disabled={disabled}
     />
   );

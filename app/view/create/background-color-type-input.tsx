@@ -18,46 +18,28 @@ export default function BackgroundColorTypeInput({
 }: Props) {
   return (
     <ControlWithLabelLayout label="Background color" isDisabled={false} id={""}>
-      <label style={{ fontSize: "medium", marginRight: "var(--space-xs)", whiteSpace: "nowrap" }}>
-        <input
-          type="radio"
-          value="auto"
-          name="background-color-type"
-          checked={backgroundColorType === "auto"}
-          onChange={backgroundColorTypeOnChange}
-        />{" "}
-        Auto
-      </label>
-      <label style={{ fontSize: "medium", marginRight: "var(--space-xs)", whiteSpace: "nowrap" }}>
-        <input
-          type="radio"
-          value="transparent"
-          name="background-color-type"
-          checked={backgroundColorType === "transparent"}
-          onChange={backgroundColorTypeOnChange}
-        />{" "}
-        Transparent
-      </label>
-      <label style={{ fontSize: "medium", whiteSpace: "nowrap" }}>
-        <input
-          type="radio"
-          value="custom"
-          name="background-color-type"
-          checked={backgroundColorType === "custom"}
-          onChange={backgroundColorTypeOnChange}
-        />{" "}
-        Custom:
-      </label>
       <ColorInputNoLabel
         color={backgroundColorType === "custom" ? backgroundColor : "#cccccc"}
         setColor={setBackgroundColor}
         disabled={backgroundColorType !== "custom"}
       />
+      <select onChange={backgroundColorTypeOnChange} style={{ marginLeft: "var(--space-xs)" }}>
+        <option value="auto" selected={backgroundColorType === "auto"}>
+          Auto
+        </option>
+        <option value="transparent" selected={backgroundColorType === "transparent"}>
+          Transparent
+        </option>
+        <option value="custom" selected={backgroundColorType === "custom"}>
+          Custom
+        </option>
+      </select>
     </ControlWithLabelLayout>
   );
 
-  function backgroundColorTypeOnChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const value = event.target.value as BackgroundColorType;
+  function backgroundColorTypeOnChange(event: React.ChangeEvent<HTMLSelectElement>) {
+    const value = event.target.selectedOptions[0].value as BackgroundColorType;
+    alert(`x${value}x`);
     setBackgroundColorType(value);
   }
 }
