@@ -10,7 +10,7 @@ type Props = Readonly<{
   setBackgroundColor: Dispatch<SetStateAction<string>>;
 }>;
 
-export default function BackgroundColorTypeInput({
+export default function BackgroundColorInput({
   backgroundColorType,
   setBackgroundColorType,
   backgroundColor,

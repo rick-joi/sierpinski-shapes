@@ -23,7 +23,7 @@ export type AllFourQuadrantInputProps = Readonly<{
 export default function QuadrantInput({ label, setIsDisabled, rotation, isDisabled, setRotation }: QuadrantInputProps) {
   const id = useId();
   return (
-    <ControlWithLabelLayout label={label} isDisabled={isDisabled} id={id}>
+    <ControlWithLabelLayout label={label} isDisabled={isDisabled} id={id} style={{ width: "100%" }}>
       <>
         <input
           type="checkbox"

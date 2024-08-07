@@ -3,16 +3,17 @@ type Props = Readonly<{
   parenthetical?: string;
   isDisabled: boolean;
   id: string;
+  style?: React.CSSProperties;
   children: React.ReactNode;
 }>;
 
-export default function ControlWithLabelLayout({ label, parenthetical, isDisabled, id, children }: Props) {
+export default function ControlWithLabelLayout({ label, parenthetical, isDisabled, id, style, children }: Props) {
   return (
     <div
       style={{
         display: "inline-block",
-        width: "100%",
         marginBottom: "var(--space-md)",
+        ...style,
       }}
     >
       <label

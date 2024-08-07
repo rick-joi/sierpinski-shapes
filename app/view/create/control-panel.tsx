@@ -6,7 +6,7 @@ import RangeInput from "../_shared/forms/range-input";
 import SierpinskiText from "../_shared/sierpinski-shape/sierpinski-text";
 
 import QuadrantInput, { AllFourQuadrantInputProps, getRotations } from "./quadrant-input";
-import BackgroundColorTypeInput from "./background-color-type-input";
+import BackgroundColorTypeInput from "./background-color-input";
 import { BackgroundColorType } from "../_shared/sierpinski-shape/sierpinski-utilities";
 
 type Props = Readonly<{
@@ -54,16 +54,18 @@ export default function ControlPanel({
           <QuadrantInput {...quadrantProps.bottomLeft} />
           <QuadrantInput {...quadrantProps.bottomRight} />
         </div>
-        <div style={{ display: "flex", gap: "var(--space-lg)" }}>
+        <div
+          style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", columnGap: "var(--space-lg)" }}
+        >
           <div>
-            <ColorInput label={"Color"} color={color} setColor={setColor} />
+            <ColorInput label={"Color"} color={color} setColor={setColor} style={{ marginRight: "var(--space-md)" }} />
+            <BackgroundColorTypeInput
+              backgroundColorType={backgroundColorType}
+              setBackgroundColorType={setBackgroundColorType}
+              backgroundColor={backgroundColor}
+              setBackgroundColor={setBackgroundColor}
+            />
           </div>
-          <BackgroundColorTypeInput
-            backgroundColorType={backgroundColorType}
-            setBackgroundColorType={setBackgroundColorType}
-            backgroundColor={backgroundColor}
-            setBackgroundColor={setBackgroundColor}
-          />
           <div style={{ alignSelf: "flex-end", paddingBottom: "var(--space-sm)" }}>
             <IconButton
               buttonText={isAnimating ? "Pause animation" : "Animate"}
@@ -74,13 +76,13 @@ export default function ControlPanel({
               isCallToAction={isAnimating}
             />
           </div>
-        </div>
-        <div style={{ display: "flex", gap: "var(--space-md)" }}>
-          <SierpinskiText
-            rotations={getRotations(quadrantProps)}
-            iterations={iterations}
-            style={{ fontSize: "smaller" }}
-          />
+          <div style={{ alignSelf: "flex-end", paddingBottom: "var(--space-sm)" }}>
+            <SierpinskiText
+              rotations={getRotations(quadrantProps)}
+              iterations={iterations}
+              style={{ fontSize: "smaller", whiteSpace: "nowrap" }}
+            />
+          </div>
         </div>
       </fieldset>
     </div>
