@@ -19,7 +19,7 @@ export default function TouchableIterationOverlay({
   const [isHoveredOver, setIsHoveredOver] = useState(false);
 
   const WIDTH = 16;
-  const isDisabled = iterationIncrement === -1 ? iterations < 2 : iterations > maxIterations - 1;
+  const isDisabled = iterationIncrement === -1 ? iterations < 1 : iterations > maxIterations - 1;
   const left = iterationIncrement === -1 ? -WIDTH - 1 : size + 1;
   const color = isHoveredOver
     ? isDisabled

@@ -10,7 +10,7 @@ type Props = Readonly<{
   iterations: number;
   color: string;
   shareText: string;
-  isDisabled: boolean;
+  isDisabled?: boolean;
 }>;
 
 export default function DownloadButton({

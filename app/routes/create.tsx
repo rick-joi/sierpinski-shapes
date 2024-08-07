@@ -11,7 +11,7 @@ import { getRotations, useAllFourQuadrantInputProps } from "~/view/create/quadra
 import useAnimation from "~/view/create/use-animation";
 import TouchableSierpinskiShape from "~/view/create/touchable-sierpinski-shape";
 import useHistoryReplaceState from "~/view/create/use-history-replace-state";
-import ShapeToolbar from "~/view/create/shape-toolbar";
+import ButtonBar from "~/view/create/button-bar";
 import ControlPanel from "~/view/create/control-panel";
 import useColors from "~/view/create/use-colors";
 import WelcomeHints from "~/view/create/welcome-hints";
@@ -75,13 +75,13 @@ export default function CreateRoute() {
           backgroundColorType={backgroundColorType}
           backgroundColor={backgroundColor} //todo: does this handle transparency?
         />
-        <ShapeToolbar
+        <ButtonBar
           thisSvgId={PRIMARY_SVG_ID}
           rotations={getRotations(quadrantProps)}
           iterations={iterations}
           color={color}
           createUrl={currentUrl}
-          isAnimating={isAnimating}
+          setIsAnimating={setIsAnimating}
         />
       </div>
       <div style={{ width: size }}>

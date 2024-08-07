@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import IconButton from "../_shared/forms/icon-button";
 import AddToGalleryDialog from "./add-to-gallery-dialog";
 import DownloadButton from "./download-button";
@@ -11,10 +11,10 @@ type Props = Readonly<{
   iterations: number;
   color: string;
   createUrl: string;
-  isAnimating: boolean;
+  setIsAnimating: Dispatch<SetStateAction<boolean>>;
 }>;
 
-export default function ShapeToolbar({ thisSvgId, rotations, iterations, color, createUrl, isAnimating }: Props) {
+export default function ButtonBar({ thisSvgId, rotations, iterations, color, createUrl, setIsAnimating }: Props) {
   //
   const [isAddToGalleryDialogOpen, setIsAddToGalleryDialogOpen] = useState(false);
   const navigate = useNavigate();
@@ -26,8 +26,10 @@ export default function ShapeToolbar({ thisSvgId, rotations, iterations, color, 
           buttonText={"Add to gallery"}
           hoverText={"Add this Sierpinski Shape to our gallery, and name if if you'd like"}
           iconImage={"/like-icon.png"}
-          isDisabled={isAnimating}
-          onClick={() => setIsAddToGalleryDialogOpen(true)}
+          onClick={() => {
+            setIsAnimating(false);
+            setIsAddToGalleryDialogOpen(true);
+          }}
         />
         <DownloadButton
           svgId={thisSvgId}
@@ -36,7 +38,6 @@ export default function ShapeToolbar({ thisSvgId, rotations, iterations, color, 
           iterations={iterations}
           color={color}
           shareText={createUrl}
-          isDisabled={isAnimating}
         />
         <DownloadButton
           svgId={thisSvgId}
@@ -45,7 +46,6 @@ export default function ShapeToolbar({ thisSvgId, rotations, iterations, color, 
           iterations={iterations}
           color={color}
           shareText={createUrl}
-          isDisabled={isAnimating}
         />
         <IconButton
           buttonText={"Buy merch"}
@@ -53,8 +53,8 @@ export default function ShapeToolbar({ thisSvgId, rotations, iterations, color, 
             "Shop for t-shirts, wall prints, pillows, and more ... all with Sierpinski Shapes printed on them!"
           }
           iconImage={"/t-shirt-icon.png"}
-          isDisabled={isAnimating}
           onClick={() => {
+            setIsAnimating(false);
             navigate("/shop");
           }}
           isHiddenOnNarrowScreens={true}
