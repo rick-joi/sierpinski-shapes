@@ -11,7 +11,8 @@ type Props = Readonly<{
   iterations: number;
   rotations: Rotations;
   color: string;
-  backgroundColor: string | undefined;
+  isBackgroundTransparent?: boolean;
+  backgroundColor?: string;
   delay?: number;
   isHovering?: IsHovering;
 }>;
@@ -30,7 +31,8 @@ export default function SierpinskiShape({
   iterations,
   rotations,
   color,
-  backgroundColor,
+  isBackgroundTransparent = true,
+  backgroundColor = "#ffffff",
   isHovering,
   delay = 0,
 }: Props) {
@@ -44,9 +46,10 @@ export default function SierpinskiShape({
   const sizeWithMargins = getSizeWithMargins(size);
   const viewBox = `${-margin} ${-margin} ${sizeWithMargins} ${sizeWithMargins}`;
   const opacity = iterations < 2 ? 0.75 : iterations === 2 ? 0.875 : iterations === 3 ? 0.9375 : 1;
+  const svgBackgroundColor = isBackgroundTransparent ? undefined : backgroundColor;
 
   return (
-    <svg viewBox={viewBox} id={id} style={{ backgroundColor: backgroundColor, borderRadius: "13px" }}>
+    <svg viewBox={viewBox} id={id} style={{ backgroundColor: svgBackgroundColor, borderRadius: "13px" }}>
       <Delayed delay={delay}>
         <defs>
           <Stage0 size={size} idPrefix={id} key={0} color={color} opacity={opacity} />

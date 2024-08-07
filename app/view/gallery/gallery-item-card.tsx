@@ -83,7 +83,6 @@ export default function GalleryItemCard({ shape, delay }: Props) {
             iterations={iterations}
             rotations={shape.rotations}
             color={shape.color}
-            backgroundColor={undefined}
             delay={delay}
           />
         </Link>

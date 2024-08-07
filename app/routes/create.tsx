@@ -4,7 +4,7 @@ import { useLoaderData } from "@remix-run/react";
 
 import * as RouteUtilities from "~/view/_shared/miscellaneous/utilities/route-utilities";
 import useWindowSize from "~/view/_shared/miscellaneous/hooks/use-window-size";
-import SierpinskiShape, { getSizeWithMargins } from "~/view/_shared/sierpinski-shape/sierpinski-shape";
+import { getSizeWithMargins } from "~/view/_shared/sierpinski-shape/sierpinski-shape";
 import { BackgroundColorType, DEFAULTS, MAX_ITERATIONS } from "~/view/_shared/sierpinski-shape/sierpinski-utilities";
 
 import { getRotations, useAllFourQuadrantInputProps } from "~/view/create/quadrant-input";
@@ -13,11 +13,7 @@ import TouchableSierpinskiShape from "~/view/create/touchable-sierpinski-shape";
 import useHistoryReplaceState from "~/view/create/use-history-replace-state";
 import ShapeToolbar from "~/view/create/shape-toolbar";
 import ControlPanel from "~/view/create/control-panel";
-import {
-  rgbToGrayScale,
-  adjustBrightness,
-  isCloseToGray,
-} from "~/view/_shared/miscellaneous/utilities/color-utilities";
+import useColors from "~/view/create/use-colors";
 
 export const meta = RouteUtilities.getMeta("Create", "Create your own Sierpinski Shape!");
 
@@ -29,7 +25,7 @@ export default function CreateRoute() {
   const windowSize = useWindowSize();
   const maxSizeWithMargins = getSizeWithMargins(512);
   const size = Math.min(maxSizeWithMargins, Math.min(windowSize.width, windowSize.height) * 0.9);
-  const fullScreenSize = Math.min(windowSize.width, windowSize.height);
+  //const fullScreenSize = Math.min(windowSize.width, windowSize.height);
 
   // core control panel state...
   const initialValues = useLoaderData<typeof loader>();
@@ -38,10 +34,13 @@ export default function CreateRoute() {
   if (iterations > maxIterations) {
     setIterations(maxIterations);
   }
-  const [color, setColor] = useState(initialValues.color);
-  const [backgroundColorType, setBackgroundColorType] = useState(initialValues.backgroundColorType);
-  const [backgroundColor, setBackgroundColor] = useState(initialValues.backgroundColor);
   const quadrantProps = useAllFourQuadrantInputProps(initialValues.rotations);
+
+  const [color, backgroundColorType, backgroundColor, setColor, setBackgroundColorType, setBackgroundColor] = useColors(
+    initialValues.color,
+    initialValues.backgroundColorType,
+    initialValues.backgroundColor
+  );
 
   // animation...
   const [isAnimating, setIsAnimating] = useState(false);
@@ -72,7 +71,8 @@ export default function CreateRoute() {
           iterations={iterations}
           setIterations={setIterations}
           color={color}
-          backgroundColor={calculateBackgroundColor(backgroundColorType, backgroundColor, color)}
+          backgroundColorType={backgroundColorType}
+          backgroundColor={backgroundColor} //todo: does this handle transparency?
         />
         <ShapeToolbar
           thisSvgId={PRIMARY_SVG_ID}
@@ -116,7 +116,7 @@ export default function CreateRoute() {
           </p>
         </div>
       </div>
-      <div
+      {/* <div
         style={{
           position: "absolute",
           top: 0,
@@ -135,9 +135,9 @@ export default function CreateRoute() {
           iterations={iterations}
           rotations={getRotations(quadrantProps)}
           color={color}
-          backgroundColor={calculateBackgroundColor(backgroundColorType, backgroundColor, color)}
+          backgroundColor={backgroundColor}
         />
-      </div>
+      </div> */}
     </div>
   );
 }
@@ -167,32 +167,4 @@ function getQueryStringColor(searchParams: URLSearchParams, variableName: string
 function getBackgroundColorType(searchParams: URLSearchParams): BackgroundColorType {
   const value = searchParams.get("bct");
   return value === "transparent" || value === "custom" ? value : DEFAULTS.BACKGROUND_COLOR_TYPE;
-}
-
-function calculateBackgroundColor(
-  backgroundColorType: string,
-  backgroundColor: string,
-  color: string
-): string | undefined {
-  if (backgroundColorType === "custom") {
-    return backgroundColor;
-  } else if (backgroundColorType === "transparent") {
-    return undefined;
-  } else {
-    const MIDPOINT = 160;
-    const grayscale = rgbToGrayScale(color);
-    const isGray = isCloseToGray(color);
-    if (grayscale === undefined || isGray === undefined || (grayscale < MIDPOINT && isGray)) {
-      // dark gray...
-      return "#ffffff";
-    } else if (grayscale < MIDPOINT) {
-      // dark...
-      const distanceFromMidpoint = MIDPOINT - grayscale;
-      return adjustBrightness(color, 255 - grayscale - distanceFromMidpoint + 64);
-    } else {
-      // light...
-      const distanceFromMidpoint = grayscale - MIDPOINT;
-      return adjustBrightness(color, distanceFromMidpoint - grayscale);
-    }
-  }
 }

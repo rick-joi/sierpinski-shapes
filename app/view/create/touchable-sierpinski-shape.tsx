@@ -5,6 +5,7 @@ import { AllFourQuadrantInputProps, getRotations } from "./quadrant-input";
 import TouchableHelpMessage from "./touchable-help-message";
 import { useQuadrantHovering } from "../_shared/sierpinski-shape/use-quadrant-hovering";
 import TouchableIterationOverlay from "./touchable-iteration-overlay";
+import { BackgroundColorType } from "../_shared/sierpinski-shape/sierpinski-utilities";
 
 type Props = Readonly<{
   id: string;
@@ -13,6 +14,7 @@ type Props = Readonly<{
   maxIterations: number;
   iterations: number;
   color: string;
+  backgroundColorType: BackgroundColorType;
   backgroundColor: string | undefined;
   setIterations: Dispatch<SetStateAction<number>>;
 }>;
@@ -24,6 +26,7 @@ export default function TouchableSierpinskiShape({
   iterations,
   maxIterations,
   color,
+  backgroundColorType,
   backgroundColor,
   setIterations,
 }: Props) {
@@ -92,6 +95,7 @@ export default function TouchableSierpinskiShape({
         iterations={iterations}
         rotations={getRotations(quadrantsProps)}
         color={color}
+        isBackgroundTransparent={backgroundColorType === "transparent"}
         backgroundColor={backgroundColor}
         isHovering={isHovering}
       />

@@ -18,12 +18,8 @@ export default function BackgroundColorTypeInput({
 }: Props) {
   return (
     <ControlWithLabelLayout label="Background color" isDisabled={false} id={""}>
-      <ColorInputNoLabel
-        color={backgroundColorType === "custom" ? backgroundColor : "#cccccc"}
-        setColor={setBackgroundColor}
-        disabled={backgroundColorType !== "custom"}
-      />
-      <select onChange={backgroundColorTypeOnChange} style={{ marginLeft: "var(--space-xs)" }}>
+      <ColorInputNoLabel color={backgroundColor} setColor={setBackgroundColor} />
+      <select onChange={backgroundColorTypeOnChange} style={{ marginLeft: "var(--space-xxs)" }}>
         <option value="auto" selected={backgroundColorType === "auto"}>
           Auto
         </option>
@@ -39,7 +35,6 @@ export default function BackgroundColorTypeInput({
 
   function backgroundColorTypeOnChange(event: React.ChangeEvent<HTMLSelectElement>) {
     const value = event.target.selectedOptions[0].value as BackgroundColorType;
-    alert(`x${value}x`);
     setBackgroundColorType(value);
   }
 }
