@@ -18,7 +18,11 @@ export default function BackgroundColorInput({
 }: Props) {
   return (
     <ControlWithLabelLayout label="Background color" isDisabled={false} id={""}>
-      <ColorInputNoLabel color={backgroundColor} setColor={setBackgroundColor} />
+      <ColorInputNoLabel
+        color={backgroundColor}
+        setColor={setBackgroundColor}
+        isTransparent={backgroundColorType === "transparent"}
+      />
       <select onChange={backgroundColorTypeOnChange} style={{ marginLeft: "var(--space-xxs)" }}>
         <option value="auto" selected={backgroundColorType === "auto"}>
           Auto
