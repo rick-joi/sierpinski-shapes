@@ -55,7 +55,13 @@ export default function ControlPanel({
           <QuadrantInput {...quadrantProps.bottomRight} />
         </div>
         <div
-          style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", columnGap: "var(--space-lg)" }}
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-between",
+            columnGap: "var(--space-md)",
+            rowGap: "var(--space-sm)",
+          }}
         >
           <div>
             <ColorInput label={"Color"} color={color} setColor={setColor} style={{ marginRight: "var(--space-md)" }} />
@@ -66,7 +72,7 @@ export default function ControlPanel({
               setBackgroundColor={setBackgroundColor}
             />
           </div>
-          <div style={{ alignSelf: "flex-end", paddingBottom: "var(--space-sm)" }}>
+          <div style={{ alignSelf: "flex-end", paddingBottom: "var(--space-md)" }}>
             <IconButton
               buttonText={isAnimating ? "Pause animation" : "Animate"}
               iconImage={isAnimating ? "/pause-icon.png" : "/play-icon.png"}
@@ -76,11 +82,17 @@ export default function ControlPanel({
               isCallToAction={isAnimating}
             />
           </div>
-          <div style={{ alignSelf: "flex-end", paddingBottom: "var(--space-sm)" }}>
+          <div style={{ alignSelf: "flex-end", paddingBottom: "var(--space-md)" }}>
             <SierpinskiText
               rotations={getRotations(quadrantProps)}
               iterations={iterations}
-              style={{ fontSize: "smaller", whiteSpace: "nowrap" }}
+              style={{
+                fontSize: "smaller",
+                display: "inline-block",
+                whiteSpace: "nowrap",
+                minWidth: "15em",
+                textAlign: "right",
+              }}
             />
           </div>
         </div>
