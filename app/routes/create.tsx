@@ -59,7 +59,8 @@ export default function CreateRoute() {
 
   // update URL when created shape changes...
   const currentUrl =
-    "https://www.sierpinski-shapes.com" + useHistoryReplaceState(quadrantProps, iterations, color, isAnimating);
+    "https://www.sierpinski-shapes.com" +
+    useHistoryReplaceState(quadrantProps, iterations, color, backgroundColorType, backgroundColor, isAnimating);
 
   return (
     <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", columnGap: "var(--space-xl)" }}>

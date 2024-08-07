@@ -20,7 +20,13 @@ export function getStageId(stage: number, prefix: string) {
   return `${prefix}Stage${stage}`;
 }
 
-export function getCreateShapeUrl(rotations: Rotations, iterations: number, color?: string | undefined) {
+export function getCreateShapeUrl(
+  rotations: Rotations,
+  iterations: number,
+  color?: string | undefined,
+  backgroundColorType?: BackgroundColorType,
+  backgroundColor?: string
+) {
   //
   let variables: string[] = [];
 
@@ -30,6 +36,8 @@ export function getCreateShapeUrl(rotations: Rotations, iterations: number, colo
   variables.push(formatRotation("bl", rotations.bottomLeft, DEFAULTS.ROTATIONS.bottomLeft));
   variables.push(formatRotation("br", rotations.bottomRight, DEFAULTS.ROTATIONS.bottomRight));
   variables.push(formatColor(color));
+  variables.push(formatBackgroundColorType(backgroundColorType));
+  variables.push(formatBackgroundColor(backgroundColorType, backgroundColor));
 
   variables = variables.filter((v) => v.length > 0);
 
@@ -53,5 +61,31 @@ function formatColor(color: string | undefined) {
     return "";
   } else {
     return "c=" + (color.startsWith("#") ? color.slice(1) : color);
+  }
+}
+
+function formatBackgroundColorType(backgroundColorType: BackgroundColorType | undefined) {
+  //
+  if (backgroundColorType === undefined || backgroundColorType === DEFAULTS.BACKGROUND_COLOR_TYPE) {
+    return "";
+  } else {
+    return "bct=" + backgroundColorType;
+  }
+}
+
+function formatBackgroundColor(
+  backgroundColorType: BackgroundColorType | undefined,
+  backgroundColor: string | undefined
+) {
+  //
+  if (
+    backgroundColorType === undefined ||
+    backgroundColorType == "auto" ||
+    backgroundColor === undefined ||
+    backgroundColor === DEFAULTS.BACKGROUND_COLOR
+  ) {
+    return "";
+  } else {
+    return "bc=" + (backgroundColor.startsWith("#") ? backgroundColor.slice(1) : backgroundColor);
   }
 }

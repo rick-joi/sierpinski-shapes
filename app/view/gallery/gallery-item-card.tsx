@@ -16,6 +16,7 @@ type Props = Readonly<{
 export default function GalleryItemCard({ shape, delay }: Props) {
   //
   const MAX_ITERATIONS = 7;
+  //todo: add background color type and background color to getCreateShapeUrl()...
   const url = getCreateShapeUrl(shape.rotations, MAX_ITERATIONS, shape.color);
   const backgroundColor = (rgbToGrayScale(shape.color) ?? 0) > 192 ? "var(--color-black)" : "var(--color-white)";
 
