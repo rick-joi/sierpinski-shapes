@@ -288,6 +288,9 @@ input[type="range"] {
   border-radius: var(--radius-sm);
 }
 
+select {
+  border-color: var(--color-gray-light);
+}
 select,
 select option {
   accent-color: var(--color-primary); /* this doesn't actually work, but hopefully someday it will */

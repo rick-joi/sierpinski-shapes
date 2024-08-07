@@ -34,5 +34,5 @@ export default function ColorInputNoLabel({ color, setColor, isTransparent }: Pr
 
 function calculateBorder(color: string) {
   const grayscale = rgbToGrayScale(color);
-  return grayscale && grayscale > 239 ? "1px solid var(--color-gray-light)" : "none";
+  return grayscale && grayscale > 239 ? "1px solid var(--color-gray-light)" : `1px solid ${color}`;
 }
