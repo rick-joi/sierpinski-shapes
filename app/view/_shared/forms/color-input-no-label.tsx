@@ -1,14 +1,15 @@
-import { Dispatch, SetStateAction, useId } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { rgbToGrayScale } from "../miscellaneous/utilities/color-utilities";
 
 type Props = Readonly<{
   color: string;
   setColor: Dispatch<SetStateAction<string>>;
   isTransparent?: boolean;
+  id: string;
 }>;
-export default function ColorInputNoLabel({ color, setColor, isTransparent }: Props) {
+
+export default function ColorInputNoLabel({ color, setColor, isTransparent, id }: Props) {
   //
-  const id = useId();
   if (isTransparent) {
     return (
       <img
@@ -17,6 +18,7 @@ export default function ColorInputNoLabel({ color, setColor, isTransparent }: Pr
         width="50"
         height="27"
         style={{ opacity: 0.33 }}
+        id={id}
       />
     );
   } else {

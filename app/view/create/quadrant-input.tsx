@@ -39,6 +39,7 @@ export default function QuadrantInput({ label, setIsDisabled, rotation, isDisabl
               width: "1rem",
               marginRight: "var(--space-2xs)",
             }}
+            id={id + "-checkbox"}
           />
           <RangeInputNoLabel
             max={359}

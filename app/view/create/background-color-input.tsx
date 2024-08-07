@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useId } from "react";
 import ControlWithLabelLayout from "../_shared/forms/control-with-label-layout";
 import { BackgroundColorType } from "../_shared/sierpinski-shape/sierpinski-utilities";
 import ColorInputNoLabel from "../_shared/forms/color-input-no-label";
@@ -16,23 +16,26 @@ export default function BackgroundColorInput({
   backgroundColor,
   setBackgroundColor,
 }: Props) {
+  //
+  const id = useId();
+
   return (
-    <ControlWithLabelLayout label="Background color" isDisabled={false} id={""}>
+    <ControlWithLabelLayout label="Background color" isDisabled={false} id={id}>
       <ColorInputNoLabel
         color={backgroundColor}
         setColor={setBackgroundColor}
         isTransparent={backgroundColorType === "transparent"}
+        id={id}
       />
-      <select onChange={backgroundColorTypeOnChange} style={{ marginLeft: "var(--space-xxs)" }}>
-        <option value="auto" selected={backgroundColorType === "auto"}>
-          Auto
-        </option>
-        <option value="custom" selected={backgroundColorType === "custom"}>
-          Custom
-        </option>
-        <option value="transparent" selected={backgroundColorType === "transparent"}>
-          Transparent
-        </option>
+      <select
+        value={backgroundColorType}
+        onChange={backgroundColorTypeOnChange}
+        style={{ marginLeft: "var(--space-xxs)" }}
+        name="background-color-type"
+      >
+        <option value="auto">Auto</option>
+        <option value="custom">Custom</option>
+        <option value="transparent">Transparent</option>
       </select>
     </ControlWithLabelLayout>
   );

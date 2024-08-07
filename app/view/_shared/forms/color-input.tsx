@@ -9,10 +9,12 @@ type Props = Readonly<{
   style?: React.CSSProperties;
 }>;
 export default function ColorInput({ label, color, setColor, style }: Props) {
+  //
   const id = useId();
+
   return (
     <ControlWithLabelLayout label={label} isDisabled={false} id={id} style={style}>
-      <ColorInputNoLabel color={color} setColor={setColor} />
+      <ColorInputNoLabel color={color} setColor={setColor} id={id} />
     </ControlWithLabelLayout>
   );
 }
