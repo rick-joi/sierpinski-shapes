@@ -73,16 +73,6 @@ export default function ControlPanel({
             />
           </div>
           <div style={{ alignSelf: "flex-end", paddingBottom: "var(--space-md)" }}>
-            <IconButton
-              buttonText={isAnimating ? "Pause animation" : "Animate"}
-              iconImage={isAnimating ? "/pause-icon.png" : "/play-icon.png"}
-              isDisabled={iterations === 0}
-              onClick={() => setIsAnimating((previous) => !previous)}
-              style={{ width: "13em" }}
-              isCallToAction={isAnimating}
-            />
-          </div>
-          <div style={{ alignSelf: "flex-end", paddingBottom: "var(--space-md)" }}>
             <SierpinskiText
               rotations={getRotations(quadrantProps)}
               iterations={iterations}
@@ -91,8 +81,18 @@ export default function ControlPanel({
                 display: "inline-block",
                 whiteSpace: "nowrap",
                 minWidth: "15em",
-                textAlign: "right",
+                textAlign: "center",
               }}
+            />
+          </div>
+          <div style={{ alignSelf: "flex-end", paddingBottom: "var(--space-md)" }}>
+            <IconButton
+              buttonText={isAnimating ? "Pause animation" : "Animate"}
+              iconImage={isAnimating ? "/pause-icon.png" : "/play-icon.png"}
+              isDisabled={iterations === 0}
+              onClick={() => setIsAnimating((previous) => !previous)}
+              style={{ width: "13em" }}
+              isCallToAction={isAnimating}
             />
           </div>
         </div>

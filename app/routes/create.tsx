@@ -14,6 +14,7 @@ import useHistoryReplaceState from "~/view/create/use-history-replace-state";
 import ShapeToolbar from "~/view/create/shape-toolbar";
 import ControlPanel from "~/view/create/control-panel";
 import useColors from "~/view/create/use-colors";
+import WelcomeHints from "~/view/create/welcome-hints";
 
 export const meta = RouteUtilities.getMeta("Create", "Create your own Sierpinski Shape!");
 
@@ -98,23 +99,7 @@ export default function CreateRoute() {
           isAnimating={isAnimating}
           setIsAnimating={setIsAnimating}
         />
-        <div
-          style={{
-            position: "relative",
-            top: "12%",
-            width: "100%",
-            textAlign: "center",
-            marginBottom: "var(--space-3xl)",
-          }}
-        >
-          <h2>
-            Welcome to <em>sierpinski</em>
-            &#8209;<em>shapes</em>.<em>com</em>!
-          </h2>
-          <p>
-            We&rsquo;re glad you&rsquo;re here to share our love of <em>fractals</em>
-          </p>
-        </div>
+        <WelcomeHints />
       </div>
       {/* <div
         style={{

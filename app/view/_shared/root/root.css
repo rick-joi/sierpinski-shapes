@@ -184,8 +184,14 @@ ul {
   white-space: pretty;
 }
 ul li {
-  margin: var(--space-xs) 0;
+  margin: var(--space-sm) 0;
 }
+ul li::marker {
+  content: "▶  ";
+  color: var(--color-gray-lighter);
+  font-size: 0.8rem;
+}
+
 fieldset {
   border: none;
 }
