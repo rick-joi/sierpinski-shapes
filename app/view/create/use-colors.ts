@@ -8,6 +8,8 @@ export default function useColors(
   initialBackgroundColor: string
 ) {
   //
+  initialBackgroundColor =
+    initialBackgroundColorType === "custom" ? initialBackgroundColor : calculateBackgroundColor(initialColor);
   const [color, setColorRaw] = useState(initialColor);
   const [backgroundColorType, setBackgroundColorTypeRaw] = useState(initialBackgroundColorType);
   const [backgroundColor, setBackgroundColorRaw] = useState(initialBackgroundColor);
