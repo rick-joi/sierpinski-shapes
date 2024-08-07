@@ -4,6 +4,7 @@ import ControlWithLabelLayout from "../_shared/forms/control-with-label-layout";
 import RangeInputNoLabel from "../_shared/forms/range-input-no-label";
 
 import { Rotations } from "~/model/_shared/rotations";
+import Clickable from "../_shared/forms/clickable";
 
 export type QuadrantInputProps = Readonly<{
   label: string;
@@ -21,31 +22,35 @@ export type AllFourQuadrantInputProps = Readonly<{
 }>;
 
 export default function QuadrantInput({ label, setIsDisabled, rotation, isDisabled, setRotation }: QuadrantInputProps) {
+  //
   const id = useId();
+
   return (
-    <ControlWithLabelLayout label={label} isDisabled={isDisabled} id={id} style={{ width: "100%" }}>
-      <>
-        <input
-          type="checkbox"
-          checked={!isDisabled}
-          onChange={(e) => setIsDisabled(!e.target.checked)}
-          style={{
-            verticalAlign: "middle",
-            height: "1rem",
-            width: "1rem",
-            marginRight: "var(--space-2xs)",
-          }}
-        />
-        <RangeInputNoLabel
-          max={359}
-          value={rotation}
-          setValue={setRotation}
-          id={id}
-          rangeLabelSuffix="º"
-          isDisabled={isDisabled}
-        />
-      </>
-    </ControlWithLabelLayout>
+    <Clickable onClick={() => setIsDisabled(!isDisabled)} disabled={!isDisabled} style={{ width: "100%" }}>
+      <ControlWithLabelLayout label={label} isDisabled={isDisabled} id={id} style={{ width: "100%" }}>
+        <>
+          <input
+            type="checkbox"
+            checked={!isDisabled}
+            onChange={(e) => setIsDisabled(!e.target.checked)}
+            style={{
+              verticalAlign: "middle",
+              height: "1rem",
+              width: "1rem",
+              marginRight: "var(--space-2xs)",
+            }}
+          />
+          <RangeInputNoLabel
+            max={359}
+            value={rotation}
+            setValue={setRotation}
+            id={id}
+            rangeLabelSuffix="º"
+            isDisabled={isDisabled}
+          />
+        </>
+      </ControlWithLabelLayout>
+    </Clickable>
   );
 }
 
