@@ -27,11 +27,11 @@ export default function BackgroundColorInput({
         <option value="auto" selected={backgroundColorType === "auto"}>
           Auto
         </option>
-        <option value="transparent" selected={backgroundColorType === "transparent"}>
-          Transparent
-        </option>
         <option value="custom" selected={backgroundColorType === "custom"}>
           Custom
+        </option>
+        <option value="transparent" selected={backgroundColorType === "transparent"}>
+          Transparent
         </option>
       </select>
     </ControlWithLabelLayout>
