@@ -6,6 +6,8 @@ import RangeInput from "../_shared/forms/range-input";
 import SierpinskiText from "../_shared/sierpinski-shape/sierpinski-text";
 
 import QuadrantInput, { AllFourQuadrantInputProps, getRotations } from "./quadrant-input";
+import BackgroundColorTypeInput from "./background-color-type-input";
+import { BackgroundColorType } from "../_shared/sierpinski-shape/sierpinski-utilities";
 
 type Props = Readonly<{
   quadrantProps: AllFourQuadrantInputProps;
@@ -14,6 +16,10 @@ type Props = Readonly<{
   setIterations: Dispatch<SetStateAction<number>>;
   color: string;
   setColor: Dispatch<SetStateAction<string>>;
+  backgroundColorType: BackgroundColorType;
+  setBackgroundColorType: Dispatch<SetStateAction<BackgroundColorType>>;
+  backgroundColor: string;
+  setBackgroundColor: Dispatch<SetStateAction<string>>;
   isAnimating: boolean;
   setIsAnimating: Dispatch<SetStateAction<boolean>>;
 }>;
@@ -25,12 +31,21 @@ export default function ControlPanel({
   setIterations,
   color,
   setColor,
+  backgroundColorType,
+  setBackgroundColorType,
+  backgroundColor,
+  setBackgroundColor,
   isAnimating,
   setIsAnimating,
 }: Props) {
   return (
     <div>
       <fieldset style={{ border: "none" }}>
+        <div style={{ display: "flex", gap: "var(--space-md)" }}>
+          <div style={{ flexGrow: "1" }}>
+            <RangeInput label="Iterations" max={maxIterations} value={iterations} setValue={setIterations} />
+          </div>
+        </div>
         <div style={{ display: "flex", gap: "var(--space-md)" }}>
           <QuadrantInput {...quadrantProps.topLeft} />
           <QuadrantInput {...quadrantProps.topRight} />
@@ -39,13 +54,16 @@ export default function ControlPanel({
           <QuadrantInput {...quadrantProps.bottomLeft} />
           <QuadrantInput {...quadrantProps.bottomRight} />
         </div>
-        <div style={{ display: "flex", gap: "var(--space-md)" }}>
-          <div style={{ flexGrow: "1" }}>
-            <RangeInput label="Iterations" max={maxIterations} value={iterations} setValue={setIterations} />
-          </div>
+        <div style={{ display: "flex", gap: "var(--space-lg)" }}>
           <div>
             <ColorInput label={"Color"} color={color} setColor={setColor} />
           </div>
+          <BackgroundColorTypeInput
+            backgroundColorType={backgroundColorType}
+            setBackgroundColorType={setBackgroundColorType}
+            backgroundColor={backgroundColor}
+            setBackgroundColor={setBackgroundColor}
+          />
           <div style={{ alignSelf: "flex-end", paddingBottom: "var(--space-sm)" }}>
             <IconButton
               buttonText={isAnimating ? "Pause animation" : "Animate"}
@@ -57,8 +75,12 @@ export default function ControlPanel({
             />
           </div>
         </div>
-        <div style={{ fontSize: "smaller" }}>
-          <SierpinskiText rotations={getRotations(quadrantProps)} iterations={iterations} color={color} />
+        <div style={{ display: "flex", gap: "var(--space-md)" }}>
+          <SierpinskiText
+            rotations={getRotations(quadrantProps)}
+            iterations={iterations}
+            style={{ fontSize: "smaller" }}
+          />
         </div>
       </fieldset>
     </div>

@@ -10,16 +10,12 @@ type Props = Readonly<{
 
 export default function Lightbox({ isOpen, setIsOpen, children }: Props) {
   //
-  console.log("in Lightbox");
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
-    console.log(`dialogRef.current: ${dialogRef.current}, isOpen: ${isOpen}`);
     if (dialogRef.current?.open && !isOpen) {
-      console.log("closing dialog");
       dialogRef.current?.close();
     } else if (!dialogRef.current?.open && isOpen) {
-      console.log("opening dialog");
       dialogRef.current?.showModal();
     }
   }, [isOpen]);

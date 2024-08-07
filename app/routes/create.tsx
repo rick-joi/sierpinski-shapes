@@ -5,12 +5,7 @@ import { useLoaderData } from "@remix-run/react";
 import * as RouteUtilities from "~/view/_shared/miscellaneous/utilities/route-utilities";
 import useWindowSize from "~/view/_shared/miscellaneous/hooks/use-window-size";
 import SierpinskiShape, { getSizeWithMargins } from "~/view/_shared/sierpinski-shape/sierpinski-shape";
-import {
-  DEFAULT_COLOR,
-  DEFAULT_ITERATIONS,
-  DEFAULT_ROTATIONS,
-  MAX_ITERATIONS,
-} from "~/view/_shared/sierpinski-shape/sierpinski-utilities";
+import { BackgroundColorType, DEFAULTS, MAX_ITERATIONS } from "~/view/_shared/sierpinski-shape/sierpinski-utilities";
 
 import { getRotations, useAllFourQuadrantInputProps } from "~/view/create/quadrant-input";
 import useAnimation from "~/view/create/use-animation";
@@ -18,6 +13,11 @@ import TouchableSierpinskiShape from "~/view/create/touchable-sierpinski-shape";
 import useHistoryReplaceState from "~/view/create/use-history-replace-state";
 import ShapeToolbar from "~/view/create/shape-toolbar";
 import ControlPanel from "~/view/create/control-panel";
+import {
+  rgbToGrayScale,
+  adjustBrightness,
+  isCloseToGray,
+} from "~/view/_shared/miscellaneous/utilities/color-utilities";
 
 export const meta = RouteUtilities.getMeta("Create", "Create your own Sierpinski Shape!");
 
@@ -39,6 +39,8 @@ export default function CreateRoute() {
     setIterations(maxIterations);
   }
   const [color, setColor] = useState(initialValues.color);
+  const [backgroundColorType, setBackgroundColorType] = useState(initialValues.backgroundColorType);
+  const [backgroundColor, setBackgroundColor] = useState(initialValues.backgroundColor);
   const quadrantProps = useAllFourQuadrantInputProps(initialValues.rotations);
 
   // animation...
@@ -56,7 +58,8 @@ export default function CreateRoute() {
   );
 
   // update URL when created shape changes...
-  const currentUrl = useHistoryReplaceState(quadrantProps, iterations, color, isAnimating);
+  const currentUrl =
+    "https://www.sierpinski-shapes.com" + useHistoryReplaceState(quadrantProps, iterations, color, isAnimating);
 
   return (
     <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", columnGap: "var(--space-xl)" }}>
@@ -69,6 +72,7 @@ export default function CreateRoute() {
           iterations={iterations}
           setIterations={setIterations}
           color={color}
+          backgroundColor={calculateBackgroundColor(backgroundColorType, backgroundColor, color)}
         />
         <ShapeToolbar
           thisSvgId={PRIMARY_SVG_ID}
@@ -87,6 +91,10 @@ export default function CreateRoute() {
           setIterations={setIterations}
           color={color}
           setColor={setColor}
+          backgroundColorType={backgroundColorType}
+          setBackgroundColorType={setBackgroundColorType}
+          backgroundColor={backgroundColor}
+          setBackgroundColor={setBackgroundColor}
           isAnimating={isAnimating}
           setIsAnimating={setIsAnimating}
         />
@@ -127,6 +135,7 @@ export default function CreateRoute() {
           iterations={iterations}
           rotations={getRotations(quadrantProps)}
           color={color}
+          backgroundColor={calculateBackgroundColor(backgroundColorType, backgroundColor, color)}
         />
       </div>
     </div>
@@ -137,14 +146,53 @@ export async function loader({ request }: LoaderFunctionArgs) {
   //
   const { searchParams } = new URL(request.url);
   const rotations = {
-    topLeft: RouteUtilities.getParameterIntOrNull(searchParams, "tl", DEFAULT_ROTATIONS.topLeft),
-    topRight: RouteUtilities.getParameterIntOrNull(searchParams, "tr", DEFAULT_ROTATIONS.topRight),
-    bottomLeft: RouteUtilities.getParameterIntOrNull(searchParams, "bl", DEFAULT_ROTATIONS.bottomLeft),
-    bottomRight: RouteUtilities.getParameterIntOrNull(searchParams, "br", DEFAULT_ROTATIONS.bottomRight),
+    topLeft: RouteUtilities.getParameterIntOrNull(searchParams, "tl", DEFAULTS.ROTATIONS.topLeft),
+    topRight: RouteUtilities.getParameterIntOrNull(searchParams, "tr", DEFAULTS.ROTATIONS.topRight),
+    bottomLeft: RouteUtilities.getParameterIntOrNull(searchParams, "bl", DEFAULTS.ROTATIONS.bottomLeft),
+    bottomRight: RouteUtilities.getParameterIntOrNull(searchParams, "br", DEFAULTS.ROTATIONS.bottomRight),
   };
-  const iterations = RouteUtilities.getParameterInt(searchParams, "i", DEFAULT_ITERATIONS);
-  const unhashedColor = searchParams.get("c") ?? DEFAULT_COLOR;
-  const color = unhashedColor.match(/^[0-9a-fA-F]{6}$/) ? "#" + unhashedColor : unhashedColor;
+  const iterations = RouteUtilities.getParameterInt(searchParams, "i", DEFAULTS.ITERATIONS);
+  const color = getQueryStringColor(searchParams, "c", DEFAULTS.COLOR);
+  const backgroundColorType = getBackgroundColorType(searchParams);
+  const backgroundColor = getQueryStringColor(searchParams, "bc", DEFAULTS.BACKGROUND_COLOR);
 
-  return { rotations, iterations, color };
+  return { rotations, iterations, color, backgroundColorType, backgroundColor };
+}
+
+function getQueryStringColor(searchParams: URLSearchParams, variableName: string, defaultColor: string) {
+  const unhashedColor = searchParams.get(variableName) ?? defaultColor;
+  return unhashedColor.match(/^[0-9a-fA-F]{6}$/) ? "#" + unhashedColor : unhashedColor;
+}
+
+function getBackgroundColorType(searchParams: URLSearchParams): BackgroundColorType {
+  const value = searchParams.get("bct");
+  return value === "transparent" || value === "custom" ? value : DEFAULTS.BACKGROUND_COLOR_TYPE;
+}
+
+function calculateBackgroundColor(
+  backgroundColorType: string,
+  backgroundColor: string,
+  color: string
+): string | undefined {
+  if (backgroundColorType === "custom") {
+    return backgroundColor;
+  } else if (backgroundColorType === "transparent") {
+    return undefined;
+  } else {
+    const MIDPOINT = 160;
+    const grayscale = rgbToGrayScale(color);
+    const isGray = isCloseToGray(color);
+    if (grayscale === undefined || isGray === undefined || (grayscale < MIDPOINT && isGray)) {
+      // dark gray...
+      return "#ffffff";
+    } else if (grayscale < MIDPOINT) {
+      // dark...
+      const distanceFromMidpoint = MIDPOINT - grayscale;
+      return adjustBrightness(color, 255 - grayscale - distanceFromMidpoint + 64);
+    } else {
+      // light...
+      const distanceFromMidpoint = grayscale - MIDPOINT;
+      return adjustBrightness(color, distanceFromMidpoint - grayscale);
+    }
+  }
 }

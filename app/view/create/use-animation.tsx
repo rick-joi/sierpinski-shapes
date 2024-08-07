@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { getHexColor } from "../_shared/miscellaneous/utilities/color-utilities";
 
 type AnimationValues = {
   hasLastAnimationCompleted: boolean;
@@ -111,7 +112,7 @@ function getNextColor(
   const green = getNextColorComponent(previous, 3, 5, greenDirection, setGreenDirection);
   const blue = getNextColorComponent(previous, 5, 7, blueDirection, setBlueDirection);
 
-  return "#" + red + green + blue;
+  return getHexColor(red, green, blue);
 }
 
 function getNextColorComponent(
@@ -120,20 +121,21 @@ function getNextColorComponent(
   endIndex: number,
   colorDirection: 1 | -1,
   setColorDirection: React.Dispatch<React.SetStateAction<1 | -1>>
-): string {
+): number {
   //
   const INCREMENT = 1;
+  const MAX_COLOR = 255 - INCREMENT;
   const previousInt = parseInt(previousFullColor.substring(startIndex, endIndex), 16);
-  const adjustedColorDirection = previousInt >= 128 - INCREMENT ? -1 : colorDirection;
+  const adjustedColorDirection = previousInt >= MAX_COLOR ? -1 : colorDirection;
   let nextInt = previousInt + Math.round(Math.random() * INCREMENT * adjustedColorDirection);
 
   // 192 prevents background going to black
-  if (nextInt >= 128 - INCREMENT) {
+  if (nextInt >= MAX_COLOR) {
     setColorDirection(-1);
   } else if (nextInt <= INCREMENT) {
     setColorDirection(1);
     nextInt = INCREMENT;
   }
 
-  return nextInt.toString(16).padStart(2, "0");
+  return nextInt;
 }

@@ -8,7 +8,7 @@ type Props = Readonly<{
   isDisabled?: boolean;
   id: string;
 }>;
-export default function RangeInputWithoutLabel({ max, value, setValue, rangeLabelSuffix, isDisabled, id }: Props) {
+export default function RangeInputNoLabel({ max, value, setValue, rangeLabelSuffix, isDisabled, id }: Props) {
   return (
     <>
       <span

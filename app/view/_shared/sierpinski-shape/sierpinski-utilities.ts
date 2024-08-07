@@ -1,14 +1,20 @@
 import { Rotations } from "~/model/_shared/rotations";
 
-export const DEFAULT_ROTATIONS: Rotations = {
-  topLeft: 0,
-  topRight: null,
-  bottomLeft: 0,
-  bottomRight: 0,
+export type BackgroundColorType = "auto" | "transparent" | "custom";
+
+export const DEFAULTS = {
+  ITERATIONS: 1,
+  ROTATIONS: {
+    topLeft: 0,
+    topRight: null,
+    bottomLeft: 0,
+    bottomRight: 0,
+  },
+  COLOR: "#000000",
+  BACKGROUND_COLOR_TYPE: "auto" as BackgroundColorType,
+  BACKGROUND_COLOR: "#ffffff",
 };
-export const DEFAULT_ITERATIONS = 1;
 export const MAX_ITERATIONS = 8;
-export const DEFAULT_COLOR = "#282838";
 
 export function getStageId(stage: number, prefix: string) {
   return `${prefix}Stage${stage}`;
@@ -17,16 +23,17 @@ export function getStageId(stage: number, prefix: string) {
 export function getCreateShapeUrl(rotations: Rotations, iterations: number, color?: string | undefined) {
   //
   let variables: string[] = [];
-  variables.push(DEFAULT_ITERATIONS === iterations ? "" : "i=" + iterations);
-  variables.push(formatRotation("tl", rotations.topLeft, DEFAULT_ROTATIONS.topLeft));
-  variables.push(formatRotation("tr", rotations.topRight, DEFAULT_ROTATIONS.topRight));
-  variables.push(formatRotation("bl", rotations.bottomLeft, DEFAULT_ROTATIONS.bottomLeft));
-  variables.push(formatRotation("br", rotations.bottomRight, DEFAULT_ROTATIONS.bottomRight));
+
+  variables.push(DEFAULTS.ITERATIONS === iterations ? "" : "i=" + iterations);
+  variables.push(formatRotation("tl", rotations.topLeft, DEFAULTS.ROTATIONS.topLeft));
+  variables.push(formatRotation("tr", rotations.topRight, DEFAULTS.ROTATIONS.topRight));
+  variables.push(formatRotation("bl", rotations.bottomLeft, DEFAULTS.ROTATIONS.bottomLeft));
+  variables.push(formatRotation("br", rotations.bottomRight, DEFAULTS.ROTATIONS.bottomRight));
   variables.push(formatColor(color));
+
   variables = variables.filter((v) => v.length > 0);
 
-  const url = "/create" + (variables.length === 0 ? "" : "?" + variables.join("&"));
-  return "/create?tl=0&tr=-&bl=0&br=0&i=1&c=%23000000" === url ? "/create" : url;
+  return "/create" + (variables.length === 0 ? "" : "?" + variables.join("&"));
 }
 
 function formatRotation(key: string, rotation: number | null, defaultValue: number | null) {
@@ -42,7 +49,7 @@ function formatRotation(key: string, rotation: number | null, defaultValue: numb
 
 function formatColor(color: string | undefined) {
   //
-  if (color === undefined || color === DEFAULT_COLOR) {
+  if (color === undefined || color === DEFAULTS.COLOR) {
     return "";
   } else {
     return "c=" + (color.startsWith("#") ? color.slice(1) : color);

@@ -256,7 +256,6 @@ button.transparent:hover {
 }
 
 input[type="color"] {
-  border-radius: var(--radius-sm);
   padding: 0;
   border-width: 0;
 }

@@ -11,6 +11,7 @@ type Props = Readonly<{
   iterations: number;
   rotations: Rotations;
   color: string;
+  backgroundColor: string | undefined;
   delay?: number;
   isHovering?: IsHovering;
 }>;
@@ -23,7 +24,16 @@ function getMargin(size: number) {
   return size / 9;
 }
 
-export default function SierpinskiShape({ id, size, iterations, rotations, color, isHovering, delay = 0 }: Props) {
+export default function SierpinskiShape({
+  id,
+  size,
+  iterations,
+  rotations,
+  color,
+  backgroundColor,
+  isHovering,
+  delay = 0,
+}: Props) {
   //
   const stages = [];
   for (let i = 1; i <= iterations; i++) {
@@ -36,7 +46,7 @@ export default function SierpinskiShape({ id, size, iterations, rotations, color
   const opacity = iterations < 2 ? 0.75 : iterations === 2 ? 0.875 : iterations === 3 ? 0.9375 : 1;
 
   return (
-    <svg viewBox={viewBox} id={id}>
+    <svg viewBox={viewBox} id={id} style={{ backgroundColor: backgroundColor, borderRadius: "13px" }}>
       <Delayed delay={delay}>
         <defs>
           <Stage0 size={size} idPrefix={id} key={0} color={color} opacity={opacity} />

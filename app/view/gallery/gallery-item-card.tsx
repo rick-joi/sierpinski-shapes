@@ -4,7 +4,7 @@ import SierpinskiShape from "../_shared/sierpinski-shape/sierpinski-shape";
 import { getCreateShapeUrl } from "../_shared/sierpinski-shape/sierpinski-utilities";
 
 import SierpinskiShapeData from "~/model/_shared/sierpinski-shape";
-import rgbToGrayScale from "../_shared/miscellaneous/utilities/grayscale";
+import { rgbToGrayScale } from "../_shared/miscellaneous/utilities/color-utilities";
 import SierpinskiText from "../_shared/sierpinski-shape/sierpinski-text";
 import { useEffect, useState } from "react";
 
@@ -83,6 +83,7 @@ export default function GalleryItemCard({ shape, delay }: Props) {
             iterations={iterations}
             rotations={shape.rotations}
             color={shape.color}
+            backgroundColor={undefined}
             delay={delay}
           />
         </Link>

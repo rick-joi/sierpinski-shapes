@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useId, useState } from "react";
 
 import ControlWithLabelLayout from "../_shared/forms/control-with-label-layout";
-import RangeInputWithoutLabel from "../_shared/forms/range-input-without-label";
+import RangeInputNoLabel from "../_shared/forms/range-input-no-label";
 
 import { Rotations } from "~/model/_shared/rotations";
 
@@ -36,7 +36,7 @@ export default function QuadrantInput({ label, setIsDisabled, rotation, isDisabl
             marginRight: "var(--space-2xs)",
           }}
         />
-        <RangeInputWithoutLabel
+        <RangeInputNoLabel
           max={359}
           value={rotation}
           setValue={setRotation}

@@ -3,16 +3,12 @@ import { Rotations } from "~/model/_shared/rotations";
 type Props = {
   rotations: Rotations;
   iterations?: number;
-  color?: string;
+  style?: React.CSSProperties;
 };
 
-export default function SierpinskiText({ rotations, iterations, color }: Props) {
+export default function SierpinskiText({ rotations, iterations, style }: Props) {
   //
-  return (
-    <span style={{ color: color, cursor: "default" }} title={`color: ${color}`}>
-      {getContent(rotations, iterations)}
-    </span>
-  );
+  return <span style={{ cursor: "default", ...style }}>{getContent(rotations, iterations)}</span>;
 }
 
 function getContent(rotations: Rotations, iterations: number | undefined) {

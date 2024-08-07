@@ -44,7 +44,6 @@ export default function ProductLineImage({ imageName, singularName, width, heigh
         title={`Example ${singularName} — click to see it bigger`}
         onClick={() => {
           setIsDialogOpen(true);
-          console.log("clicked");
         }}
       ></button>
       <Lightbox isOpen={isDialogOpen} setIsOpen={setIsDialogOpen}>
