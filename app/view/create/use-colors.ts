@@ -1,6 +1,10 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { BackgroundColorType } from "../_shared/sierpinski-shape/sierpinski-utilities";
-import { adjustBrightness, isCloseToGray, rgbToGrayScale } from "../_shared/miscellaneous/utilities/color-utilities";
+import {
+  adjustBrightness,
+  isCloseToGray,
+  rgbToGrayScaleNaive,
+} from "../_shared/miscellaneous/utilities/color-utilities";
 
 export default function useColors(
   initialColor: string,
@@ -42,16 +46,22 @@ export default function useColors(
 function calculateBackgroundColor(color: string): string {
   //
   const MIDPOINT = 160;
-  const grayscale = rgbToGrayScale(color);
+  const grayscale = rgbToGrayScaleNaive(color);
   const isGray = isCloseToGray(color);
-
+  console.log("x");
   if (grayscale === undefined || isGray === undefined || (isGray && grayscale < MIDPOINT)) {
     // dark gray...
     return "#ffffff";
   } else if (grayscale < MIDPOINT) {
     // dark...
-    const distanceFromMidpoint = MIDPOINT - grayscale;
-    return adjustBrightness(color, 255 - grayscale - distanceFromMidpoint + 64);
+    const percentageFromMidpoint = (MIDPOINT - grayscale) / MIDPOINT;
+
+    const distanceFromMidpoint = 255 - grayscale;
+    const adjustment = 255 - grayscale - percentageFromMidpoint * 29;
+    console.log(
+      `grayscale: ${grayscale}, distanceFromMidpont: ${distanceFromMidpoint}, adjustment: ${adjustment}, percentageFromMidpoint: ${percentageFromMidpoint}`
+    );
+    return adjustBrightness(color, adjustment);
   } else {
     // light...
     const distanceFromMidpoint = grayscale - MIDPOINT;

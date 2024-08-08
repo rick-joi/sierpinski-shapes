@@ -1,10 +1,9 @@
 import { Link } from "@remix-run/react";
 
 import SierpinskiShape from "../_shared/sierpinski-shape/sierpinski-shape";
-import { getCreateShapeUrl } from "../_shared/sierpinski-shape/sierpinski-utilities";
+import { BackgroundColorType, getCreateShapeUrl } from "../_shared/sierpinski-shape/sierpinski-utilities";
 
 import SierpinskiShapeData from "~/model/_shared/sierpinski-shape";
-import { rgbToGrayScale } from "../_shared/miscellaneous/utilities/color-utilities";
 import SierpinskiText from "../_shared/sierpinski-shape/sierpinski-text";
 import { useEffect, useState } from "react";
 
@@ -16,9 +15,14 @@ type Props = Readonly<{
 export default function GalleryItemCard({ shape, delay }: Props) {
   //
   const MAX_ITERATIONS = 7;
-  //todo: add background color type and background color to getCreateShapeUrl()...
-  const url = getCreateShapeUrl(shape.rotations, MAX_ITERATIONS, shape.color);
-  const backgroundColor = (rgbToGrayScale(shape.color) ?? 0) > 192 ? "var(--color-black)" : "var(--color-white)";
+  const backgroundColorType: BackgroundColorType = shape.backgroundColor ? "custom" : "transparent";
+  const url = getCreateShapeUrl(
+    shape.rotations,
+    MAX_ITERATIONS,
+    shape.color,
+    backgroundColorType,
+    shape.backgroundColor
+  );
 
   const [iterations, setIterations] = useState(MAX_ITERATIONS);
   const [iterationDirection, setIterationDirection] = useState<1 | -1>(1);
@@ -46,7 +50,7 @@ export default function GalleryItemCard({ shape, delay }: Props) {
               }
             }
           },
-          iterations === 1 || iterations === MAX_ITERATIONS ? 3000 : 500
+          iterations === 1 || iterations === MAX_ITERATIONS ? 2000 : 500
         );
         return () => clearInterval(interval);
       }
@@ -72,18 +76,19 @@ export default function GalleryItemCard({ shape, delay }: Props) {
     >
       <div
         style={{
-          backgroundColor: backgroundColor,
           borderRadius: "var(--radius-sm)",
           boxShadow: "var(--shadow-shallow)",
+          lineHeight: 0,
         }}
       >
-        <Link to={url}>
+        <Link to={url} style={{ lineHeight: 0 }}>
           <SierpinskiShape
             id={"gallery-shape-" + shape.id.toString()}
             size={313}
             iterations={iterations}
             rotations={shape.rotations}
             color={shape.color}
+            backgroundColor={shape.backgroundColor}
             delay={delay}
           />
         </Link>

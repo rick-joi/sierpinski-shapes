@@ -95,8 +95,7 @@ export default function TouchableSierpinskiShape({
         iterations={iterations}
         rotations={getRotations(quadrantsProps)}
         color={color}
-        isBackgroundTransparent={backgroundColorType === "transparent"}
-        backgroundColor={backgroundColor}
+        backgroundColor={backgroundColorType === "transparent" ? undefined : backgroundColor}
         isHovering={isHovering}
       />
       <TouchableHelpMessage

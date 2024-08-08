@@ -6,6 +6,7 @@ export default class SierpinskiShape {
   readonly name: string;
   readonly rotations: Rotations;
   readonly color: string;
+  readonly backgroundColor: string | undefined;
 
   constructor(
     id: number,
@@ -14,7 +15,8 @@ export default class SierpinskiShape {
     topRightRotation: number | null,
     bottomLeftRotation: number | null,
     bottomRightRotation: number | null,
-    color: string
+    color: string,
+    backgroundColor: string | undefined
   ) {
     this.id = id;
     this.name = name;
@@ -25,5 +27,6 @@ export default class SierpinskiShape {
       bottomRight: bottomRightRotation,
     };
     this.color = color;
+    this.backgroundColor = backgroundColor;
   }
 }

@@ -7,6 +7,15 @@ export function rgbToGrayScale(color: string) {
   return 0.299 * red + 0.587 * green + 0.114 * blue;
 }
 
+export function rgbToGrayScaleNaive(color: string) {
+  //
+  if (!color.startsWith("#") || !(color.length === 7)) {
+    return undefined;
+  }
+  const { red, green, blue } = parseHexColor(color);
+  return 0.333 * red + 0.334 * green + 0.333 * blue;
+}
+
 export function isCloseToGray(color: string) {
   //
   if (!color.startsWith("#") || !(color.length === 7)) {
