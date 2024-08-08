@@ -37,6 +37,10 @@ export default class Gallery {
     galleryItems.push(new SierpinskiShape(20, "the Sierpinski flame", 15, null, 15, 195, "#ac2020", "#fff9db"));
     galleryItems.push(new SierpinskiShape(21, "flying flock", 182, 179, null, 180, "#001b3d", "#dff4fb"));
     galleryItems.push(new SierpinskiShape(22, "Picaso’s triangle", 7, null, 359, 127, "#3a96f8", "#dbedff"));
+    galleryItems.push(
+      new SierpinskiShape(23, "stay up all night to get lucky", 316, 46, 43, 317, "#3f9938", "#ecffec")
+    );
+    galleryItems.push(new SierpinskiShape(24, "Sierpinski’s shag carpet", 158, 198, 175, 194, "#88623f", "#ffffea"));
 
     shuffle(galleryItems);
     return galleryItems.slice(0, 12);
