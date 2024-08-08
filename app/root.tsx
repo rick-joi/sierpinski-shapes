@@ -1,4 +1,5 @@
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
+import { useState } from "react";
 
 import Footer from "~/view/_shared/root/footer";
 import Header from "~/view/_shared/root/header";
@@ -23,11 +24,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <div style={{ minHeight: "100%" }}>
-          <Header />
-          <MessageBanner />
-          <main>{children}</main>
-        </div>
+        <div style={{ minHeight: "100%" }}>{children}</div>
         <Footer />
         <ScrollRestoration />
         <Scripts />
@@ -38,7 +35,26 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   //
-  //usePreventOverscroll();
+  //todo: add user to outlet context for use by useOutletContext() in other components
+  const [mostRecentCreateUrl, setMostRecentCreateUrl] = useState<string>("/create");
 
-  return <Outlet />;
+  return (
+    <>
+      <Header mostRecentCreateUrl={mostRecentCreateUrl} />
+      <MessageBanner />
+      <main>
+        <Outlet context={setMostRecentCreateUrl} />
+      </main>
+    </>
+  );
+}
+
+export function ErrorBoundary({ error }: { error: Error }) {
+  //
+  return (
+    <Layout>
+      <h1>Application Error</h1>
+      <pre>{error.message}</pre>
+    </Layout>
+  );
 }

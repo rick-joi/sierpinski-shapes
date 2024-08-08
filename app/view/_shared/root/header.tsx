@@ -8,8 +8,12 @@ import classes from "./header.module.css";
 import { getCreateShapeUrl } from "../sierpinski-shape/sierpinski-utilities";
 import { useEffect, useState } from "react";
 
+type Props = Readonly<{
+  mostRecentCreateUrl: string;
+}>;
+
 // inspired by: https://dev.to/devggaurav/let-s-build-a-responsive-navbar-and-hamburger-menu-using-html-css-and-javascript-4gci
-export default function Header() {
+export default function Header({ mostRecentCreateUrl }: Props) {
   //
   const [rotations, setRotations] = useState<Rotations>({ topLeft: 0, topRight: null, bottomLeft: 0, bottomRight: 0 });
 
@@ -32,7 +36,7 @@ export default function Header() {
         <menu>
           <li className={classes["nav-spacer"]}>&nbsp;</li>
           <li>
-            <NavLink to="/create" onClick={closeMenu}>
+            <NavLink to={mostRecentCreateUrl} onClick={closeMenu}>
               Create
             </NavLink>
           </li>

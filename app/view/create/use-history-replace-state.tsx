@@ -8,7 +8,8 @@ export default function useHistoryReplaceState(
   color: string,
   backgroundColorType: BackgroundColorType,
   backgroundColor: string,
-  isAnimating: boolean
+  isAnimating: boolean,
+  setMostRecentCreateUrl: React.Dispatch<React.SetStateAction<string>>
 ) {
   const rotations = getRotations(quadrantProps);
   const url = getCreateShapeUrl(rotations, iterations, color, backgroundColorType, backgroundColor);
@@ -17,10 +18,11 @@ export default function useHistoryReplaceState(
     if (!isAnimating) {
       const id = setTimeout(() => {
         history.replaceState(null, "", url);
+        setMostRecentCreateUrl(url);
       }, 250);
       return () => clearTimeout(id);
     }
-  }, [url, isAnimating]);
+  }, [url, isAnimating, setMostRecentCreateUrl]);
 
   return url;
 }

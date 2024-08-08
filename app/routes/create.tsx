@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { LoaderFunctionArgs } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData, useOutletContext } from "@remix-run/react";
 
 import * as RouteUtilities from "~/view/_shared/miscellaneous/utilities/route-utilities";
 import useWindowSize from "~/view/_shared/miscellaneous/hooks/use-window-size";
@@ -58,9 +58,18 @@ export default function CreateRoute() {
   );
 
   // update URL when created shape changes...
+  const setMostRecentCreateUrl = useOutletContext<React.Dispatch<React.SetStateAction<string>>>();
   const currentUrl =
     "https://www.sierpinski-shapes.com" +
-    useHistoryReplaceState(quadrantProps, iterations, color, backgroundColorType, backgroundColor, isAnimating);
+    useHistoryReplaceState(
+      quadrantProps,
+      iterations,
+      color,
+      backgroundColorType,
+      backgroundColor,
+      isAnimating,
+      setMostRecentCreateUrl
+    );
 
   return (
     <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", columnGap: "var(--space-xl)" }}>
@@ -74,7 +83,7 @@ export default function CreateRoute() {
           setIterations={setIterations}
           color={color}
           backgroundColorType={backgroundColorType}
-          backgroundColor={backgroundColor} //todo: does this handle transparency?
+          backgroundColor={backgroundColor}
         />
         <ButtonBar
           thisSvgId={PRIMARY_SVG_ID}
