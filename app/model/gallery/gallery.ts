@@ -46,6 +46,9 @@ export default class Gallery {
     galleryItems.push(
       new SierpinskiShape(27, "long-eyelash dog looking away", 200, 221, null, 338, "#000000", "#fff2d5")
     );
+    galleryItems.push(
+      new SierpinskiShape(27, "the Sierpinski bridge to nowhere", null, 12, 349, 340, "#8a6f0f", "#ffffd8")
+    );
 
     shuffle(galleryItems);
     return galleryItems.slice(0, 12);

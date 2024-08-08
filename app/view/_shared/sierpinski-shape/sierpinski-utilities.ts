@@ -20,6 +20,22 @@ export function getStageId(stage: number, prefix: string) {
   return `${prefix}Stage${stage}`;
 }
 
+export function getColorsFromUrl(url: string) {
+  //
+  console.log(`getColorsFromUrl(${url})`);
+  const params = new URL("http://a.b" + url).searchParams; //todo: remove "http://a.b" somehow?...
+  const color = getParameterStringOrUndefined(params, "c", "#");
+  //todo: remove "as" somehow?...
+  const backgroundColorType = getParameterStringOrUndefined(params, "bct") as BackgroundColorType | undefined;
+  const backgroundColor = getParameterStringOrUndefined(params, "bc", "#");
+
+  return { color, backgroundColorType, backgroundColor };
+}
+
+function getParameterStringOrUndefined(params: URLSearchParams, key: string, prefix: string = "") {
+  return params.has(key) ? prefix + params.get(key) : undefined;
+}
+
 export function getCreateShapeUrl(
   rotations: Rotations,
   iterations: number,

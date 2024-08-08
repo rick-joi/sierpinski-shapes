@@ -5,7 +5,7 @@ import SierpinskiShape from "../sierpinski-shape/sierpinski-shape";
 import { Rotations } from "~/model/_shared/rotations";
 
 import classes from "./header.module.css";
-import { getCreateShapeUrl } from "../sierpinski-shape/sierpinski-utilities";
+import { getColorsFromUrl, getCreateShapeUrl } from "../sierpinski-shape/sierpinski-utilities";
 import { useEffect, useState } from "react";
 
 type Props = Readonly<{
@@ -16,14 +16,15 @@ type Props = Readonly<{
 export default function Header({ mostRecentCreateUrl }: Props) {
   //
   const [rotations, setRotations] = useState<Rotations>({ topLeft: 0, topRight: null, bottomLeft: 0, bottomRight: 0 });
-
   useEffect(() => {
     setRotations(getRandomRotations());
   }, []);
+  const { color, backgroundColorType, backgroundColor } = getColorsFromUrl(mostRecentCreateUrl);
+  const shapeUrl = getCreateShapeUrl(rotations, 7, color, backgroundColorType, backgroundColor);
 
   return (
     <header>
-      <a href={getCreateShapeUrl(rotations, 7)} id={classes["logo-link"]}>
+      <a href={shapeUrl} id={classes["logo-link"]}>
         <SierpinskiShape id={"logo"} size={64} iterations={5} rotations={rotations} color={"var(--color-white)"} />
       </a>
       <div>

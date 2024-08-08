@@ -49,12 +49,6 @@ export default function App() {
   );
 }
 
-export function ErrorBoundary({ error }: { error: Error }) {
-  //
-  return (
-    <Layout>
-      <h1>Application Error</h1>
-      <pre>{error.message}</pre>
-    </Layout>
-  );
-}
+//todo: add error boundary (https://remix.run/guides/errors)
+
+//todo: add hydration thing that's like an error boundary?
