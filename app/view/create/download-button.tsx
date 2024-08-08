@@ -79,12 +79,14 @@ function getSvgElement(svgParentId: string): SVGSVGElement {
 
 function getPngImageUrl(hiddenCanvasId: string, svgImage: HTMLImageElement, svgUrl: string): string {
   //
+  const RESOLUTION_MULTIPLIER = 8;
+
   const canvas = getHiddenCanvas(hiddenCanvasId);
-  canvas.width = svgImage.width;
-  canvas.height = svgImage.height;
+  canvas.width = svgImage.width * RESOLUTION_MULTIPLIER;
+  canvas.height = svgImage.height * RESOLUTION_MULTIPLIER;
 
   const context = getCanvasContext(canvas);
-  context.drawImage(svgImage, 0, 0);
+  context.drawImage(svgImage, 0, 0, canvas.width, canvas.height);
   window.URL.revokeObjectURL(svgUrl);
   //todo: figure out why TypeScript doesn't think context.isContextLost() exists...
   //if (context.isContextLost()) {
