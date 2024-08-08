@@ -48,19 +48,15 @@ function calculateBackgroundColor(color: string): string {
   const MIDPOINT = 160;
   const grayscale = rgbToGrayScaleNaive(color);
   const isGray = isCloseToGray(color);
-  console.log("x");
   if (grayscale === undefined || isGray === undefined || (isGray && grayscale < MIDPOINT)) {
     // dark gray...
     return "#ffffff";
   } else if (grayscale < MIDPOINT) {
     // dark...
+    const adjustmentToWhite = 255 - grayscale;
     const percentageFromMidpoint = (MIDPOINT - grayscale) / MIDPOINT;
-
-    const distanceFromMidpoint = 255 - grayscale;
-    const adjustment = 255 - grayscale - percentageFromMidpoint * 29;
-    console.log(
-      `grayscale: ${grayscale}, distanceFromMidpont: ${distanceFromMidpoint}, adjustment: ${adjustment}, percentageFromMidpoint: ${percentageFromMidpoint}`
-    );
+    const darkerThanWhiteAdjustment = percentageFromMidpoint * 29;
+    const adjustment = adjustmentToWhite - darkerThanWhiteAdjustment;
     return adjustBrightness(color, adjustment);
   } else {
     // light...
