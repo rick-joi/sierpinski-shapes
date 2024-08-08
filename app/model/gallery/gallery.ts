@@ -41,6 +41,8 @@ export default class Gallery {
       new SierpinskiShape(23, "stay up all night to get lucky", 316, 46, 43, 317, "#3f9938", "#ecffec")
     );
     galleryItems.push(new SierpinskiShape(24, "Sierpinski’s shag carpet", 158, 198, 175, 194, "#88623f", "#ffffea"));
+    galleryItems.push(new SierpinskiShape(25, "snowflakes", null, 83, 302, 134, "#ffffff", "#0d6582"));
+    galleryItems.push(new SierpinskiShape(26, "tornado", 191, 20, 0, null, "#000000", "#afa1a1"));
 
     shuffle(galleryItems);
     return galleryItems.slice(0, 12);
