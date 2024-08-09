@@ -22,7 +22,6 @@ export function getStageId(stage: number, prefix: string) {
 
 export function getColorsFromUrl(url: string) {
   //
-  console.log(`getColorsFromUrl(${url})`);
   const params = new URL("http://a.b" + url).searchParams; //todo: remove "http://a.b" somehow?...
   const color = getParameterStringOrUndefined(params, "c", "#");
   //todo: remove "as" somehow?...
