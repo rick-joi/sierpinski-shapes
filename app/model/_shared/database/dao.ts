@@ -85,6 +85,10 @@ export default abstract class Dao {
     return this.selectOne(new OneIntMapper(), sql, ...args);
   }
 
+  protected async selectZeroOrOneInt(sql: string, ...args: unknown[]): Promise<number | null> {
+    return this.selectZeroOrOne(new OneIntMapper(), sql, ...args);
+  }
+
   protected async modify(sql: string, ...args: unknown[]): Promise<number> {
     const queryResult = await this.query(sql, ...args);
     return queryResult.rowCount ?? 0;
