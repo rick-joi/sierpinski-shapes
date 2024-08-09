@@ -1,4 +1,4 @@
-import { Rotations } from "~/model/_shared/rotations";
+import { Rotations } from "~/model/sierpinski-shapes/rotations";
 
 type Props = {
   rotations: Rotations;

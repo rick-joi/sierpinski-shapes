@@ -2,7 +2,7 @@ import StageN from "./stage-n";
 import Stage0 from "./stage-0";
 import { IsHovering } from "./use-quadrant-hovering";
 import { getStageId } from "./sierpinski-utilities";
-import { Rotations } from "~/model/_shared/rotations";
+import { Rotations } from "~/model/sierpinski-shapes/rotations";
 import Delayed from "../miscellaneous/components/delayed";
 
 type Props = Readonly<{

@@ -8,7 +8,7 @@ import * as FormUtils from "~/view/_shared/forms/form-utils";
 
 import GalleryItemCard from "~/view/gallery/gallery-item-card";
 
-import Gallery from "~/model/gallery/gallery";
+import Gallery from "~/model/sierpinski-shapes/gallery";
 
 export const meta = getMeta("Gallery", "View Sierpinski Shapes created by others!");
 

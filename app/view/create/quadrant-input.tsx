@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction, useId, useState } from "react";
 import ControlWithLabelLayout from "../_shared/forms/control-with-label-layout";
 import RangeInputNoLabel from "../_shared/forms/range-input-no-label";
 
-import { Rotations } from "~/model/_shared/rotations";
+import { Rotations } from "~/model/sierpinski-shapes/rotations";
 import Clickable from "../_shared/forms/clickable";
 
 export type QuadrantInputProps = Readonly<{

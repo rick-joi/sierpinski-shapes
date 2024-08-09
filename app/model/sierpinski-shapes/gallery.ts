@@ -1,4 +1,4 @@
-import SierpinskiShape from "../_shared/sierpinski-shape";
+import SierpinskiShape from "./sierpinski-shape";
 
 export default class Gallery {
   //

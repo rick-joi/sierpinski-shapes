@@ -1,6 +1,6 @@
 import { LoaderFunctionArgs } from "@remix-run/node";
 import { MetaFunction, useLoaderData } from "@remix-run/react";
-import BlogPost from "~/model/learn/blog-post";
+import BlogPost from "~/model/blog-posts/blog-post";
 import LessonPlans from "~/view/learn/posts/lesson-plans";
 import NotYet from "~/view/learn/posts/not-yet";
 import Welcome from "~/view/learn/posts/welcome";

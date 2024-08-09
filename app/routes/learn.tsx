@@ -1,5 +1,5 @@
 import { useLoaderData } from "@remix-run/react";
-import BlogPost from "~/model/learn/blog-post";
+import BlogPost from "~/model/blog-posts/blog-post";
 import { getMeta } from "~/view/_shared/miscellaneous/utilities/route-utilities";
 import BlogPostPreview from "~/view/learn/blog-post-preview";
 

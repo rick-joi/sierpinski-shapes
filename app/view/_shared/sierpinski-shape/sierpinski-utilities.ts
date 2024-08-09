@@ -1,4 +1,4 @@
-import { Rotations } from "~/model/_shared/rotations";
+import { Rotations } from "~/model/sierpinski-shapes/rotations";
 
 export type BackgroundColorType = "auto" | "transparent" | "custom";
 

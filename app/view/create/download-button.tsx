@@ -1,4 +1,4 @@
-import { Rotations } from "~/model/_shared/rotations";
+import { Rotations } from "~/model/sierpinski-shapes/rotations";
 import IconButton from "../_shared/forms/icon-button";
 
 type ImageFormat = "png" | "svg";

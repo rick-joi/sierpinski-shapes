@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import IconButton from "../_shared/forms/icon-button";
 import AddToGalleryDialog from "./add-to-gallery-dialog";
 import DownloadButton from "./download-button";
-import { Rotations } from "~/model/_shared/rotations";
+import { Rotations } from "~/model/sierpinski-shapes/rotations";
 import { useNavigate } from "@remix-run/react";
 
 type Props = Readonly<{

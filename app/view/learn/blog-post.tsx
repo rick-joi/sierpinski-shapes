@@ -1,7 +1,7 @@
 import { Link } from "@remix-run/react";
 import { ReactNode } from "react";
 
-import BlogPostModel from "~/model/learn/blog-post";
+import BlogPostModel from "~/model/blog-posts/blog-post";
 
 type Props = Readonly<{
   blogPost: BlogPostModel;

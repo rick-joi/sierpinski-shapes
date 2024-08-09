@@ -2,7 +2,7 @@ import { NavLink } from "@remix-run/react";
 
 import SierpinskiShape from "../sierpinski-shape/sierpinski-shape";
 
-import { Rotations } from "~/model/_shared/rotations";
+import { Rotations } from "~/model/sierpinski-shapes/rotations";
 
 import classes from "./header.module.css";
 import { getColorsFromUrl, getCreateShapeUrl } from "../sierpinski-shape/sierpinski-utilities";
